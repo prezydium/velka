@@ -4,6 +4,7 @@
 *.iml
 *.ipr
 *.log
+mvnw*
 log/
 target/
 
