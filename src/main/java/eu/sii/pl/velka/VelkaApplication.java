@@ -1,4 +1,4 @@
-package pl.eu.sii.velka;
+package eu.sii.pl.velka;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

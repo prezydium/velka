@@ -1,4 +1,4 @@
-package pl.eu.sii.velka;
+package eu.sii.pl.velka;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
