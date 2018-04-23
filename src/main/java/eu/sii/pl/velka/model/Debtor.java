@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Debtor {
 
-    private int id;
+    private Long id;
 
     private String name;
 
@@ -16,7 +16,7 @@ public class Debtor {
     private List<Debt> debts;
 
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -40,7 +40,7 @@ public class Debtor {
         this.debts = debts;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
