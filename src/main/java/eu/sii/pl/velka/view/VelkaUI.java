@@ -3,6 +3,8 @@ package eu.sii.pl.velka.view;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
+import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewProvider;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
@@ -13,7 +15,8 @@ public class VelkaUI extends UI {
 
 
     Navigator navigator;
-    protected static final String LOGINEFFECT = "main";
+
+    protected static final String LOGINEFFECT = "logged";
     protected static final String STARTVIEW = "";
 
     @Override
