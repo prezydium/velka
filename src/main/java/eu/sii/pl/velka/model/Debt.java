@@ -3,6 +3,8 @@ package eu.sii.pl.velka.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 
 public class Debt {
@@ -44,7 +46,8 @@ public class Debt {
     public Debt() {
     }
 
-    public Debt(BigDecimal debtValue, LocalDate repaymentDate, List<Payment> payments) {
+    public Debt(Long id, BigDecimal debtValue, LocalDate repaymentDate, List<Payment> payments) {
+        this.id=id;
         this.debtValue = debtValue;
         this.repaymentDate = repaymentDate;
         this.payments = payments;

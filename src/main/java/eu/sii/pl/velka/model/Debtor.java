@@ -65,4 +65,15 @@ public class Debtor {
         this.ssn = ssn;
         this.debts = debts;
     }
+
+    @Override
+    public String toString() {
+        return "Debtor{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", ssn='" + ssn + '\'' +
+                ", debts=" + debts +
+                '}';
+    }
 }
