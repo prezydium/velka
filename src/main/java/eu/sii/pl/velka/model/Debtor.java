@@ -67,4 +67,16 @@ public class Debtor {
         this.ssn = ssn;
         this.debts = debts;
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Debtor{");
+        sb.append("id=").append(id);
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", surname='").append(surname).append('\'');
+        sb.append(", ssn='").append(ssn).append('\'');
+        sb.append(", debts=").append(debts);
+        sb.append('}');
+        return sb.toString();
+    }
 }
