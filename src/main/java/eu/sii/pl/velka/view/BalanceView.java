@@ -1,7 +1,8 @@
 package eu.sii.pl.velka.view;
 
 
-import com.vaadin.server.VaadinRequest;
+import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
@@ -18,16 +19,14 @@ import java.util.List;
 
 
 @SpringUI
-public class BalanceUI  extends UI {
+public class BalanceView extends VerticalLayout implements View {
 
-    private VerticalLayout root;
     Debtor debtorResponse = HttpPostTemplate.fetchDataGET();
 
 
     @Override
-    protected void init(VaadinRequest vaadinRequest){
+    public void enter(ViewChangeListener.ViewChangeEvent event){
 
-        setupLayout();
         addHeader();
         addTable();
 
@@ -49,22 +48,16 @@ public class BalanceUI  extends UI {
         grid.addColumn(Debt::getDebtValue).setCaption("Value");
 
         grid.setSizeFull();
-        root.addComponentsAndExpand(grid);
+        this.addComponentsAndExpand(grid);
 
 
     }
 
 
-
-    private void setupLayout() {
-        root= new VerticalLayout();
-        root.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
-        setContent(root);
-    }
     private void addHeader() {
-        Label label=new Label("Balance");
-        label.setValue("Debtor: " + "First Name: " + debtorResponse.getName() + "Last Name:  " + debtorResponse.getSurname() +"SSN: "+ debtorResponse.getSsn());
+        Label label=new Label();
+        label.setValue("First Name: " + debtorResponse.getName() + " Last Name:  " + debtorResponse.getSurname() +" SSN: "+ debtorResponse.getSsn());
         label.addStyleName(ValoTheme.LABEL_H1);
-        root.addComponent(label);
+        this.addComponent(label);
     }
 }
