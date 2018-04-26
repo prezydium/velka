@@ -3,12 +3,12 @@ package eu.sii.pl.velka.view;
 import com.vaadin.annotations.PropertyId;
 import com.vaadin.data.Binder;
 import com.vaadin.ui.*;
+import com.vaadin.ui.themes.ValoTheme;
 import eu.sii.pl.velka.model.Debtor;
 
-public class StartForm extends VerticalLayout {
+public class StartForm extends AbstractDataForm {
 
-
-    private Binder binder = new Binder<>(Debtor.class);
+    private Label formHeader = new Label("Enter your details to see your debts");
 
     @PropertyId("name")
     private TextField textFieldName = new TextField("Name: ");
@@ -19,27 +19,26 @@ public class StartForm extends VerticalLayout {
     @PropertyId("ssn")
     private TextField textFieldSsn = new TextField("SSN: ");
 
-    public  StartForm(Button.ClickListener clickListener){
+    public StartForm(Button.ClickListener clickListener) {
+        super();
         binder.bindInstanceFields(this);
+        styleUI();
+        Button confirmButton = new Button("Submit", clickListener);
+        addComponents(formHeader, textFieldName, textFieldSurname, textFieldSsn, confirmButton);
+    }
+
+    private void styleUI() {
         textFieldName.setWidth("50%");
         textFieldSurname.setWidth("50%");
         textFieldSsn.setWidth("50%");
-
-        Button confirmButton = new Button("Submit", clickListener);
-
+        formHeader.addStyleName(ValoTheme.TEXTFIELD_HUGE);
         setSpacing(true);
         setWidth("80%");
         setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
-        addComponents(textFieldName, textFieldSurname, textFieldSsn, confirmButton);
     }
 
-    public void setModel(Debtor debtor){
-        binder.setBean(debtor);
-
+    @Override
+    public void initialiseBinderWithSpecificClass() {
+        this.binder = new Binder(Debtor.class);
     }
-    public Debtor getModel(){
-
-        return (Debtor) binder.getBean();
-    }
-
 }

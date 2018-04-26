@@ -11,7 +11,7 @@ import com.vaadin.ui.UI;
 @Theme("valo")
 public class VelkaUI extends UI {
 
-    Navigator navigator;
+    private Navigator navigator;
 
     protected static final String LOGINEFFECT = "logged";
     protected static final String STARTVIEW = "";
@@ -19,7 +19,6 @@ public class VelkaUI extends UI {
     @Override
     protected void init(VaadinRequest request) {
         getPage().setTitle("Velka");
-
 
         navigator = new Navigator(this, this);
 
