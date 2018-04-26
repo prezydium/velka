@@ -39,9 +39,11 @@ public class Payment {
     public Payment() {
     }
 
-    public Payment(LocalDate date, BigDecimal value, CreditCard creditCard) {
+    public Payment(Long id,LocalDate date, BigDecimal value, CreditCard creditCard, Debt debt) {
+        this.id=id;
         this.date = date;
         this.value = value;
         this.creditCard = creditCard;
+        this.debt=debt;
     }
 }
