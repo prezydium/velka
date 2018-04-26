@@ -1,7 +1,8 @@
-package eu.sii.pl.velka.view;
+package eu.sii.pl.velka.view.viewModel;
 
 import eu.sii.pl.velka.model.Debt;
 import eu.sii.pl.velka.model.Debtor;
+import eu.sii.pl.velka.view.viewModel.DebtTableView;
 
 import java.math.BigDecimal;
 import java.util.HashSet;

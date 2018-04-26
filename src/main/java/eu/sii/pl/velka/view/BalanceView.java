@@ -18,6 +18,7 @@ public class BalanceView extends VerticalLayout implements View {
 
     Debtor debtorResponse = HttpPostTemplate.fetchDataGET();
     TableLayout tableLayout=new TableLayout(debtorResponse);
+    HeaderLayout headerLayout=new HeaderLayout(debtorResponse);
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event){
@@ -33,15 +34,6 @@ public class BalanceView extends VerticalLayout implements View {
 
 
     private void addHeader() {
-        Label label=new Label();
-        Label label1=new Label();
-        Label label2=new Label();
-        label.setValue("First Name: " + debtorResponse.getFirstName());
-        label1.setValue("Last Name:  " + debtorResponse.getLastName());
-        label2.setValue("SSN: "+ debtorResponse.getSsn());
-        label.addStyleName(ValoTheme.LABEL_H1);
-        this.addComponent(label);
-        this.addComponent(label1);
-        this.addComponent(label2);
+      this.addComponent(headerLayout);
     }
 }
