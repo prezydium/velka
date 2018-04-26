@@ -1,23 +1,21 @@
 package eu.sii.pl.velka.model;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import java.util.Set;
 
 
 public class Debt {
 
     private Long id;
 
-    private BigDecimal debtValue;
+    private BigDecimal debtAmount;
 
-    private LocalDate repaymentDate;
+    private String repaymentDate;
 
     private Debtor debtor;
 
-    private List<Payment> payments;
+    private Set<Payment> setOfpayments;
 
     public Long getId() {
         return id;
@@ -27,30 +25,30 @@ public class Debt {
         return debtor;
     }
 
-    public BigDecimal getDebtValue() {
-        return debtValue;
+    public BigDecimal getDebtAmount() {
+        return debtAmount;
     }
 
-    public LocalDate getRepaymentDate() {
+    public String getRepaymentDate() {
         return repaymentDate;
     }
 
-    public List<Payment> getPayments() {
-        return payments;
+    public Set<Payment> getPayments() {
+        return setOfpayments;
     }
 
-    public void setPayments(List<Payment> payments) {
-        this.payments = payments;
+    public void setPayments(Set<Payment> payments) {
+        this.setOfpayments = payments;
     }
 
     public Debt() {
     }
 
-    public Debt(Long id, BigDecimal debtValue, LocalDate repaymentDate, List<Payment> payments) {
+    public Debt(Long id, BigDecimal debtAmount, String repaymentDate, Set<Payment> payments) {
         this.id=id;
-        this.debtValue = debtValue;
+        this.debtAmount = debtAmount;
         this.repaymentDate = repaymentDate;
-        this.payments = payments;
+        this.setOfpayments = payments;
     }
 
 }

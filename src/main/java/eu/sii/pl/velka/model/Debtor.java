@@ -1,55 +1,55 @@
 package eu.sii.pl.velka.model;
 
-import java.util.List;
+import java.util.Set;
 
 
 public class Debtor {
 
     private Long id;
 
-    private String name;
+    private String firstName;
 
-    private String surname;
+    private String lastName;
 
     private String ssn;
 
-    private List<Debt> debts;
+    private Set<Debt> setOfdebts;
 
 
     public Long getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
     public String getSsn() {
         return ssn;
     }
 
-    public List<Debt> getDebts() {
-        return debts;
+    public Set<Debt> getDebts() {
+        return setOfdebts;
     }
 
-    public void setDebts(List<Debt> debts) {
-        this.debts = debts;
+    public void setDebts(Set<Debt> debts) {
+        this.setOfdebts = debts;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String name) {
+        this.firstName= name;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setlastname(String lastName) {
+        this.lastName = lastName;
     }
 
     public void setSsn(String ssn) {
@@ -59,21 +59,21 @@ public class Debtor {
     public Debtor() {
     }
 
-    public Debtor(String name, String surname, String ssn, List<Debt> debts) {
-        this.name = name;
-        this.surname = surname;
+    public Debtor( String firstname,String lastName, String ssn, Set<Debt> debts) {
+        this.firstName = firstname;
+        this.lastName = lastName;
         this.ssn = ssn;
-        this.debts = debts;
+        this.setOfdebts = debts;
     }
 
     @Override
     public String toString() {
         return "Debtor{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
+                ", name='" + firstName + '\'' +
+                ", surname='" + lastName + '\'' +
                 ", ssn='" + ssn + '\'' +
-                ", debts=" + debts +
+                ", debts=" + setOfdebts +
                 '}';
     }
 }

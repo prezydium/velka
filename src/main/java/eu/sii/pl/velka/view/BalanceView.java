@@ -3,7 +3,6 @@ package eu.sii.pl.velka.view;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import eu.sii.pl.velka.controller.HttpPostTemplate;
@@ -37,8 +36,8 @@ public class BalanceView extends VerticalLayout implements View {
         Label label=new Label();
         Label label1=new Label();
         Label label2=new Label();
-        label.setValue("First Name: " + debtorResponse.getName());
-        label1.setValue("Last Name:  " + debtorResponse.getSurname());
+        label.setValue("First Name: " + debtorResponse.getFirstName());
+        label1.setValue("Last Name:  " + debtorResponse.getLastName());
         label2.setValue("SSN: "+ debtorResponse.getSsn());
         label.addStyleName(ValoTheme.LABEL_H1);
         this.addComponent(label);
