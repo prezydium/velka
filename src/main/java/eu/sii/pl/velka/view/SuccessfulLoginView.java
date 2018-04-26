@@ -5,12 +5,12 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 
-public class LogInEffectView extends VerticalLayout implements View {
+public class SuccessfulLoginView extends VerticalLayout implements View {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-        Notification.show("Welcome to the VELKA app");
-    }
 
+        Notification.show("Successful login");
+    }
 
 }

@@ -7,21 +7,21 @@ public abstract class AbstractDataForm<T> extends VerticalLayout {
 
     private T objectForBinder;
 
-    protected Binder binder;
+    protected final Binder binder;
 
     public <T> void setModel(T t){
         binder.setBean(t);
     }
 
     public AbstractDataForm(){
-        this.initialiseBinderWithSpecificClass();
+        binder = new Binder(getModelClass());
     }
+
+    protected abstract Class<T> getModelClass();
 
     public T getModel(){
         return (T) binder.getBean();
     }
-
-    abstract public void initialiseBinderWithSpecificClass();
 
 }
 

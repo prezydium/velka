@@ -6,14 +6,14 @@ import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import eu.sii.pl.velka.model.Debtor;
 
-public class StartForm extends AbstractDataForm {
+public class StartForm extends AbstractDataForm<Debtor> {
 
     private Label formHeader = new Label("Enter your details to see your debts");
 
-    @PropertyId("name")
+    @PropertyId("firstName")
     private TextField textFieldName = new TextField("Name: ");
 
-    @PropertyId("surname")
+    @PropertyId("lastName")
     private TextField textFieldSurname = new TextField("Surname: ");
 
     @PropertyId("ssn")
@@ -38,7 +38,7 @@ public class StartForm extends AbstractDataForm {
     }
 
     @Override
-    public void initialiseBinderWithSpecificClass() {
-        this.binder = new Binder(Debtor.class);
+    protected Class<Debtor> getModelClass() {
+        return Debtor.class;
     }
 }

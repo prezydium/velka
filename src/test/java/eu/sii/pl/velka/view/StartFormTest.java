@@ -10,13 +10,14 @@ import org.junit.Test;
 public class StartFormTest {
 
     @Test
-    public void shouldCreateFormWhichHaveThreeFieldsAndButton(){
+    public void shouldCreateFormWhichHaveThreeFieldsAndButton() {
         //given
         int numberOfTextFields = 0;
         int numberOfButtons = 0;
 
         //when
-        StartForm startForm = new StartForm((Button.ClickListener) event -> {});
+        StartForm startForm = new StartForm((Button.ClickListener) event -> {
+        });
 
         //then
         for (int i = 0; i < startForm.getComponentCount(); i++) {
@@ -29,17 +30,18 @@ public class StartFormTest {
     }
 
     @Test
-    public void checkLabelOfButton(){
+    public void checkLabelOfButton() {
         //given
         String labelOnSubmitButton = "";
 
         //when
-        StartForm startForm = new StartForm((Button.ClickListener) event -> {});
+        StartForm startForm = new StartForm((Button.ClickListener) event -> {
+        });
 
         //then
         for (int i = 0; i < startForm.getComponentCount(); i++) {
             Component c = startForm.getComponent(i);
-            if (c instanceof Button){
+            if (c instanceof Button) {
                 labelOnSubmitButton = c.getCaption();
             }
         }

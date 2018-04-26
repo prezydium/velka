@@ -13,8 +13,8 @@ public class VelkaUI extends UI {
 
     private Navigator navigator;
 
-    protected static final String LOGINEFFECT = "logged";
-    protected static final String STARTVIEW = "";
+    public static final String SUCCESSFULOGINVIEW = "logged";
+    public static final String STARTVIEW = "";
 
     @Override
     protected void init(VaadinRequest request) {
@@ -23,6 +23,6 @@ public class VelkaUI extends UI {
         navigator = new Navigator(this, this);
 
         navigator.addView(STARTVIEW, new StartView());
-        navigator.addView(LOGINEFFECT, new LogInEffectView());
+        navigator.addView(SUCCESSFULOGINVIEW, new SuccessfulLoginView());
     }
 }
