@@ -14,8 +14,7 @@ public class StartView extends VerticalLayout implements View {
 
     private StartForm formLayout = new StartForm(this::clickSubmitButton);
 
-    @Override
-    public void enter(ViewChangeListener.ViewChangeEvent event) {
+    public StartView(){
         this.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
         addHeader();
         addForm();
