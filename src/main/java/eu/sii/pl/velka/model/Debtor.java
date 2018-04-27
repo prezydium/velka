@@ -56,14 +56,15 @@ public class Debtor {
         this.ssn = ssn;
     }
 
-    public Debtor() {
-    }
 
-    public Debtor( String firstname,String lastName, String ssn, Set<Debt> debts) {
-        this.firstName = firstname;
+    public Debtor( String firstName,String lastName, String ssn, Set<Debt> debts) {
+        this.firstName = firstName;
         this.lastName = lastName;
         this.ssn = ssn;
         this.setOfdebts = debts;
+    }
+
+    public Debtor() {
     }
 
     @Override

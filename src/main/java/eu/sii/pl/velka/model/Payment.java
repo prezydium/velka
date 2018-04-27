@@ -8,7 +8,7 @@ public class Payment {
 
     private Long id;
 
-    private String paymentDate;
+    private LocalDate paymentDate;
 
     private BigDecimal paymentAmount;
 
@@ -24,7 +24,7 @@ public class Payment {
         return debt;
     }
 
-    public String getPaymentDate() {
+    public LocalDate getPaymentDate() {
         return paymentDate;
     }
 
@@ -36,10 +36,9 @@ public class Payment {
         return creditCard;
     }
 
-    public Payment() {
-    }
 
-    public Payment(Long id, String paymentDate, BigDecimal paymentAmount, CreditCard creditCard, Debt debt) {
+
+    public Payment(Long id, LocalDate paymentDate, BigDecimal paymentAmount, CreditCard creditCard, Debt debt) {
         this.id=id;
         this.paymentDate = paymentDate;
         this.paymentAmount = paymentAmount;

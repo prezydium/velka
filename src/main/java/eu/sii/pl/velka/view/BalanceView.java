@@ -16,7 +16,7 @@ import eu.sii.pl.velka.model.Debtor;
 public class BalanceView extends VerticalLayout implements View {
 
     Debtor debtorResponse = RandomDataController.getDebtorBalance();
-    TableLayout tableLayout=new TableLayout(debtorResponse);
+   TableLayout tableLayout=new TableLayout(debtorResponse);
     HeaderLayout headerLayout=new HeaderLayout(debtorResponse);
 
     @Override
@@ -24,8 +24,6 @@ public class BalanceView extends VerticalLayout implements View {
         addHeader();
         addTable();
     }
-
-
 
     private void addTable() {
         this.addComponent( tableLayout);

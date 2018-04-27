@@ -2,12 +2,13 @@ package eu.sii.pl.velka.view.viewModel;
 import eu.sii.pl.velka.model.Debt;
 import eu.sii.pl.velka.utils.DebtSummaryData;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 
 public class DebtTableView {
 
     Long debtViewId;
-    String debtViewDate;
+    LocalDate debtViewDate;
     BigDecimal debtViewAmount;
     BigDecimal sumPaymentViewAmount = new BigDecimal(0.0);
 
@@ -16,7 +17,7 @@ public class DebtTableView {
         return debtViewId;
     }
 
-    public String getDebtViewDate() {
+    public LocalDate getDebtViewDate() {
         return debtViewDate;
     }
 
@@ -32,7 +33,7 @@ public class DebtTableView {
         this.debtViewId = debtViewId;
     }
 
-    public void setDebtViewDate(String debtViewDate) {
+    public void setDebtViewDate(LocalDate debtViewDate) {
         this.debtViewDate = debtViewDate;
     }
 
@@ -51,7 +52,7 @@ public class DebtTableView {
         this.debtViewId = debt.getId();
         this.debtViewDate = debt.getRepaymentDate();
         this.debtViewAmount = debt.getDebtAmount();
-        this.sumPaymentViewAmount = DebtSummaryData.calculateSumPaymentAmount(debt);
+        this.sumPaymentViewAmount = DebtSummaryData.getSumPaymentAmount(debt);
     }
 
 
