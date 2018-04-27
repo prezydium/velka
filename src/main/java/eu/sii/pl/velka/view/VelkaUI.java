@@ -17,7 +17,6 @@ public class VelkaUI extends UI {
     public static final String SUCCESSFULOGINVIEW = "logged";
     public static final String FAILEDOGINVIEW = "notlogged";
 
-
     @Override
     protected void init(VaadinRequest request) {
         getPage().setTitle("Velka");

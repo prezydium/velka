@@ -2,8 +2,7 @@ package eu.sii.pl.velka.model;
 
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class Debtor {
@@ -16,7 +15,7 @@ public class Debtor {
 
     private String ssn;
 
-    private List<Debt> debts;
+    private Set<Debt> debts;
 
     public Long getId() {
         return id;
@@ -34,12 +33,12 @@ public class Debtor {
         return ssn;
     }
 
-    public List<Debt> getDebts() {
+    public Set<Debt> getDebts() {
         return debts;
     }
 
-    public void setDebts(List<Debt> debts) {
-        this.debts = new ArrayList<>(debts);
+    public void setDebts(Set<Debt> debts) {
+        this.debts = Collections.unmodifiableSet(debts);
     }
 
     public void setId(Long id) {
@@ -61,11 +60,11 @@ public class Debtor {
     public Debtor() {
     }
 
-    public Debtor(String firstName, String lastName, String ssn, List<Debt> debts) {
+    public Debtor(String firstName, String lastName, String ssn, Set<Debt> debts) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.ssn = ssn;
-        this.debts = debts;
+        this.debts = Collections.unmodifiableSet(debts);
     }
 
     @Override
