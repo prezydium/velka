@@ -12,5 +12,4 @@ public class SuccessfulLoginView extends VerticalLayout implements View {
 
         Notification.show("Successful login");
     }
-
 }

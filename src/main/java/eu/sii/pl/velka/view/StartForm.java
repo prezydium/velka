@@ -1,8 +1,10 @@
 package eu.sii.pl.velka.view;
 
 import com.vaadin.annotations.PropertyId;
-import com.vaadin.data.Binder;
-import com.vaadin.ui.*;
+import com.vaadin.ui.Alignment;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.TextField;
 import com.vaadin.ui.themes.ValoTheme;
 import eu.sii.pl.velka.model.Debtor;
 
