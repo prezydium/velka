@@ -2,6 +2,7 @@ package eu.sii.pl.velka.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -9,7 +10,7 @@ public class Debt {
 
     private Long id;
 
-    private BigDecimal debtValue;
+    private BigDecimal debtAmount;
 
     private LocalDate repaymentDate;
 
@@ -25,8 +26,8 @@ public class Debt {
         return debtor;
     }
 
-    public BigDecimal getDebtValue() {
-        return debtValue;
+    public BigDecimal getDebtAmount() {
+        return debtAmount;
     }
 
     public LocalDate getRepaymentDate() {
@@ -38,16 +39,16 @@ public class Debt {
     }
 
     public void setPayments(List<Payment> payments) {
-        this.payments = payments;
+        this.payments = new ArrayList<>(payments);
     }
 
     public Debt() {
     }
 
-    public Debt(BigDecimal debtValue, LocalDate repaymentDate, List<Payment> payments) {
-        this.debtValue = debtValue;
+    public Debt(BigDecimal debtAmount, LocalDate repaymentDate, List<Payment> payments) {
+        this.debtAmount = debtAmount;
         this.repaymentDate = repaymentDate;
-        this.payments = payments;
+        this.payments = new ArrayList<>(payments);
     }
 
 }

@@ -2,6 +2,7 @@ package eu.sii.pl.velka.model;
 
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -38,7 +39,7 @@ public class Debtor {
     }
 
     public void setDebts(List<Debt> debts) {
-        this.debts = debts;
+        this.debts = new ArrayList<>(debts);
     }
 
     public void setId(Long id) {
