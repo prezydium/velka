@@ -2,7 +2,7 @@ package eu.sii.pl.velka.view.viewModel;
 
 import eu.sii.pl.velka.model.Debt;
 import eu.sii.pl.velka.model.Debtor;
-import eu.sii.pl.velka.view.viewModel.DebtTableView;
+import eu.sii.pl.velka.utils.DebtorSummaryData;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -27,26 +27,9 @@ public class DebtorTableView {
     }
 
     public DebtorTableView(Debtor debtor) {
-        this.debtViewSet = createDebtorViewSet(debtor);
-        this.paymentsSumView = calculatePaymentsSum(debtor);
-        this.debtsSumView = calculateDebtsSum(debtor);
+        this.debtViewSet = DebtorSummaryData.createDebtorViewSet(debtor);
+        this.paymentsSumView = DebtorSummaryData.calculatePaymentsSum(debtor);
+        this.debtsSumView = DebtorSummaryData.calculateDebtsSum(debtor);
     }
 
-    private Set<DebtTableView> createDebtorViewSet(Debtor debtor) {
-        Set<Debt> debtSet=debtor.getDebts();
-        Set<DebtTableView> debtViewSet = new HashSet<>();
-        for (Debt debt: debtSet) {
-            debtViewSet.add(new DebtTableView(debt));
-        }
-        return debtViewSet;
-    }
-    private BigDecimal calculateDebtsSum(Debtor debtor){
-        Set<Debt> setDebts= debtor.getDebts();
-        return  setDebts.stream().map(Debt::getDebtAmount).reduce(BigDecimal::add).get();
-
-    }  private BigDecimal calculatePaymentsSum(Debtor debtor){
-        Set<DebtTableView> setDebtsView= createDebtorViewSet(debtor);
-        return  setDebtsView.stream().map(DebtTableView::getSumPaymentViewAmount).reduce(BigDecimal::add).get();
-
-    }
 }

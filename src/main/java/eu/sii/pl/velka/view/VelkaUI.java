@@ -15,7 +15,7 @@ public class VelkaUI extends UI {
 
   com.vaadin.navigator.Navigator navigator;
 
-  protected static final String BALANCEVIEW="";
+  protected static final String BALANCEVIEW="balance";
 
 
     @Override

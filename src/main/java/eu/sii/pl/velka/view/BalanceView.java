@@ -4,8 +4,7 @@ package eu.sii.pl.velka.view;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
-import com.vaadin.ui.themes.ValoTheme;
-import eu.sii.pl.velka.controller.HttpPostTemplate;
+import eu.sii.pl.velka.controller.RandomDataController;
 import eu.sii.pl.velka.model.Debtor;
 
 
@@ -16,7 +15,7 @@ import eu.sii.pl.velka.model.Debtor;
 
 public class BalanceView extends VerticalLayout implements View {
 
-    Debtor debtorResponse = HttpPostTemplate.fetchDataGET();
+    Debtor debtorResponse = RandomDataController.getDebtorBalance();
     TableLayout tableLayout=new TableLayout(debtorResponse);
     HeaderLayout headerLayout=new HeaderLayout(debtorResponse);
 

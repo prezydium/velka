@@ -1,8 +1,7 @@
 package eu.sii.pl.velka.view.viewModel;
 import eu.sii.pl.velka.model.Debt;
-import eu.sii.pl.velka.model.Payment;
+import eu.sii.pl.velka.utils.DebtSummaryData;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 
 public class DebtTableView {
@@ -10,7 +9,7 @@ public class DebtTableView {
     Long debtViewId;
     String debtViewDate;
     BigDecimal debtViewAmount;
-    BigDecimal sumPaymentViewAmount= new BigDecimal(0.0);
+    BigDecimal sumPaymentViewAmount = new BigDecimal(0.0);
 
 
     public Long getDebtViewId() {
@@ -52,21 +51,8 @@ public class DebtTableView {
         this.debtViewId = debt.getId();
         this.debtViewDate = debt.getRepaymentDate();
         this.debtViewAmount = debt.getDebtAmount();
-        this.sumPaymentViewAmount = calculateSumPaymentViewAmount(debt);
+        this.sumPaymentViewAmount = DebtSummaryData.calculateSumPaymentAmount(debt);
     }
-
-
-    private BigDecimal calculateSumPaymentViewAmount(Debt debt) {
-        try {BigDecimal   debtPaymentsSum= debt.getPayments().stream()
-                .map(Payment::getValue)
-                .reduce(BigDecimal.ZERO, BigDecimal::add)
-                .setScale(2, RoundingMode.HALF_EVEN);
-        return debtPaymentsSum;}
-        catch( NullPointerException e){
-            return new BigDecimal(0.0);
-        }
-    }
-
 
 
     @Override
