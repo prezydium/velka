@@ -1,6 +1,5 @@
 package eu.sii.pl.velka.view;
 
-import com.vaadin.shared.ui.grid.HeightMode;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.components.grid.FooterRow;
@@ -25,13 +24,13 @@ public class TableLayout extends VerticalLayout {
         grid.addColumn(DebtTableView::getDebtViewId).setId("Id").setCaption("Id");
         grid.addColumn(DebtTableView::getDebtViewDate).setId("Repayment Date").setCaption("Repayment Date");
         grid.addColumn(DebtTableView::getDebtViewAmount).setId("Debt Amount").setCaption("Debt Amount");
-        grid.addColumn(DebtTableView::getSumPaymentViewAmount).setId("Payment Sum Amount").setCaption("Payment Sum Amount");
+        grid.addColumn(DebtTableView::getSumRemainingAmountView).setId("Remaining Amount").setCaption("Remaining Amount");
 
 
         FooterRow footer = grid.prependFooterRow();
         footer.getCell("Id").setText("Total:");
         footer.getCell("Debt Amount").setText(debtorTableView.getDebtsSumView().toString());
-        footer.getCell("Payment Sum Amount").setText(debtorTableView.getPaymentsSumView().toString());
+        footer.getCell("Remaining Amount").setText(debtorTableView.getRemainingAmountSumView().toString());
         grid.setSizeFull();
         addComponent(grid);
 

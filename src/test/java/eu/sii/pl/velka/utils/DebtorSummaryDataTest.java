@@ -45,7 +45,7 @@ public class DebtorSummaryDataTest {
 
 
     @Test
-    public void getDebtsSumTest(){
+    public void shouldReturnDebtsSum(){
         //given
         //when
         BigDecimal debtsSumAmount= DebtorSummaryData.getDebtsSum(debtor);
@@ -54,20 +54,20 @@ public class DebtorSummaryDataTest {
 
     }
     @Test
-    public void getPaymentsSumTest(){
+    public void shouldReturnRemainingAmountSum(){
         //given
         //when
-        BigDecimal paymentsSumAmount= DebtorSummaryData.getPaymentsSum(debtor);
+        BigDecimal remainingAmountSum= DebtorSummaryData.getRemainingAmountSum(debtor);
         //then
-        Assert.assertThat(paymentsSumAmount,CoreMatchers.equalTo(new BigDecimal(320.00).setScale(2, RoundingMode.HALF_EVEN)));
+        Assert.assertThat(remainingAmountSum,CoreMatchers.equalTo(new BigDecimal(280).setScale(2, RoundingMode.HALF_EVEN)));
 
     } @Test
-    public void getPaymentsSumWhenNullTest(){
+    public void shouldReturnRemainingAmountSumWhenNullPayments(){
         //given
         //when
-        BigDecimal paymentsSumAmount= DebtorSummaryData.getPaymentsSum(debtorWithNullPayments);
+        BigDecimal remainingAmountSum= DebtorSummaryData.getRemainingAmountSum(debtorWithNullPayments);
         //then
-        Assert.assertThat(paymentsSumAmount,CoreMatchers.equalTo(new BigDecimal(0)));
+        Assert.assertThat(remainingAmountSum,CoreMatchers.equalTo(DebtorSummaryData.getDebtsSum(debtorWithNullPayments)));
 
     }
 

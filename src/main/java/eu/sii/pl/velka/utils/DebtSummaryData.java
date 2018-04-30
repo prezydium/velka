@@ -12,18 +12,18 @@ public class DebtSummaryData {
     }
 
 
-    public static BigDecimal getSumPaymentAmount(Debt debt) {
+    public static BigDecimal getRemainingAmount(Debt debt) {
 
 
         if (debt.getPayments() == null || debt.getPayments().isEmpty()) {
 
-            return new BigDecimal(0.0);
+            return debt.getDebtAmount();
         } else {
             BigDecimal debtPaymentsSum = debt.getPayments().stream()
                     .map(Payment::getValue)
                     .reduce(BigDecimal.ZERO, BigDecimal::add)
                     .setScale(2, RoundingMode.HALF_EVEN);
-            return debtPaymentsSum;
+            return debt.getDebtAmount().subtract(debtPaymentsSum);
         }
     }
 

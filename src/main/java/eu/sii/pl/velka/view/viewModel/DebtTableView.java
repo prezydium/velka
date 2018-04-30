@@ -10,7 +10,7 @@ public class DebtTableView {
     Long debtViewId;
     LocalDate debtViewDate;
     BigDecimal debtViewAmount;
-    BigDecimal sumPaymentViewAmount = new BigDecimal(0.0);
+    BigDecimal sumPaymentViewAmount ;
 
 
     public Long getDebtViewId() {
@@ -25,7 +25,7 @@ public class DebtTableView {
         return debtViewAmount;
     }
 
-    public BigDecimal getSumPaymentViewAmount() {
+    public BigDecimal getSumRemainingAmountView() {
         return sumPaymentViewAmount;
     }
 
@@ -52,7 +52,7 @@ public class DebtTableView {
         this.debtViewId = debt.getId();
         this.debtViewDate = debt.getRepaymentDate();
         this.debtViewAmount = debt.getDebtAmount();
-        this.sumPaymentViewAmount = DebtSummaryData.getSumPaymentAmount(debt);
+        this.sumPaymentViewAmount = DebtSummaryData.getRemainingAmount(debt);
     }
 
 

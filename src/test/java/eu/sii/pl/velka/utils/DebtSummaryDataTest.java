@@ -34,19 +34,19 @@ public class DebtSummaryDataTest {
     }
 
     @Test
-    public void getSumPaymentAmountTest(){
+    public void shouldReturnRemainingAmount(){
         //when
-        BigDecimal sumPaymentAmount= DebtSummaryData.getSumPaymentAmount(debt);
+        BigDecimal remainingAmount= DebtSummaryData.getRemainingAmount(debt);
         //then
-        Assert.assertThat(sumPaymentAmount,CoreMatchers.equalTo(new BigDecimal(160).setScale(2, RoundingMode.HALF_EVEN)));
+        Assert.assertThat(remainingAmount,CoreMatchers.equalTo(new BigDecimal(40).setScale(2, RoundingMode.HALF_EVEN)));
 
     }
  @Test
-    public void getSumNullPaymentAmountTest(){
+    public void shouldReturnRemainingAmountWhenNullPayments(){
         //when
-        BigDecimal sumPaymentAmount= DebtSummaryData.getSumPaymentAmount(debtWithNullPayments);
+        BigDecimal sumPaymentAmount= DebtSummaryData.getRemainingAmount(debtWithNullPayments);
         //then
-        Assert.assertThat(sumPaymentAmount,CoreMatchers.equalTo(new BigDecimal(0.0)));
+        Assert.assertThat(sumPaymentAmount,CoreMatchers.equalTo(debtWithNullPayments.getDebtAmount()));
 
     }
 

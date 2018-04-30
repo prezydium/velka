@@ -44,7 +44,7 @@ public class Debt {
     public Debt() {
     }
 
-    public Debt(Long id, BigDecimal debtAmount, LocalDate repaymentDate, Set<Payment> payments) {
+    public Debt(Long id, BigDecimal debtAmount, LocalDate repaymentDate, Set<Payment> setOfpayments) {
         this.id=id;
         this.debtAmount = debtAmount;
         this.repaymentDate = repaymentDate;

@@ -7,17 +7,31 @@ import java.math.BigDecimal;
 import java.util.Set;
 
 public class DebtorTableView {
+    String firstName;
+    String lastName;
+    String ssn;
     Set<DebtTableView>  debtViewSet;
-    BigDecimal paymentsSumView;
+    BigDecimal RemainingAmountSumView;
     BigDecimal debtsSumView;
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getSsn() {
+        return ssn;
+    }
 
     public Set<DebtTableView> getDebtViewSet() {
         return debtViewSet;
     }
 
-    public BigDecimal getPaymentsSumView() {
-        return paymentsSumView;
+    public BigDecimal getRemainingAmountSumView() {
+        return RemainingAmountSumView;
     }
 
     public BigDecimal getDebtsSumView() {
@@ -25,8 +39,11 @@ public class DebtorTableView {
     }
 
     public DebtorTableView(Debtor debtor) {
+        this.firstName=debtor.getFirstName();
+        this.lastName=debtor.getLastName();
+        this.ssn=debtor.getSsn();
         this.debtViewSet = DebtorSummaryData.createDebtorViewSet(debtor);
-        this.paymentsSumView = DebtorSummaryData.getPaymentsSum(debtor);
+        this.RemainingAmountSumView = DebtorSummaryData.getRemainingAmountSum(debtor);
         this.debtsSumView = DebtorSummaryData.getDebtsSum(debtor);
     }
 

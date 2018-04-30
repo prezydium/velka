@@ -25,9 +25,9 @@ public class DebtorSummaryData {
     }
 
 
-    public static BigDecimal getPaymentsSum(Debtor debtor){
+    public static BigDecimal getRemainingAmountSum(Debtor debtor){
         Set<DebtTableView> setDebtsView= createDebtorViewSet(debtor);
-        return  setDebtsView.stream().map(DebtTableView::getSumPaymentViewAmount).reduce(BigDecimal::add).get();
+        return  setDebtsView.stream().map(DebtTableView::getSumRemainingAmountView).reduce(BigDecimal::add).get();
 
     }
 }
