@@ -1,5 +1,6 @@
 package eu.sii.pl.velka.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -13,7 +14,7 @@ public class Debtor {
 
     private String ssn;
 
-    private Set<Debt> setOfdebts;
+    private Set<Debt> setOfDebts;
 
 
     public Long getId() {
@@ -33,11 +34,11 @@ public class Debtor {
     }
 
     public Set<Debt> getDebts() {
-        return setOfdebts;
+        return new HashSet<>(setOfDebts);
     }
 
     public void setDebts(Set<Debt> debts) {
-        this.setOfdebts = debts;
+        this.setOfDebts = debts;
     }
 
     public void setId(Long id) {
@@ -57,11 +58,11 @@ public class Debtor {
     }
 
 
-    public Debtor( String firstName,String lastName, String ssn, Set<Debt> debts) {
+    public Debtor( String firstName,String lastName, String ssn, Set<Debt> setOfDebts) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.ssn = ssn;
-        this.setOfdebts = debts;
+        this.setOfDebts = new HashSet<>(setOfDebts);
     }
 
     public Debtor() {
@@ -74,7 +75,7 @@ public class Debtor {
                 ", name='" + firstName + '\'' +
                 ", surname='" + lastName + '\'' +
                 ", ssn='" + ssn + '\'' +
-                ", debts=" + setOfdebts +
+                ", debts=" + setOfDebts +
                 '}';
     }
 }
