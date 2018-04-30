@@ -34,8 +34,8 @@ public class DebtorSummaryDataTest {
         Debt debt1 = new Debt(1L, new BigDecimal(400), LocalDate.now(), payments);
         Debt debtNullPayments = new Debt(1L, new BigDecimal(400), LocalDate.now(), null);
 
-        Set<Debt> debts = new HashSet<Debt>(Arrays.asList(debt, debt1));
-        Set<Debt> debtsNullPayment = new HashSet<Debt>(Arrays.asList(debtNullPayments));
+        List<Debt> debts = new ArrayList<>(Arrays.asList(debt, debt1));
+        List<Debt> debtsNullPayment = new ArrayList<>(Arrays.asList(debtNullPayments));
         debtor = new Debtor("Ana", "Smith", "232122333", debts);
         debtorWithNullPayments = new Debtor("Ana", "Smith", "232122333", debtsNullPayment);
 

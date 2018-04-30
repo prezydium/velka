@@ -14,9 +14,7 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class DebtorTableViewTest {
 
@@ -36,8 +34,8 @@ public class DebtorTableViewTest {
         Debt debt1 = new Debt(1L, new BigDecimal(400), LocalDate.now(), payments);
         Debt debtNullPayments = new Debt(1L, new BigDecimal(400), LocalDate.now(), null);
 
-        Set<Debt> debts = new HashSet<Debt>(Arrays.asList(debt, debt1));
-        Set<Debt> debtsNullPayment = new HashSet<Debt>(Arrays.asList(debtNullPayments));
+        List<Debt> debts = new ArrayList<>(Arrays.asList(debt, debt1));
+        List<Debt> debtsNullPayment = new ArrayList<>(Arrays.asList(debtNullPayments));
         debtor = new Debtor("Ana", "Smith", "232122333", debts);
        debtorTableView=new DebtorTableView(debtor);
     }

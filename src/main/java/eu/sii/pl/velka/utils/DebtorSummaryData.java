@@ -6,18 +6,19 @@ import eu.sii.pl.velka.view.viewModel.DebtTableView;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class DebtorSummaryData {
 
     public static BigDecimal getDebtsSum(Debtor debtor){
-        Set<Debt> setDebts= debtor.getDebts();
+        List<Debt> setDebts= debtor.getDebts();
         return  setDebts.stream().map(Debt::getDebtAmount).reduce(BigDecimal.ZERO,BigDecimal::add).setScale(2, RoundingMode.HALF_EVEN);
 
     }
 
     public static Set<DebtTableView> createDebtorViewSet(Debtor debtor) {
-        Set<Debt> debtSet=debtor.getDebts();
+        List<Debt> debtSet=debtor.getDebts();
         Set<DebtTableView> debtViewSet = new HashSet<>();
         for (Debt debt: debtSet) {
             debtViewSet.add(new DebtTableView(debt));
