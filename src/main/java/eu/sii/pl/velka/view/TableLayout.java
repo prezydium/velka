@@ -24,7 +24,7 @@ public class TableLayout extends VerticalLayout {
         grid.addColumn(DebtTableView::getDebtViewId).setId("Id").setCaption("Id");
         grid.addColumn(DebtTableView::getDebtViewDate).setId("Repayment Date").setCaption("Repayment Date");
         grid.addColumn(DebtTableView::getDebtViewAmount).setId("Debt Amount").setCaption("Debt Amount");
-        grid.addColumn(DebtTableView::getSumRemainingAmountView).setId("Remaining Amount").setCaption("Remaining Amount");
+        grid.addColumn(DebtTableView::getRemainingAmountView).setId("Remaining Amount").setCaption("Remaining Amount");
 
 
         FooterRow footer = grid.prependFooterRow();

@@ -4,6 +4,7 @@ import eu.sii.pl.velka.model.Debt;
 import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.view.viewModel.DebtTableView;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,7 +12,7 @@ public class DebtorSummaryData {
 
     public static BigDecimal getDebtsSum(Debtor debtor){
         Set<Debt> setDebts= debtor.getDebts();
-        return  setDebts.stream().map(Debt::getDebtAmount).reduce(BigDecimal::add).get();
+        return  setDebts.stream().map(Debt::getDebtAmount).reduce(BigDecimal.ZERO,BigDecimal::add).setScale(2, RoundingMode.HALF_EVEN);
 
     }
 
@@ -27,7 +28,8 @@ public class DebtorSummaryData {
 
     public static BigDecimal getRemainingAmountSum(Debtor debtor){
         Set<DebtTableView> setDebtsView= createDebtorViewSet(debtor);
-        return  setDebtsView.stream().map(DebtTableView::getSumRemainingAmountView).reduce(BigDecimal::add).get();
+        return  setDebtsView.stream().map(DebtTableView::getRemainingAmountView).reduce(BigDecimal.ZERO,BigDecimal::add)
+                .setScale(2, RoundingMode.HALF_EVEN);
 
     }
 }

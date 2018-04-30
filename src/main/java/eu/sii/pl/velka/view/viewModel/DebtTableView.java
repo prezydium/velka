@@ -25,7 +25,7 @@ public class DebtTableView {
         return debtViewAmount;
     }
 
-    public BigDecimal getSumRemainingAmountView() {
+    public BigDecimal getRemainingAmountView() {
         return sumPaymentViewAmount;
     }
 

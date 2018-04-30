@@ -17,7 +17,7 @@ import java.util.Set;
 
 public class DebtSummaryDataTest {
 
-    //given
+
     Debt debt;
     Debt debtWithNullPayments;
 
@@ -38,7 +38,7 @@ public class DebtSummaryDataTest {
         //when
         BigDecimal remainingAmount= DebtSummaryData.getRemainingAmount(debt);
         //then
-        Assert.assertThat(remainingAmount,CoreMatchers.equalTo(new BigDecimal(40).setScale(2, RoundingMode.HALF_EVEN)));
+        Assert.assertThat(remainingAmount,CoreMatchers.equalTo(new BigDecimal(40).setScale(2)));
 
     }
  @Test

@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class DebtorSummaryDataTest {
-    //given
+
     Debtor debtor;
     Debtor debtorWithNullPayments;
 
@@ -50,7 +50,7 @@ public class DebtorSummaryDataTest {
         //when
         BigDecimal debtsSumAmount= DebtorSummaryData.getDebtsSum(debtor);
         //then
-        Assert.assertThat(debtsSumAmount,CoreMatchers.equalTo(new BigDecimal(600)));
+        Assert.assertThat(debtsSumAmount,CoreMatchers.equalTo(new BigDecimal(600).setScale(2)));
 
     }
     @Test
@@ -59,7 +59,7 @@ public class DebtorSummaryDataTest {
         //when
         BigDecimal remainingAmountSum= DebtorSummaryData.getRemainingAmountSum(debtor);
         //then
-        Assert.assertThat(remainingAmountSum,CoreMatchers.equalTo(new BigDecimal(280).setScale(2, RoundingMode.HALF_EVEN)));
+        Assert.assertThat(remainingAmountSum,CoreMatchers.equalTo(new BigDecimal(280).setScale(2)));
 
     } @Test
     public void shouldReturnRemainingAmountSumWhenNullPayments(){

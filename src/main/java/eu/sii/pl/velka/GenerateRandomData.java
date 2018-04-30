@@ -15,8 +15,6 @@ public class GenerateRandomData {
         Set<Debt> debtList=new HashSet<>();
 
 
-
-
       Debt debt1=new Debt(1L,new BigDecimal(3200), LocalDate.now(),null);
       Debt debt2=new Debt(2L,new BigDecimal(200), LocalDate.of(2019,12,03),null);
       Debt debt3=new Debt(3L,new BigDecimal(300), LocalDate.of(2019,10,13),null);
