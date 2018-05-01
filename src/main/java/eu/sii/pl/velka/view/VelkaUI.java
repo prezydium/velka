@@ -8,6 +8,7 @@ import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.annotation.SpringViewDisplay;
 import com.vaadin.ui.UI;
 import eu.sii.pl.velka.view.authorisationeffect.ErrorLoginView;
+import eu.sii.pl.velka.view.authorisationeffect.ErrorView;
 import eu.sii.pl.velka.view.authorisationeffect.SuccessfulLoginView;
 import eu.sii.pl.velka.view.authorisationeffect.UnrecognisedUserLoginView;
 
@@ -19,5 +20,6 @@ public class VelkaUI extends UI {
     @Override
     protected void init(VaadinRequest request) {
         getPage().setTitle("Velka");
+        getNavigator().setErrorView(ErrorView.class);
     }
 }

@@ -14,7 +14,6 @@ public class SuccessfulLoginView extends VerticalLayout implements View {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-
         Notification successfulLoginNotiffication = new Notification("Welcome to MiCuenta", "How are you today?");
         successfulLoginNotiffication.setDelayMsec(-1);
         successfulLoginNotiffication.show(Page.getCurrent());

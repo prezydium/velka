@@ -18,15 +18,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @SpringComponent
-@ViewScope
+@RequestScope
 public class DebtorController {
 
-    private final Logger LOG = Logger.getLogger("Communication logger");
+    private final Logger LOG = Logger.getLogger(DebtorController.class.getName());
 
     @Value("${api_url}")
     private String API_URL;
@@ -35,8 +36,6 @@ public class DebtorController {
     public void confirmThatDebtorExists(Debtor debtor) {
         RestTemplate restTemplate = new RestTemplate();
         String testResourceUrl = API_URL;
-        debtor = (Debtor) VaadinSession.getCurrent().getAttribute("debtor");
-                //"http://localhost:8090/login"; //testURL, will be removed TODO
         try {
             ResponseEntity response = restTemplate.postForEntity(testResourceUrl, debtor, Debtor.class);
             VaadinSession.getCurrent().setAttribute("isRecognisedUser", Boolean.TRUE);
