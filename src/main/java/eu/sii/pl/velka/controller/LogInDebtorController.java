@@ -31,6 +31,9 @@ public class LogInDebtorController {
     @Value("${api_url}")
     private String API_URL;
 
+    @Autowired
+    private GetFullDataDebtorController getFullDataDebtorController;
+
     public LogInDebtorController() {
         restTemplate = new RestTemplate();
     }
@@ -42,6 +45,7 @@ public class LogInDebtorController {
             ResponseEntity response = restTemplate.postForEntity(API_URL, debtor, Debtor.class);
             if (response.getStatusCode()== HttpStatus.OK){
                 navigationTarget = SuccessfulLoginView.VIEW_NAME;
+                System.out.println(getFullDataDebtorController.getFullData(debtor.getSsn()));
             }
         } catch (HttpClientErrorException e) {
             if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
