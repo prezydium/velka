@@ -5,8 +5,10 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.TextField;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-
+@RunWith(SpringJUnit4ClassRunner.class)
 public class StartFormTest {
 
     @Test
@@ -39,9 +41,8 @@ public class StartFormTest {
         });
 
         //then
-        for (int i = 0; i < startForm.getComponentCount(); i++) {
-            Component c = startForm.getComponent(i);
-            if (c instanceof Button) {
+        for (Component c : startForm){
+            if (c.getCaption() != null && c.getCaption().equals("Submit")){
                 labelOnSubmitButton = c.getCaption();
             }
         }
