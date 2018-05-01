@@ -1,14 +1,17 @@
 package eu.sii.pl.velka.view;
 
 import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
-import eu.sii.pl.velka.controller.DebtorController;
 import eu.sii.pl.velka.model.Debtor;
+
+import java.io.IOException;
+import java.net.URL;
+import java.net.URLConnection;
 
 public class StartView extends VerticalLayout implements View {
 
@@ -34,7 +37,7 @@ public class StartView extends VerticalLayout implements View {
 
     private void clickSubmitButton(Button.ClickEvent clickEvent) {
         Debtor localDebtor = (Debtor) formLayout.getModel();
-        DebtorController debtorController = new DebtorController(localDebtor);
-        debtorController.confirmThatDebtorExists();
+        VaadinSession.getCurrent().setAttribute("debtor", localDebtor);
+
     }
 }
