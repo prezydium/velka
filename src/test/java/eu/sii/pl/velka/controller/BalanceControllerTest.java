@@ -5,12 +5,8 @@ import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
 
-
-
 public class BalanceControllerTest {
     BalanceController balanceController = new BalanceController();
-
-
 
     @Test
     public void shouldReturnDebtorFromUrl() {

@@ -1,23 +1,20 @@
 package eu.sii.pl.velka.utils;
 
 import eu.sii.pl.velka.dataHolder.DebtCreator;
-import eu.sii.pl.velka.model.CreditCard;
 import eu.sii.pl.velka.model.Debt;
-import eu.sii.pl.velka.model.Payment;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 
 public class DebtSummaryDataTest {
 
+    @Autowired
     DebtCreator debtCreator = new DebtCreator();
     Debt debt;
     Debt debtWithNullPayments;
-
-
 
     @Test
     public void shouldReturnRemainingAmount() {
@@ -27,7 +24,6 @@ public class DebtSummaryDataTest {
         BigDecimal remainingAmount = DebtSummaryData.getRemainingAmount(debt);
         //then
         Assert.assertThat(remainingAmount, CoreMatchers.equalTo(new BigDecimal(40).setScale(2)));
-
     }
 
     @Test
@@ -38,7 +34,5 @@ public class DebtSummaryDataTest {
         BigDecimal sumPaymentAmount = DebtSummaryData.getRemainingAmount(debtWithNullPayments);
         //then
         Assert.assertThat(sumPaymentAmount, CoreMatchers.equalTo(debtWithNullPayments.getDebtAmount()));
-
     }
-
 }

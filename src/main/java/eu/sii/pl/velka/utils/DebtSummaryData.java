@@ -11,12 +11,8 @@ public class DebtSummaryData {
     public DebtSummaryData() {
     }
 
-
     public static BigDecimal getRemainingAmount(Debt debt) {
-
-
         if (debt.getListOfPayments() == null || debt.getListOfPayments().isEmpty()) {
-
             return debt.getDebtAmount();
         } else {
             BigDecimal debtPaymentsSum = debt.getListOfPayments().stream()
@@ -26,5 +22,4 @@ public class DebtSummaryData {
             return debt.getDebtAmount().subtract(debtPaymentsSum);
         }
     }
-
 }

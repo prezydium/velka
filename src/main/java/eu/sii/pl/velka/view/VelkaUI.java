@@ -11,11 +11,8 @@ import com.vaadin.ui.*;
 @Theme("valo")
 @SpringViewDisplay
 public class VelkaUI extends UI {
-
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-
         getPage().setTitle("Velka");
-
     }
 }

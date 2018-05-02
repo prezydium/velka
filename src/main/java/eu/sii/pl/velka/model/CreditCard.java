@@ -1,14 +1,12 @@
 package eu.sii.pl.velka.model;
 
 
-import java.time.LocalDate;
-
 public class CreditCard {
 
 
     private Long id;
 
-    private String CCNumber;
+    private String ccNumber;
 
     private String cvv;
 
@@ -25,12 +23,12 @@ public class CreditCard {
         this.id = id;
     }
 
-    public String getCCNumber() {
-        return CCNumber;
+    public String getCcNumber() {
+        return ccNumber;
     }
 
-    public void setCCNumber(String CCNumber) {
-        this.CCNumber = CCNumber;
+    public void setCcNumber(String ccNumber) {
+        this.ccNumber = ccNumber;
     }
 
     public String getCvv() {
@@ -61,7 +59,7 @@ public class CreditCard {
     }
 
     public CreditCard(String ccNumber, String cvv, String firstName, String lastName) {
-        this.CCNumber = ccNumber;
+        this.ccNumber = ccNumber;
         this.cvv = cvv;
         this.firstName = firstName;
         this.lastName = lastName;

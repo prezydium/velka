@@ -9,11 +9,10 @@ import java.time.LocalDate;
 
 public class DebtTableView {
 
-    Long debtViewId;
-    LocalDate debtViewDate;
-    BigDecimal debtViewAmount;
-    BigDecimal sumPaymentViewAmount;
-
+    private Long debtViewId;
+    private LocalDate debtViewDate;
+    private BigDecimal debtViewAmount;
+    private BigDecimal sumPaymentViewAmount;
 
     public Long getDebtViewId() {
         return debtViewId;
@@ -56,8 +55,6 @@ public class DebtTableView {
         this.debtViewAmount = debt.getDebtAmount();
         this.sumPaymentViewAmount = DebtSummaryData.getRemainingAmount(debt);
     }
-
-
     @Override
     public String toString() {
         return "DebtTableView{" +

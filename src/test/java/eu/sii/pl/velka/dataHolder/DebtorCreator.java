@@ -21,12 +21,9 @@ public class DebtorCreator {
                 "232345", "222", "Ana", "Smith");
         Payment payment = new Payment(1L, LocalDate.now(), new BigDecimal(30), creditCard);
         Payment payment1 = new Payment(1L, LocalDate.now(), new BigDecimal(130), creditCard);
-
         List<Payment> payments = new ArrayList<>(Arrays.asList(payment, payment1));
-
         Debt debt = new Debt(1L, new BigDecimal(200), LocalDate.now(), payments);
         Debt debt1 = new Debt(1L, new BigDecimal(400), LocalDate.now(), payments);
-
         List<Debt> debts = new ArrayList<>(Arrays.asList(debt, debt1));
          return new Debtor("Ana", "Smith", "232122333", debts);
     }
