@@ -19,20 +19,32 @@ public class Debt {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public BigDecimal getDebtAmount() {
         return debtAmount;
+    }
+
+    public void setDebtAmount(BigDecimal debtAmount) {
+        this.debtAmount = debtAmount;
     }
 
     public LocalDate getRepaymentDate() {
         return repaymentDate;
     }
 
-    public Set<Payment> getPayments() {
+    public void setRepaymentDate(LocalDate repaymentDate) {
+        this.repaymentDate = repaymentDate;
+    }
+
+    public Set<Payment> getListOfPayments() {
         return listOfPayments;
     }
 
-    public void setPayments(Set<Payment> payments) {
-        this.listOfPayments = payments;
+    public void setListOfPayments(Set<Payment> listOfPayments) {
+        this.listOfPayments = listOfPayments;
     }
 
     public Debt() {

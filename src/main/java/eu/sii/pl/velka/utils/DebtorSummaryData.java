@@ -12,13 +12,13 @@ import java.util.Set;
 public class DebtorSummaryData {
 
     public static BigDecimal getDebtsSum(Debtor debtor){
-        List<Debt> setDebts= debtor.getDebts();
+        List<Debt> setDebts= debtor.getListOfDebts();
         return  setDebts.stream().map(Debt::getDebtAmount).reduce(BigDecimal.ZERO,BigDecimal::add).setScale(2, RoundingMode.HALF_EVEN);
 
     }
 
     public static Set<DebtTableView> createDebtorViewSet(Debtor debtor) {
-        List<Debt> debtSet=debtor.getDebts();
+        List<Debt> debtSet=debtor.getListOfDebts();
         Set<DebtTableView> debtViewSet = new HashSet<>();
         for (Debt debt: debtSet) {
             debtViewSet.add(new DebtTableView(debt));

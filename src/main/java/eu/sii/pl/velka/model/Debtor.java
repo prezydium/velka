@@ -22,44 +22,43 @@ public class Debtor {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getFirstName() {
         return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
         return lastName;
     }
 
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     public String getSsn() {
         return ssn;
-    }
-
-    public List<Debt> getDebts() {
-        return listOfDebts;
-    }
-
-    public void setDebts(List<Debt> debts) {
-        this.listOfDebts = debts;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setFirstName(String name) {
-        this.firstName= name;
-    }
-
-    public void setlastname(String lastName) {
-        this.lastName = lastName;
     }
 
     public void setSsn(String ssn) {
         this.ssn = ssn;
     }
 
+    public List<Debt> getListOfDebts() {
+        return listOfDebts;
+    }
 
-    public Debtor( String firstName,String lastName, String ssn, List<Debt> setOfDebts) {
+    public void setListOfDebts(List<Debt> listOfDebts) {
+        this.listOfDebts = listOfDebts;
+    }
+
+    public Debtor(String firstName, String lastName, String ssn, List<Debt> setOfDebts) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.ssn = ssn;

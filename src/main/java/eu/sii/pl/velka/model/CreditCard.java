@@ -17,6 +17,38 @@ public class CreditCard {
     private String lastName;
 
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCCNumber() {
+        return CCNumber;
+    }
+
+    public void setCCNumber(String CCNumber) {
+        this.CCNumber = CCNumber;
+    }
+
+    public String getCvv() {
+        return cvv;
+    }
+
+    public void setCvv(String cvv) {
+        this.cvv = cvv;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getLastName() {
         return lastName;
     }
@@ -24,20 +56,6 @@ public class CreditCard {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getCvv() {
-        return cvv;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
 
     public CreditCard() {
     }

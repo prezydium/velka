@@ -15,12 +15,12 @@ public class DebtSummaryData {
     public static BigDecimal getRemainingAmount(Debt debt) {
 
 
-        if (debt.getPayments() == null || debt.getPayments().isEmpty()) {
+        if (debt.getListOfPayments() == null || debt.getListOfPayments().isEmpty()) {
 
             return debt.getDebtAmount();
         } else {
-            BigDecimal debtPaymentsSum = debt.getPayments().stream()
-                    .map(Payment::getValue)
+            BigDecimal debtPaymentsSum = debt.getListOfPayments().stream()
+                    .map(Payment::getPaymentAmount)
                     .reduce(BigDecimal.ZERO, BigDecimal::add)
                     .setScale(2, RoundingMode.HALF_EVEN);
             return debt.getDebtAmount().subtract(debtPaymentsSum);
