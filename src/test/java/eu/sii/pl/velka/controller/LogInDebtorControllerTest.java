@@ -1,18 +1,12 @@
 package eu.sii.pl.velka.controller;
 
-import com.sun.deploy.net.HttpResponse;
-import com.sun.net.httpserver.HttpServer;
 import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.view.authorisation.SuccessfulLoginView;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
@@ -22,8 +16,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.test.web.client.match.MockRestRequestMatchers;
 import org.springframework.test.web.client.response.MockRestResponseCreators;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.HttpServerErrorException;
 
 import java.util.Collections;
 
@@ -56,18 +48,25 @@ public class LogInDebtorControllerTest {
 
     @Test
     public void shouldNotThrowException() {
+        //given
         mockRestServiceServer.expect(MockRestRequestMatchers
                 .requestTo("/TEST_URL"))
                 .andExpect(MockRestRequestMatchers.method(HttpMethod.POST)).andRespond(MockRestResponseCreators.withServerError());
+        //when
         logInDebtorController.confirmThatDebtorExists(debtor);
     }
 
     @Test
     public void shouldSetNavigationTargetToSuccessfulLoginView() {
+        //given
         mockRestServiceServer.expect(MockRestRequestMatchers
                 .requestTo("/TEST_URL"))
                 .andExpect(MockRestRequestMatchers.method(HttpMethod.POST)).andRespond(MockRestResponseCreators.withStatus(HttpStatus.OK));
+
+        //when
         logInDebtorController.confirmThatDebtorExists(debtor);
+
+        //then
         Assert.assertEquals(SuccessfulLoginView.VIEW_NAME, logInDebtorController.getNavigationTarget());
     }
 }
