@@ -2,6 +2,8 @@ package eu.sii.pl.velka.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 
@@ -13,7 +15,7 @@ public class Debt {
 
     private LocalDate repaymentDate;
 
-    private Set<Payment> listOfPayments;
+    private List<Payment> listOfPayments;
 
     public Long getId() {
         return id;
@@ -39,18 +41,18 @@ public class Debt {
         this.repaymentDate = repaymentDate;
     }
 
-    public Set<Payment> getListOfPayments() {
+    public List<Payment> getListOfPayments() {
         return listOfPayments;
     }
 
-    public void setListOfPayments(Set<Payment> listOfPayments) {
-        this.listOfPayments = listOfPayments;
+    public void setListOfPayments(List<Payment> listOfPayments) {
+        this.listOfPayments = Collections.unmodifiableList(listOfPayments);
     }
 
     public Debt() {
     }
 
-    public Debt(Long id, BigDecimal debtAmount, LocalDate repaymentDate, Set<Payment> listOfPayments) {
+    public Debt(Long id, BigDecimal debtAmount, LocalDate repaymentDate, List<Payment> listOfPayments) {
         this.id=id;
         this.debtAmount = debtAmount;
         this.repaymentDate = repaymentDate;

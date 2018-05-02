@@ -1,5 +1,6 @@
 package eu.sii.pl.velka.view;
 
+import eu.sii.pl.velka.dataHolder.DebtCreator;
 import eu.sii.pl.velka.model.CreditCard;
 import eu.sii.pl.velka.model.Debt;
 import eu.sii.pl.velka.model.Payment;
@@ -11,26 +12,19 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class DebtTableViewTest {
 
-    Debt debt;
+    DebtCreator debtCreator=new DebtCreator();
     DebtTableView debtTableView;
 
 
     @Before
     public void init() {
-        CreditCard creditCard = new CreditCard(
-                "232345", "222", "Ana", "Smith");
-        Payment payment = new Payment(1L, LocalDate.now(), new BigDecimal(30), creditCard, null);
-        Payment payment1 = new Payment(1L, LocalDate.now(), new BigDecimal(130), creditCard, null);
-        Set<Payment> payments = new HashSet<Payment>(Arrays.asList(payment, payment1));
 
-        debt = new Debt(1L, new BigDecimal(200), LocalDate.now(), payments);
-        debtTableView=new DebtTableView(debt);
+
+        debtTableView=new DebtTableView(debtCreator.createDebt());
     }
 
 

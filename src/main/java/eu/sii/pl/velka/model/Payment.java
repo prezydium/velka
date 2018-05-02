@@ -50,7 +50,7 @@ public class Payment {
     public Payment() {
     }
 
-    public Payment(Long id, LocalDate paymentDate, BigDecimal paymentAmount, CreditCard creditCard, Debt debt) {
+    public Payment(Long id, LocalDate paymentDate, BigDecimal paymentAmount, CreditCard creditCard) {
         this.id=id;
         this.paymentDate = paymentDate;
         this.paymentAmount = paymentAmount;

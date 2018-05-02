@@ -1,8 +1,8 @@
 package eu.sii.pl.velka.model;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 
 public class Debtor {
@@ -51,11 +51,11 @@ public class Debtor {
     }
 
     public List<Debt> getListOfDebts() {
-        return listOfDebts;
+       return Collections.unmodifiableList(listOfDebts);
     }
 
     public void setListOfDebts(List<Debt> listOfDebts) {
-        this.listOfDebts = listOfDebts;
+        this.listOfDebts = Collections.unmodifiableList(listOfDebts);
     }
 
     public Debtor(String firstName, String lastName, String ssn, List<Debt> setOfDebts) {
