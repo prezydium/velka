@@ -53,10 +53,10 @@ public class Debt {
     }
 
     public Debt(Long id, BigDecimal debtAmount, LocalDate repaymentDate, List<Payment> listOfPayments) {
-        this.id=id;
+        this.id = id;
         this.debtAmount = debtAmount;
         this.repaymentDate = repaymentDate;
         this.listOfPayments = listOfPayments;
-           }
+    }
 
 }

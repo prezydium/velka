@@ -10,7 +10,7 @@ public class DebtorTableView {
     String firstName;
     String lastName;
     String ssn;
-    Set<DebtTableView>  debtViewSet;
+    Set<DebtTableView> debtViewSet;
     BigDecimal RemainingAmountSumView;
     BigDecimal debtsSumView;
 
@@ -39,9 +39,9 @@ public class DebtorTableView {
     }
 
     public DebtorTableView(Debtor debtor) {
-        this.firstName=debtor.getFirstName();
-        this.lastName=debtor.getLastName();
-        this.ssn=debtor.getSsn();
+        this.firstName = debtor.getFirstName();
+        this.lastName = debtor.getLastName();
+        this.ssn = debtor.getSsn();
         this.debtViewSet = DebtorSummaryData.createDebtorViewSet(debtor);
         this.RemainingAmountSumView = DebtorSummaryData.getRemainingAmountSum(debtor);
         this.debtsSumView = DebtorSummaryData.getDebtsSum(debtor);

@@ -51,7 +51,7 @@ public class Debtor {
     }
 
     public List<Debt> getListOfDebts() {
-       return Collections.unmodifiableList(listOfDebts);
+        return Collections.unmodifiableList(listOfDebts);
     }
 
     public void setListOfDebts(List<Debt> listOfDebts) {
@@ -75,7 +75,7 @@ public class Debtor {
                 ", name='" + firstName + '\'' +
                 ", surname='" + lastName + '\'' +
                 ", ssn='" + ssn + '\'' +
-                ", debts=" +  +
+                ", debts=" + +
                 '}';
     }
 }

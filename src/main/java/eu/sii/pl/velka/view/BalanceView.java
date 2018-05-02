@@ -16,6 +16,7 @@ public class BalanceView extends VerticalLayout implements View {
     BalanceController balanceController;
 
     public BalanceView() {
+        this.balanceController = new BalanceController();
         Debtor debtor = balanceController.getDebtorBalance("980-122-111");
         this.tableLayout = new TableLayout(debtor);
         this.headerLayout = new HeaderLayout(debtor);

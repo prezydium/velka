@@ -51,7 +51,7 @@ public class Payment {
     }
 
     public Payment(Long id, LocalDate paymentDate, BigDecimal paymentAmount, CreditCard creditCard) {
-        this.id=id;
+        this.id = id;
         this.paymentDate = paymentDate;
         this.paymentAmount = paymentAmount;
         this.creditCard = creditCard;

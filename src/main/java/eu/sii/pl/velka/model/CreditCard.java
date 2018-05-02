@@ -60,7 +60,7 @@ public class CreditCard {
     public CreditCard() {
     }
 
-    public CreditCard(String ccNumber, String cvv, String firstName,String lastName) {
+    public CreditCard(String ccNumber, String cvv, String firstName, String lastName) {
         this.CCNumber = ccNumber;
         this.cvv = cvv;
         this.firstName = firstName;

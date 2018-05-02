@@ -12,13 +12,11 @@ import java.util.Set;
 public class TableLayout extends VerticalLayout {
 
 
-
-
     public TableLayout(Debtor debtor) {
-        DebtorTableView debtorTableView= new DebtorTableView(debtor);
-        Grid<DebtTableView> grid= new Grid<>();
+        DebtorTableView debtorTableView = new DebtorTableView(debtor);
+        Grid<DebtTableView> grid = new Grid<>();
 
-        Set<DebtTableView> debtorViewList =debtorTableView.getDebtViewSet();
+        Set<DebtTableView> debtorViewList = debtorTableView.getDebtViewSet();
 
         grid.setItems(debtorViewList);
         grid.addColumn(DebtTableView::getDebtViewId).setId("Id").setCaption("Id");
