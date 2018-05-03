@@ -28,11 +28,13 @@ public class LogInDebtorController {
     @Value("${api_url}")
     private String API_URL;
 
+    @Value("${login_endpoint}")
+    private String API_URL_LOGIN;
+
     private GetFullDataDebtorController getFullDataDebtorController;
 
     @Autowired
     public LogInDebtorController(RestTemplateBuilder restTemplateBuilder) {
-        this.getFullDataDebtorController = getFullDataDebtorController;
         this.restTemplate = restTemplateBuilder.build();
     }
 
@@ -42,7 +44,7 @@ public class LogInDebtorController {
 
     public AuthorisationEffect confirmThatDebtorExists(Debtor debtor) {
         try {
-            ResponseEntity response = restTemplate.postForEntity(API_URL, debtor, Debtor.class);
+            ResponseEntity response = restTemplate.postForEntity((API_URL + API_URL_LOGIN), debtor, Debtor.class);
             if (response.getStatusCode() == HttpStatus.OK) {
                 return AuthorisationEffect.RECOGNISED;
             }

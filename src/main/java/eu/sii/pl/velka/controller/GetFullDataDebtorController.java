@@ -2,6 +2,7 @@ package eu.sii.pl.velka.controller;
 
 import com.vaadin.spring.annotation.SpringComponent;
 import eu.sii.pl.velka.model.Debtor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Scope;
@@ -19,16 +20,24 @@ public class GetFullDataDebtorController {
 
     private final Logger LOG = Logger.getLogger(LogInDebtorController.class.getName());
 
-    private RestTemplate restTemplate = new RestTemplateBuilder().build();
+    private RestTemplate restTemplate;
 
-    @Value("${api_get_debtor_url}")
+    @Value("${api_url}")
     private String API_URL;
 
-    public Debtor getFullData(String ssn) {
-        String urlWithGet = API_URL + ssn;
+    @Value("${get_debtor_endpoint}")
+    private String API_URL_GET_DEBTOR;
 
-        Debtor debtor = restTemplate.getForObject("http://ec2-34-252-93-5.eu-west-1.compute.amazonaws.com/balance/980-122-111", Debtor.class);
-        System.out.println(debtor.getDebts() + debtor.getLastName());
+    @Autowired
+    public GetFullDataDebtorController(RestTemplateBuilder restTemplateBuilder) {
+        this.restTemplate = restTemplateBuilder.build();
+    }
+
+    public Debtor getFullData(String ssn) {
+        String urlWithGet = API_URL + API_URL_GET_DEBTOR + ssn;
+
+        Debtor debtor = restTemplate.getForObject(urlWithGet, Debtor.class);
+//        System.out.println(debtor.getDebts() + debtor.getLastName());
         return debtor;
     }
 
