@@ -57,16 +57,16 @@ public class LogInDebtorControllerTest {
     }
 
     @Test
-    public void shouldSetNavigationTargetToSuccessfulLoginView() {
+    public void shouldReturnAuthorisationEffectAsRecognised() {
         //given
         mockRestServiceServer.expect(MockRestRequestMatchers
                 .requestTo("/TEST_URL"))
                 .andExpect(MockRestRequestMatchers.method(HttpMethod.POST)).andRespond(MockRestResponseCreators.withStatus(HttpStatus.OK));
 
         //when
-        logInDebtorController.confirmThatDebtorExists(debtor);
+        AuthorisationEffect actual = logInDebtorController.confirmThatDebtorExists(debtor);
 
         //then
-        Assert.assertEquals(SuccessfulLoginView.VIEW_NAME, logInDebtorController.getNavigationTarget());
+        Assert.assertEquals(AuthorisationEffect.RECOGNISED, actual);
     }
 }
