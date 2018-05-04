@@ -14,24 +14,30 @@ public class Debt {
 
     private LocalDate repaymentDate;
 
-    private Debtor debtor;
-
     private List<Payment> payments;
 
     public Long getId() {
         return id;
     }
 
-    public Debtor getDebtor() {
-        return debtor;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public BigDecimal getDebtAmount() {
         return debtAmount;
     }
 
+    public void setDebtAmount(BigDecimal debtAmount) {
+        this.debtAmount = debtAmount;
+    }
+
     public LocalDate getRepaymentDate() {
         return repaymentDate;
+    }
+
+    public void setRepaymentDate(LocalDate repaymentDate) {
+        this.repaymentDate = repaymentDate;
     }
 
     public List<Payment> getPayments() {
@@ -39,7 +45,7 @@ public class Debt {
     }
 
     public void setPayments(List<Payment> payments) {
-        this.payments = new ArrayList<>(payments);
+        this.payments = payments;
     }
 
     public Debt() {
