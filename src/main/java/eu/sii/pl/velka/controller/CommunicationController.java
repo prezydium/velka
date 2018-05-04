@@ -25,7 +25,9 @@ public class CommunicationController {
     public void communicateWithAPI(Debtor debtor) {
         AuthorisationEffect authorisationEffect = logInDebtorController.confirmThatDebtorExists(debtor);
         switchViewAfterApiResponse(authorisationEffect);
-        debtor = getFullDataDebtorController.getFullData(debtor.getSsn());
+        if (authorisationEffect == AuthorisationEffect.RECOGNISED) {
+            debtor = getFullDataDebtorController.getFullData(debtor.getSsn());
+        }
     }
 
     private void switchViewAfterApiResponse(AuthorisationEffect authorisationEffect) {
