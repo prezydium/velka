@@ -35,7 +35,7 @@ public class LogInDebtorControllerTest {
 
     @Before
     public void setUp() {
-        debtor = new Debtor("Adam", "Pawłowicz", "999-999-999", Collections.EMPTY_SET);
+        debtor = new Debtor("Adam", "Pawłowicz", "999-999-999", Collections.EMPTY_LIST);
     }
 
     @Test

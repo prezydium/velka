@@ -33,12 +33,10 @@ public class GetFullDataDebtorController {
         this.restTemplate = restTemplateBuilder.build();
     }
 
-    public Debtor getFullData(String ssn) {
+    Debtor getFullData(String ssn) {
         String urlWithGet = API_URL + API_URL_GET_DEBTOR + ssn;
-
-        Debtor debtor = restTemplate.getForObject(urlWithGet, Debtor.class);
-//        System.out.println(debtor.getDebts() + debtor.getLastName());
-        return debtor;
+        Debtor localDebtor = restTemplate.getForObject(urlWithGet, Debtor.class);
+        return localDebtor;
     }
 
 }

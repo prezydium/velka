@@ -42,7 +42,7 @@ public class LogInDebtorController {
         return API_URL;
     }
 
-    public AuthorisationEffect confirmThatDebtorExists(Debtor debtor) {
+    AuthorisationEffect confirmThatDebtorExists(Debtor debtor) {
         try {
             ResponseEntity response = restTemplate.postForEntity((API_URL + API_URL_LOGIN), debtor, Debtor.class);
             if (response.getStatusCode() == HttpStatus.OK) {
