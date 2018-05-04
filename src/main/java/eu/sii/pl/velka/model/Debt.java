@@ -11,6 +11,8 @@ public class Debt {
 
     private Long id;
 
+    private String debtName;
+
     private BigDecimal debtAmount;
 
     private LocalDate repaymentDate;
@@ -23,6 +25,14 @@ public class Debt {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getDebtName() {
+        return debtName;
+    }
+
+    public void setDebtName(String debtName) {
+        this.debtName = debtName;
     }
 
     public BigDecimal getDebtAmount() {
@@ -52,8 +62,9 @@ public class Debt {
     public Debt() {
     }
 
-    public Debt(Long id, BigDecimal debtAmount, LocalDate repaymentDate, List<Payment> listOfPayments) {
+    public Debt(Long id, String debtName, BigDecimal debtAmount, LocalDate repaymentDate, List<Payment> listOfPayments) {
         this.id = id;
+        this.debtName=debtName;
         this.debtAmount = debtAmount;
         this.repaymentDate = repaymentDate;
         this.listOfPayments = listOfPayments;

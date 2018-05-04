@@ -9,14 +9,12 @@ import java.time.LocalDate;
 
 public class DebtTableView {
 
-    private Long debtViewId;
+    private String debtViewName;
     private LocalDate debtViewDate;
     private BigDecimal debtViewAmount;
     private BigDecimal sumPaymentViewAmount;
 
-    public Long getDebtViewId() {
-        return debtViewId;
-    }
+
 
     public LocalDate getDebtViewDate() {
         return debtViewDate;
@@ -30,8 +28,12 @@ public class DebtTableView {
         return sumPaymentViewAmount;
     }
 
-    public void setDebtViewId(Long debtViewId) {
-        this.debtViewId = debtViewId;
+    public String getDebtViewName() {
+        return debtViewName;
+    }
+
+    public void setDebtViewName(String debtViewName) {
+        this.debtViewName = debtViewName;
     }
 
     public void setDebtViewDate(LocalDate debtViewDate) {
@@ -50,7 +52,7 @@ public class DebtTableView {
     }
 
     public DebtTableView(Debt debt) {
-        this.debtViewId = debt.getId();
+        this.debtViewName = debt.getDebtName();
         this.debtViewDate = debt.getRepaymentDate();
         this.debtViewAmount = debt.getDebtAmount();
         this.sumPaymentViewAmount = DebtSummaryData.getRemainingAmount(debt);
@@ -58,7 +60,7 @@ public class DebtTableView {
     @Override
     public String toString() {
         return "DebtTableView{" +
-                "debtViewId=" + debtViewId +
+                "debtViewId=" + debtViewName +
                 ", debtViewDate='" + debtViewDate + '\'' +
                 ", debtViewAmount=" + debtViewAmount +
                 ", sumPaymentViewAmount=" + sumPaymentViewAmount +

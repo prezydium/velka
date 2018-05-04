@@ -73,6 +73,9 @@
                 <groupId>com.vaadin</groupId>
                 <artifactId>vaadin-compatibility-server</artifactId>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+
+
 
             <dependency>
                 <groupId>com.vaadin</groupId>

@@ -1,17 +1,18 @@
 package eu.sii.pl.velka.utils;
 import eu.sii.pl.velka.dataHolder.DebtorCreator;
 import eu.sii.pl.velka.model.Debtor;
-import org.hamcrest.CoreMatchers;
 import org.junit.Test;
-import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.assertThat;
+
 public class DebtorSummaryDataTest {
 
     @Autowired
-    DebtorCreator debtorCreator=new DebtorCreator();
+    DebtorCreator debtorCreator;
     Debtor debtor;
 
     @Test
@@ -21,7 +22,7 @@ public class DebtorSummaryDataTest {
         //when
         BigDecimal debtsSumAmount= DebtorSummaryData.getDebtsSum(debtor);
         //then
-        Assert.assertThat(debtsSumAmount,CoreMatchers.equalTo(new BigDecimal(600).setScale(2)));
+        assertThat(debtsSumAmount,equalTo(new BigDecimal(600).setScale(2)));
     }
 
     @Test
@@ -31,6 +32,6 @@ public class DebtorSummaryDataTest {
         //when
         BigDecimal remainingAmountSum= DebtorSummaryData.getRemainingAmountSum(debtor);
         //then
-        Assert.assertThat(remainingAmountSum,CoreMatchers.equalTo(new BigDecimal(280).setScale(2)));
+        assertThat(remainingAmountSum,equalTo(new BigDecimal(280).setScale(2)));
     }
 }

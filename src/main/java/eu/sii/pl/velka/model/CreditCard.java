@@ -1,6 +1,8 @@
 package eu.sii.pl.velka.model;
 
 
+import java.time.LocalDate;
+
 public class CreditCard {
 
 
@@ -13,6 +15,8 @@ public class CreditCard {
     private String firstName;
 
     private String lastName;
+
+    private LocalDate expDate;
 
 
     public Long getId() {
@@ -55,14 +59,23 @@ public class CreditCard {
         this.lastName = lastName;
     }
 
+    public LocalDate getExpDate() {
+        return expDate;
+    }
+
+    public void setExpDate(LocalDate expDate) {
+        this.expDate = expDate;
+    }
+
     public CreditCard() {
     }
 
-    public CreditCard(String ccNumber, String cvv, String firstName, String lastName) {
+    public CreditCard(String ccNumber, String cvv, String firstName, String lastName, LocalDate expDate) {
         this.ccNumber = ccNumber;
         this.cvv = cvv;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.expDate=expDate;
 
     }
 }

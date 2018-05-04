@@ -2,14 +2,15 @@ package eu.sii.pl.velka.view;
 
 import eu.sii.pl.velka.dataHolder.DebtCreator;
 import eu.sii.pl.velka.view.viewModel.DebtTableView;
-import org.hamcrest.CoreMatchers;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.assertThat;
 
 public class DebtTableViewTest {
 
@@ -26,13 +27,13 @@ public class DebtTableViewTest {
     @Test
     public void shouldReturnDebtorData() {
         //when
-        Long debtViewId = debtTableView.getDebtViewId();
+        String debtViewName = debtTableView.getDebtViewName();
         LocalDate debtViewDate = debtTableView.getDebtViewDate();
         BigDecimal debtAmountView = debtTableView.getDebtViewAmount();
         //then
-        Assert.assertThat(debtViewId, CoreMatchers.equalTo(1L));
-        Assert.assertThat(debtViewDate, CoreMatchers.equalTo(LocalDate.now()));
-        Assert.assertThat(debtAmountView, CoreMatchers.equalTo(new BigDecimal(200)));
+        assertThat(debtViewName, equalTo(1L));
+        assertThat(debtViewDate, equalTo(LocalDate.now()));
+        assertThat(debtAmountView, equalTo(new BigDecimal(200)));
     }
 
     @Test
@@ -40,6 +41,6 @@ public class DebtTableViewTest {
         //when
         BigDecimal remainAmount = debtTableView.getRemainingAmountView();
         //then
-        Assert.assertThat(remainAmount, CoreMatchers.equalTo(new BigDecimal(40).setScale(2)));
+        assertThat(remainAmount, equalTo(new BigDecimal(40).setScale(2)));
     }
 }

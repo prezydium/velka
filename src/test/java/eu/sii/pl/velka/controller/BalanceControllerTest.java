@@ -1,9 +1,10 @@
 package eu.sii.pl.velka.controller;
 
 import eu.sii.pl.velka.model.Debtor;
-import org.hamcrest.CoreMatchers;
-import org.junit.Assert;
 import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.*;
 
 public class BalanceControllerTest {
     BalanceController balanceController = new BalanceController();
@@ -11,9 +12,9 @@ public class BalanceControllerTest {
     @Test
     public void shouldReturnDebtorFromUrl() {
         Debtor debtor = balanceController.getDebtorBalance("980-122-111");
-        Assert.assertThat(debtor.getFirstName(), CoreMatchers.equalTo("Jakub"));
-        Assert.assertThat(debtor.getLastName(), CoreMatchers.equalTo(" Watus"));
-        Assert.assertThat(debtor.getSsn(), CoreMatchers.equalTo(" 980-122-111"));
+        assertThat(debtor.getFirstName(), equalTo("Jakub"));
+        assertThat(debtor.getLastName(), equalTo(" Watus"));
+        assertThat(debtor.getSsn(), equalTo(" 980-122-111"));
 
     }
 
