@@ -8,13 +8,12 @@ public class NameValidator implements Validator<String> {
 
     @Override
     public ValidationResult apply(String s, ValueContext valueContext) {
-        if (s == null || s.isEmpty() || s.equals("")) {
+        if (s == null || s.isEmpty() ) {
             return ValidationResult.error("First or Last name cannot be empty");
-        } else if (s.contains(" ")) {
-            return ValidationResult.error("First or Last name cannot have spaces");
+        } else if (!s.matches("^[a-zA-Z]+$")) {
+            return ValidationResult.error("First or Last name should contain only letters");
         } else {
             return ValidationResult.ok();
         }
     }
-
 }

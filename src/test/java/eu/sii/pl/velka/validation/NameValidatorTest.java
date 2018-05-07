@@ -9,7 +9,7 @@ public class NameValidatorTest {
     private NameValidator nameValidator = new NameValidator();
 
     @Test
-    public void shouldValidateAsOk() {
+    public void shouldValidateAsOkWhenNameIsWojtek() {
         //given
         String name = "Wojtek";
 
@@ -18,11 +18,20 @@ public class NameValidatorTest {
     }
 
     @Test
-    public void shouldNotValidate() {
+    public void shouldNotValidateWhenEmptyString() {
         //given
         String name = "";
 
         //when then
-        Assert.assertFalse(nameValidator.apply(name, new ValueContext()).isError());
+        Assert.assertTrue(nameValidator.apply(name, new ValueContext()).isError());
     }
+    @Test
+    public void shouldNotValidateWhenNameContainsIntegers() {
+        //given
+        String name = "h4ckZoor";
+
+        //when then
+        Assert.assertTrue(nameValidator.apply(name, new ValueContext()).isError());
+    }
+
 }
