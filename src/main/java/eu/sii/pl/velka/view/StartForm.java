@@ -47,27 +47,21 @@ public class StartForm extends AbstractDataForm<Debtor> {
     }
 
     public void setUpValidation(){
-        textFieldName.setValue("");
         textFieldName.setValueChangeMode(ValueChangeMode.BLUR);
         textFieldSurname.setValueChangeMode(ValueChangeMode.BLUR);
         textFieldSsn.setValueChangeMode(ValueChangeMode.BLUR);
         binder.forMemberField(textFieldName)
                 .withValidator(new NameValidator())
-                .withValidationStatusHandler((BindingValidationStatusHandler) bindingValidationStatus -> {
-                    errors.setValue(bindingValidationStatus.getMessage().orElse("1"));
-                    textFieldName.markAsDirty();
-                });
+                .asRequired();
         binder.forMemberField(textFieldSurname)
                 .withValidator(new NameValidator())
-                .withValidationStatusHandler((BindingValidationStatusHandler) bindingValidationStatus -> {
-                    errors.setValue(bindingValidationStatus.getMessage().orElse("2"));
-                });
+                .asRequired();
         binder.forMemberField(textFieldSsn)
                 .withValidator(new SsnValidator())
-                .withValidationStatusHandler((BindingValidationStatusHandler) bindingValidationStatus -> {
-                    errors.setValue(bindingValidationStatus.getMessage().orElse("3"));
-                });
+                .asRequired();
+
     }
+
     @Override
     protected Class<Debtor> getModelClass() {
         return Debtor.class;
