@@ -7,6 +7,8 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
+import eu.sii.pl.velka.controller.CommunicationController;
+import eu.sii.pl.velka.controller.LogInDebtorController;
 import eu.sii.pl.velka.model.Debtor;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,6 +17,8 @@ public class StartView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "";
 
+    @Autowired
+    private CommunicationController communicateWithAPI;
 
     private StartForm formLayout = new StartForm(this::clickSubmitButton);
 
@@ -38,5 +42,6 @@ public class StartView extends VerticalLayout implements View {
 
     private void clickSubmitButton(Button.ClickEvent clickEvent) {
         Debtor localDebtor = (Debtor) formLayout.getModel();
+        communicateWithAPI.communicateWithAPI(localDebtor);
     }
 }

@@ -8,40 +8,51 @@ public class Payment {
 
     private Long id;
 
-    private LocalDate date;
+    private LocalDate paymentDate;
 
-    private BigDecimal value;
+    private BigDecimal paymentAmount;
 
     private CreditCard creditCard;
-
-    private Debt debt;
 
     public Long getId() {
         return id;
     }
 
-    public Debt getDebt() {
-        return debt;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getPaymentDate() {
+        return paymentDate;
     }
 
-    public BigDecimal getValue() {
-        return value;
+    public void setPaymentDate(LocalDate paymentDate) {
+        this.paymentDate = paymentDate;
+    }
+
+    public BigDecimal getPaymentAmount() {
+        return paymentAmount;
+    }
+
+    public void setPaymentAmount(BigDecimal paymentAmount) {
+        this.paymentAmount = paymentAmount;
     }
 
     public CreditCard getCreditCard() {
         return creditCard;
     }
 
+    public void setCreditCard(CreditCard creditCard) {
+        this.creditCard = creditCard;
+    }
+
     public Payment() {
     }
 
-    public Payment(LocalDate date, BigDecimal value, CreditCard creditCard) {
-        this.date = date;
-        this.value = value;
+    public Payment(Long id, LocalDate paymentDate, BigDecimal paymentAmount, CreditCard creditCard) {
+        this.id = id;
+        this.paymentDate = paymentDate;
+        this.paymentAmount = paymentAmount;
         this.creditCard = creditCard;
     }
 }
