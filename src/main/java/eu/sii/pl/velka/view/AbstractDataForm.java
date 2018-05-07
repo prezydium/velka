@@ -24,4 +24,3 @@ public abstract class AbstractDataForm<T> extends VerticalLayout {
     }
 
 }
-

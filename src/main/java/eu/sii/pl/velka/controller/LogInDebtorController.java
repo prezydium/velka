@@ -1,7 +1,5 @@
 package eu.sii.pl.velka.controller;
 
-import com.vaadin.spring.annotation.UIScope;
-import com.vaadin.spring.navigator.SpringNavigator;
 import eu.sii.pl.velka.model.Debtor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,7 +7,6 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
@@ -31,7 +28,7 @@ public class LogInDebtorController {
     @Value("${login_endpoint}")
     private String API_URL_LOGIN;
 
-    private GetFullDataDebtorController getFullDataDebtorController;
+    private BalanceController balanceController;
 
     @Autowired
     public LogInDebtorController(RestTemplateBuilder restTemplateBuilder) {

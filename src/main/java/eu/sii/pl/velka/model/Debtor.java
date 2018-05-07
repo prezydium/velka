@@ -2,9 +2,9 @@ package eu.sii.pl.velka.model;
 
 import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.spring.annotation.UIScope;
-import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.util.List;
+
 
 @SpringComponent
 @UIScope

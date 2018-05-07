@@ -16,7 +16,7 @@ import org.springframework.web.context.annotation.RequestScope;
 import java.util.logging.Logger;
 
 @Controller
-public class GetFullDataDebtorController {
+public class BalanceController {
 
     private final Logger LOG = Logger.getLogger(LogInDebtorController.class.getName());
 
@@ -29,7 +29,7 @@ public class GetFullDataDebtorController {
     private String API_URL_GET_DEBTOR;
 
     @Autowired
-    public GetFullDataDebtorController(RestTemplateBuilder restTemplateBuilder) {
+    public BalanceController(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder.build();
     }
 
