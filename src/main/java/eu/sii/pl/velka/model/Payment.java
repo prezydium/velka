@@ -1,5 +1,6 @@
 package eu.sii.pl.velka.model;
 
+import javax.validation.constraints.Digits;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -10,6 +11,7 @@ public class Payment {
 
     private LocalDate paymentDate;
 
+    @Digits(integer=6, fraction = 2)
     private BigDecimal paymentAmount;
 
     private CreditCard creditCard;

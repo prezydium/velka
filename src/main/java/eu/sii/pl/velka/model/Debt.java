@@ -13,6 +13,8 @@ public class Debt {
 
     private String debtName;
 
+    private String  uuid;
+
     private BigDecimal debtAmount;
 
     private LocalDate repaymentDate;
@@ -33,6 +35,14 @@ public class Debt {
 
     public void setDebtName(String debtName) {
         this.debtName = debtName;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public BigDecimal getDebtAmount() {
@@ -69,5 +79,4 @@ public class Debt {
         this.repaymentDate = repaymentDate;
         this.listOfPayments = listOfPayments;
     }
-
 }
