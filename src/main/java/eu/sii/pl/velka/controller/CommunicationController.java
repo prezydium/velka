@@ -1,5 +1,6 @@
 package eu.sii.pl.velka.controller;
 
+import com.vaadin.server.VaadinSession;
 import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.spring.navigator.SpringNavigator;
 import eu.sii.pl.velka.model.Debtor;
@@ -20,13 +21,15 @@ public class CommunicationController {
     private LogInDebtorController logInDebtorController;
 
     @Autowired
-    private GetFullDataDebtorController getFullDataDebtorController;
+    private BalanceController balanceController;
 
     public void communicateWithAPI(Debtor debtor) {
         AuthorisationEffect authorisationEffect = logInDebtorController.confirmThatDebtorExists(debtor);
         switchViewAfterApiResponse(authorisationEffect);
         if (authorisationEffect == AuthorisationEffect.RECOGNISED) {
-            debtor = getFullDataDebtorController.getFullData(debtor.getSsn());
+            debtor = balanceController.getFullData(debtor.getSsn());
+            VaadinSession.getCurrent().setAttribute("debtor", debtor);
+            springNavigator.navigateTo("balance");
         }
     }
 
