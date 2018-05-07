@@ -3,46 +3,57 @@ package eu.sii.pl.velka.model;
 import java.util.Collections;
 import java.util.List;
 
+import java.util.*;
 
+@SpringComponent
+@UIScope
 public class Debtor {
 
     private Long id;
 
-    private String firstName;
+    private String name;
 
-    private String lastName;
+    private String surname;
 
     private String ssn;
 
-    private List<Debt> listOfDebts;
+    private List<Debt> debts;
 
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getName() {
+        return name;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public String getSurname() {
+        return surname;
     }
 
     public String getSsn() {
         return ssn;
+    }
+
+    public List<Debt> getDebts() {
+        return debts;
+    }
+
+    public void setDebts(List<Debt> debts) {
+        this.debts = debts;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public void setSsn(String ssn) {
