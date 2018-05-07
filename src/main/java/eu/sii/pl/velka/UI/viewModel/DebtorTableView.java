@@ -1,4 +1,4 @@
-package eu.sii.pl.velka.view.viewModel;
+package eu.sii.pl.velka.UI.viewModel;
 
 import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.utils.DebtorSummaryData;

@@ -4,9 +4,9 @@ import com.vaadin.server.VaadinSession;
 import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.spring.navigator.SpringNavigator;
 import eu.sii.pl.velka.model.Debtor;
-import eu.sii.pl.velka.view.authorisation.ErrorLoginView;
-import eu.sii.pl.velka.view.authorisation.SuccessfulLoginView;
-import eu.sii.pl.velka.view.authorisation.UnrecognisedUserLoginView;
+import eu.sii.pl.velka.UI.authorisation.ErrorLoginView;
+import eu.sii.pl.velka.UI.authorisation.SuccessfulLoginView;
+import eu.sii.pl.velka.UI.authorisation.UnrecognisedUserLoginView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 

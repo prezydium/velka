@@ -1,7 +1,6 @@
 package eu.sii.pl.velka.controller;
 
 import eu.sii.pl.velka.model.Debtor;
-import eu.sii.pl.velka.view.authorisation.SuccessfulLoginView;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package eu.sii.pl.velka.view;
+package eu.sii.pl.velka.UI.views;
 
 import com.vaadin.navigator.View;
 import com.vaadin.spring.annotation.SpringView;
@@ -8,7 +8,6 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 import eu.sii.pl.velka.controller.CommunicationController;
-import eu.sii.pl.velka.controller.LogInDebtorController;
 import eu.sii.pl.velka.model.Debtor;
 import org.springframework.beans.factory.annotation.Autowired;
 

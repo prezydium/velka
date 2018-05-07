@@ -1,4 +1,4 @@
-package eu.sii.pl.velka.view;
+package eu.sii.pl.velka.UI.views;
 
 import com.vaadin.annotations.PropertyId;
 import com.vaadin.ui.Alignment;
@@ -6,6 +6,7 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.themes.ValoTheme;
+import eu.sii.pl.velka.UI.views.AbstractDataForm;
 import eu.sii.pl.velka.model.Debtor;
 
 public class StartForm extends AbstractDataForm<Debtor> {

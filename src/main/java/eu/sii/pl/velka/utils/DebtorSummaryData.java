@@ -2,7 +2,7 @@ package eu.sii.pl.velka.utils;
 
 import eu.sii.pl.velka.model.Debt;
 import eu.sii.pl.velka.model.Debtor;
-import eu.sii.pl.velka.view.viewModel.DebtTableView;
+import eu.sii.pl.velka.UI.viewModel.DebtTableView;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
