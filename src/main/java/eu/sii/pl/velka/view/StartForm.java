@@ -1,7 +1,7 @@
 package eu.sii.pl.velka.view;
 
 import com.vaadin.annotations.PropertyId;
-import com.vaadin.data.BindingValidationStatusHandler;
+import com.vaadin.data.Binder;
 import com.vaadin.shared.ui.ValueChangeMode;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
@@ -27,12 +27,14 @@ public class StartForm extends AbstractDataForm<Debtor> {
 
     private Label errors = new Label();
 
+    private Button confirmButton;
+
     public StartForm(Button.ClickListener clickListener) {
         super();
         setUpValidation();
         binder.bindInstanceFields(this);
         styleUI();
-        Button confirmButton = new Button("Submit", clickListener);
+        confirmButton = new Button("Submit", clickListener);
         addComponents(formHeader, errors, textFieldName, textFieldSurname, textFieldSsn, confirmButton);
     }
 
@@ -46,7 +48,7 @@ public class StartForm extends AbstractDataForm<Debtor> {
         setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
     }
 
-    public void setUpValidation(){
+    private void setUpValidation() {
         textFieldName.setValueChangeMode(ValueChangeMode.BLUR);
         textFieldSurname.setValueChangeMode(ValueChangeMode.BLUR);
         textFieldSsn.setValueChangeMode(ValueChangeMode.BLUR);
@@ -59,11 +61,14 @@ public class StartForm extends AbstractDataForm<Debtor> {
         binder.forMemberField(textFieldSsn)
                 .withValidator(new SsnValidator())
                 .asRequired();
-
     }
 
     @Override
     protected Class<Debtor> getModelClass() {
         return Debtor.class;
+    }
+
+    public Binder getBinder() {
+        return this.binder;
     }
 }
