@@ -1,10 +1,14 @@
 package eu.sii.pl.velka.UI.views.components;
 
 import com.vaadin.annotations.PropertyId;
+import com.vaadin.data.converter.StringToBigDecimalConverter;
+import com.vaadin.shared.ui.ValueChangeMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import eu.sii.pl.velka.UI.viewModel.PaymentFormView;
 import eu.sii.pl.velka.UI.views.AbstractDataForm;
+import eu.sii.pl.velka.validation.SsnValidator;
+
 
 public class PaymentLayout extends AbstractDataForm<PaymentFormView> {
 
@@ -42,13 +46,14 @@ public class PaymentLayout extends AbstractDataForm<PaymentFormView> {
 
     public PaymentLayout(Button.ClickListener clickListener) {
         super();
+        setUpValidation();
         binder.bindInstanceFields(this);
         styleUI();
         Button payButton = new Button("Pay", clickListener);
         addComponents(formHeader, textFieldDebtId, textFieldSsn,
-               // textFieldAmount,
+                // textFieldAmount,
                 creditCartHeader, textFieldFirstName,
-                textFieldLastName, textFieldccNumber,textFieldissuingNetwork, textFieldCvv, payButton);
+                textFieldLastName, textFieldccNumber, textFieldissuingNetwork, textFieldCvv, payButton);
     }
 
     private void styleUI() {
@@ -56,6 +61,13 @@ public class PaymentLayout extends AbstractDataForm<PaymentFormView> {
         setSpacing(true);
         setWidth("80%");
         setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
+    }
+
+    private void setUpValidation() {
+        textFieldSsn.setValueChangeMode(ValueChangeMode.BLUR);
+        binder.forMemberField(textFieldSsn)
+                .withValidator(new SsnValidator())
+                .asRequired();
     }
 
     @Override

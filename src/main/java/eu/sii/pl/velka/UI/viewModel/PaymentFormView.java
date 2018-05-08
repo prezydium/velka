@@ -35,11 +35,11 @@ public class PaymentFormView {
         this.ssn = ssn;
     }
 
-    public BigDecimal getPaymentAmount() {
+    public  BigDecimal getPaymentAmount() {
         return paymentAmount;
     }
 
-    public void setPaymentAmount(BigDecimal paymentAmount) {
+    public  void setPaymentAmount(BigDecimal paymentAmount) {
         this.paymentAmount = paymentAmount;
     }
 

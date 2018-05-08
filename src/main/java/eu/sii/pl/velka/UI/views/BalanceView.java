@@ -8,30 +8,31 @@ import eu.sii.pl.velka.UI.viewModel.PaymentFormView;
 import eu.sii.pl.velka.UI.views.components.HeaderLayout;
 import eu.sii.pl.velka.UI.views.components.PaymentLayout;
 import eu.sii.pl.velka.UI.views.components.TableLayout;
+import eu.sii.pl.velka.controller.CommunicationController;
 import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.model.PaymentForm;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @SpringView(name = "balance")
 public class BalanceView extends VerticalLayout implements View {
 
-    ;
-    //private PaymentLayout paymentLayout = new PaymentLayout(this::clickSubmitButton);
+
+    private PaymentLayout formLayout = new PaymentLayout(this::clickSubmitButton);
+    @Autowired
+    private CommunicationController communicateWithAPI;
 
 
     public BalanceView() {
         Debtor debtor = (Debtor) VaadinSession.getCurrent().getAttribute("debtor");
-        ;
         this.addComponent(new HeaderLayout(debtor));
         this.addComponent(new TableLayout(debtor));
-       // this.addComponent(this.paymentLayout);
+        this.addComponent(this.formLayout);
     }
 
 
-//    private void clickSubmitButton(Button.ClickEvent clickEvent) {
-//        PaymentFormView paymentFormView = (PaymentFormView) paymentLayout.getModel();
-//        PaymentForm paymentForm = paymentFormView.maptoPaymentForm();
-//
-//
-//        // communicateWithAPI.communicateWithAPI(localDebtor);
-//    }
+    private void clickSubmitButton(Button.ClickEvent clickEvent) {
+        PaymentFormView localPayment = (PaymentFormView) formLayout.getModel();
+        PaymentForm paymentForm = localPayment.maptoPaymentForm();
+        communicateWithAPI.sentPaymentToAPI(paymentForm);
+    }
 }
