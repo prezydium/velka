@@ -1,68 +1,84 @@
 package eu.sii.pl.velka.model;
 
+import com.vaadin.spring.annotation.SpringComponent;
+import com.vaadin.spring.annotation.UIScope;
+
 import java.util.List;
 
 
+@SpringComponent
+@UIScope
 public class Debtor {
 
     private Long id;
 
-    private String name;
+    private String firstName;
 
-    private String surname;
+    private String lastName;
 
     private String ssn;
 
-    private List<Debt> debts;
+    private List<Debt> listOfDebts;
 
+    public Debtor() {
+    }
+
+    public Debtor(String firstName, String lastName, String ssn, List<Debt> listOfDebts) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.ssn = ssn;
+        this.listOfDebts = listOfDebts;
+    }
 
     public Long getId() {
         return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public String getSsn() {
-        return ssn;
-    }
-
-    public List<Debt> getDebts() {
-        return debts;
-    }
-
-    public void setDebts(List<Debt> debts) {
-        this.debts = debts;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getSsn() {
+        return ssn;
     }
 
     public void setSsn(String ssn) {
         this.ssn = ssn;
     }
 
-    public Debtor() {
+    public List<Debt> getListOfDebts() {
+        return listOfDebts;
     }
 
-    public Debtor(String name, String surname, String ssn, List<Debt> debts) {
-        this.name = name;
-        this.surname = surname;
-        this.ssn = ssn;
-        this.debts = debts;
+    public void setListOfDebts(List<Debt> listOfDebts) {
+        this.listOfDebts = listOfDebts;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Debtor{");
+        sb.append("id=").append(id);
+        sb.append(", firstName='").append(firstName).append('\'');
+        sb.append(", lastName='").append(lastName).append('\'');
+        sb.append(", ssn='").append(ssn).append('\'');
+        sb.append(", listOfDebts=").append(listOfDebts);
+        sb.append('}');
+        return sb.toString();
     }
 }
