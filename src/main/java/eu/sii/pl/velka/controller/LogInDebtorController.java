@@ -1,6 +1,7 @@
 package eu.sii.pl.velka.controller;
 
 import eu.sii.pl.velka.model.Debtor;
+import eu.sii.pl.velka.model.PaymentForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -28,6 +29,9 @@ public class LogInDebtorController {
     @Value("${login_endpoint}")
     private String API_URL_LOGIN;
 
+    @Value("${payment_endpoint}")
+    private String API_URL_Payment;
+
     private BalanceController balanceController;
 
     @Autowired
@@ -48,6 +52,25 @@ public class LogInDebtorController {
         } catch (HttpClientErrorException e) {
             if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
                 LOG.log(Level.INFO, "Debtor not found: " + debtor.toString());
+                return AuthorisationEffect.NOT_RECOGNISED;
+            } else {
+                LOG.log(Level.WARNING, "Error, http status code: " + e.getStatusCode().toString());
+            }
+        } catch (Exception e) {
+            LOG.log(Level.SEVERE, "Error connecting to server");
+        }
+        return AuthorisationEffect.ERROR;
+    }
+
+    AuthorisationEffect confirmPayment(PaymentForm paymentForm) {
+        try {
+            ResponseEntity response = restTemplate.postForEntity((API_URL + API_URL_LOGIN), paymentForm, PaymentForm.class);
+            if (response.getStatusCode() == HttpStatus.OK) {
+                return AuthorisationEffect.RECOGNISED;
+            }
+        } catch (HttpClientErrorException e) {
+            if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
+                LOG.log(Level.INFO, "Debtor not found: " + paymentForm.toString());
                 return AuthorisationEffect.NOT_RECOGNISED;
             } else {
                 LOG.log(Level.WARNING, "Error, http status code: " + e.getStatusCode().toString());

@@ -1,4 +1,4 @@
-package eu.sii.pl.velka.UI.views;
+package eu.sii.pl.velka.UI.views.components;
 
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;

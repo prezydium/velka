@@ -3,7 +3,7 @@ package eu.sii.pl.velka.UI;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.TextField;
-import eu.sii.pl.velka.UI.views.StartForm;
+import eu.sii.pl.velka.UI.views.components.StartForm;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package eu.sii.pl.velka.UI.views;
+package eu.sii.pl.velka.UI.views.components;
 
 import com.vaadin.annotations.PropertyId;
 import com.vaadin.ui.Alignment;

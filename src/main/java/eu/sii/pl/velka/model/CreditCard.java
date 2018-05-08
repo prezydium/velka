@@ -13,24 +13,21 @@ public class CreditCard {
 
     private Long id;
 
-    @NotNull
     @Pattern(regexp = "//d{16}")
     private String ccNumber;
 
-    @NotNull
+
     @Digits(integer = 3, fraction = 0)
     private String cvv;
 
-    @NotNull
     @Size(min = 2, max = 30)
     private String issuingNetwork;
 
-    @NotNull
     @Size(min = 2, max = 30)
     @Pattern(regexp = "[a-zA-Z0-9_.]*")
     private String firstName;
 
-    @NotNull
+
     @Size(min = 2, max = 30)
     @Pattern(regexp = "[a-zA-Z0-9_.]*")
     private String lastName;
@@ -84,6 +81,14 @@ public class CreditCard {
 
     public void setExpDate(LocalDate expDate) {
         this.expDate = expDate;
+    }
+
+    public String getIssuingNetwork() {
+        return issuingNetwork;
+    }
+
+    public void setIssuingNetwork(String issuingNetwork) {
+        this.issuingNetwork = issuingNetwork;
     }
 
     public CreditCard() {

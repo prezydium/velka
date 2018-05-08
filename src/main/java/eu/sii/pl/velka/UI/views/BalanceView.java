@@ -4,33 +4,34 @@ import com.vaadin.navigator.View;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
+import eu.sii.pl.velka.UI.viewModel.PaymentFormView;
+import eu.sii.pl.velka.UI.views.components.HeaderLayout;
+import eu.sii.pl.velka.UI.views.components.PaymentLayout;
+import eu.sii.pl.velka.UI.views.components.TableLayout;
 import eu.sii.pl.velka.model.Debtor;
-import eu.sii.pl.velka.model.Payment;
+import eu.sii.pl.velka.model.PaymentForm;
 
 @SpringView(name = "balance")
 public class BalanceView extends VerticalLayout implements View {
 
-    TableLayout tableLayout;
-    HeaderLayout headerLayout;
-    PaymentForm paymentForm;
+    ;
+    //private PaymentLayout paymentLayout = new PaymentLayout(this::clickSubmitButton);
 
 
     public BalanceView() {
         Debtor debtor = (Debtor) VaadinSession.getCurrent().getAttribute("debtor");
-        this.tableLayout = new TableLayout(debtor);
-        this.headerLayout = new HeaderLayout(debtor);
-        this.paymentForm = new PaymentForm();
-        addHeader(this.headerLayout);
-        addTable(this.tableLayout);
-        this.addComponent(this.paymentForm);
+        ;
+        this.addComponent(new HeaderLayout(debtor));
+        this.addComponent(new TableLayout(debtor));
+       // this.addComponent(this.paymentLayout);
     }
 
 
-    private void addTable(TableLayout tableLayout) {
-        this.addComponent(tableLayout);
-    }
-
-    private void addHeader(HeaderLayout headerLayout) {
-        this.addComponent(headerLayout);
-    }
+//    private void clickSubmitButton(Button.ClickEvent clickEvent) {
+//        PaymentFormView paymentFormView = (PaymentFormView) paymentLayout.getModel();
+//        PaymentForm paymentForm = paymentFormView.maptoPaymentForm();
+//
+//
+//        // communicateWithAPI.communicateWithAPI(localDebtor);
+//    }
 }

@@ -1,4 +1,4 @@
-package eu.sii.pl.velka.UI.views;
+package eu.sii.pl.velka.UI.views.components;
 
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.VerticalLayout;
