@@ -25,6 +25,7 @@ public class NameValidatorTest {
         //when then
         Assert.assertTrue(nameValidator.apply(name, new ValueContext()).isError());
     }
+
     @Test
     public void shouldNotValidateWhenNameContainsIntegers() {
         //given
@@ -33,5 +34,4 @@ public class NameValidatorTest {
         //when then
         Assert.assertTrue(nameValidator.apply(name, new ValueContext()).isError());
     }
-
 }
