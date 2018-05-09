@@ -1,4 +1,5 @@
 package eu.sii.pl.velka.validation;
+
 import com.vaadin.data.ValidationResult;
 import com.vaadin.data.Validator;
 import com.vaadin.data.ValueContext;
