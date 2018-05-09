@@ -7,8 +7,6 @@ import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.annotation.SpringViewDisplay;
 import com.vaadin.ui.UI;
 import eu.sii.pl.velka.view.authorisation.ErrorView;
-import org.springframework.beans.factory.annotation.Autowired;
-import sun.plugin.javascript.navig.Navigator;
 
 @SpringUI
 @Theme("valo")
