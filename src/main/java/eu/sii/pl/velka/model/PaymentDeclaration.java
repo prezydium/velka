@@ -3,7 +3,6 @@ package eu.sii.pl.velka.model;
 import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.spring.annotation.UIScope;
 
-import java.math.BigDecimal;
 
 @SpringComponent
 @UIScope
@@ -11,7 +10,7 @@ public class PaymentDeclaration {
 
     private static final String CLIENT_ID = "velka";
 
-    private BigDecimal amount;
+    private String amount;
 
     private String debtUuid;
 
@@ -29,11 +28,11 @@ public class PaymentDeclaration {
         this.debtUuid = debtUuid;
     }
 
-    public BigDecimal getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
@@ -48,7 +47,7 @@ public class PaymentDeclaration {
     public PaymentDeclaration() {
     }
 
-    public PaymentDeclaration(BigDecimal amount, String debtUuid, String ssn) {
+    public PaymentDeclaration(String amount, String debtUuid, String ssn) {
         this.amount = amount;
         this.debtUuid = debtUuid;
         this.ssn = ssn;
