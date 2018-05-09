@@ -15,8 +15,6 @@ public class DebtTableView {
     private BigDecimal debtViewAmount;
     private BigDecimal sumPaymentViewAmount;
 
-
-
     public LocalDate getDebtViewDate() {
         return debtViewDate;
     }

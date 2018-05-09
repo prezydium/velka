@@ -7,7 +7,7 @@ import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.UI.authorisation.ErrorLoginView;
 import eu.sii.pl.velka.UI.authorisation.SuccessfulLoginView;
 import eu.sii.pl.velka.UI.authorisation.UnrecognisedUserLoginView;
-import eu.sii.pl.velka.model.PaymentForm;
+import eu.sii.pl.velka.model.PaymentDeclaration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -32,13 +32,15 @@ public class CommunicationController {
             VaadinSession.getCurrent().setAttribute("debtor", debtor);
             springNavigator.navigateTo("balance");
         }
-    }public void sentPaymentToAPI(PaymentForm paymentForm) {
-        AuthorisationEffect authorisationEffect = logInDebtorController.confirmPayment(paymentForm);
+    }
+
+    public void sentPaymentToAPI(PaymentDeclaration paymentDeclaration) {
+        AuthorisationEffect authorisationEffect = logInDebtorController.confirmPayment(paymentDeclaration);
         switchViewAfterApiResponse(authorisationEffect);
         if (authorisationEffect == AuthorisationEffect.RECOGNISED) {
-            Debtor debtor = balanceController.getFullData(paymentForm.getSnn());
-            VaadinSession.getCurrent().setAttribute("debtor", debtor);
-            springNavigator.navigateTo("balance");
+            springNavigator.navigateTo("successfullogin");
+        } else {
+            springNavigator.navigateTo("unrecognised");
         }
     }
 

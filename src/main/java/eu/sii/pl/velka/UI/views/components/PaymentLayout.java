@@ -1,13 +1,14 @@
 package eu.sii.pl.velka.UI.views.components;
 
 import com.vaadin.annotations.PropertyId;
-import com.vaadin.data.converter.StringToBigDecimalConverter;
 import com.vaadin.shared.ui.ValueChangeMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import eu.sii.pl.velka.UI.viewModel.PaymentFormView;
 import eu.sii.pl.velka.UI.views.AbstractDataForm;
+import eu.sii.pl.velka.validation.AmountValidator;
 import eu.sii.pl.velka.validation.SsnValidator;
+import eu.sii.pl.velka.validation.UuidValidator;
 
 
 public class PaymentLayout extends AbstractDataForm<PaymentFormView> {
@@ -17,43 +18,22 @@ public class PaymentLayout extends AbstractDataForm<PaymentFormView> {
     @PropertyId("debtUuid")
     private TextField textFieldDebtId = new TextField("debtUuid: ");
 
-    @PropertyId("snn")
+    @PropertyId("ssn")
     private TextField textFieldSsn = new TextField("SSN: ");
 
-//    @PropertyId("paymentAmount")
-//    private TextField textFieldAmount = new TextField("Amount: ");
-
-    private Label creditCartHeader = new Label("Credit Card data:");
-
-    @PropertyId("ccNumber")
-    private TextField textFieldccNumber = new TextField("CcNumber: ");
-
-    @PropertyId("issuingNetwork")
-    private TextField textFieldissuingNetwork = new TextField("Issuing Network: ");
-
-//    @PropertyId("expDate")
-//    private TextField textFieldExpDate = new TextField("Expire Date: ");
-
-    @PropertyId("cvv")
-    private TextField textFieldCvv = new TextField("Cvv: ");
-
-    @PropertyId("firstName")
-    private TextField textFieldFirstName = new TextField("First Name: ");
-
-    @PropertyId("lastName")
-    private TextField textFieldLastName = new TextField("Last Name: ");
+    @PropertyId("paymentAmount")
+    private TextField textFieldAmount = new TextField("Amount: ");
 
 
     public PaymentLayout(Button.ClickListener clickListener) {
         super();
         setUpValidation();
+        PaymentFormView paymentFormView = this.getModel();
         binder.bindInstanceFields(this);
         styleUI();
         Button payButton = new Button("Pay", clickListener);
         addComponents(formHeader, textFieldDebtId, textFieldSsn,
-                // textFieldAmount,
-                creditCartHeader, textFieldFirstName,
-                textFieldLastName, textFieldccNumber, textFieldissuingNetwork, textFieldCvv, payButton);
+                textFieldAmount, payButton);
     }
 
     private void styleUI() {
@@ -68,6 +48,13 @@ public class PaymentLayout extends AbstractDataForm<PaymentFormView> {
         binder.forMemberField(textFieldSsn)
                 .withValidator(new SsnValidator())
                 .asRequired();
+        textFieldAmount.setValueChangeMode(ValueChangeMode.BLUR);
+        binder.forMemberField(textFieldAmount)
+                .withValidator(new AmountValidator())
+                .asRequired();
+        textFieldAmount.setValueChangeMode(ValueChangeMode.BLUR);
+        binder.forMemberField(textFieldDebtId)
+                .withValidator(new UuidValidator());
     }
 
     @Override
