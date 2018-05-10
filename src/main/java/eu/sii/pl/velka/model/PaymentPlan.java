@@ -40,4 +40,13 @@ public class PaymentPlan {
     public void setPlannedPaymentList(List<PlannedPayment> plannedPaymentList) {
         this.plannedPaymentList = plannedPaymentList;
     }
+
+    @Override
+    public String toString() {
+        return "PaymentPlan{" +
+                "message='" + message + '\'' +
+                ", ssn='" + ssn + '\'' +
+                ", plannedPaymentList=" + plannedPaymentList +
+                '}';
+    }
 }
