@@ -1,6 +1,7 @@
 package eu.sii.pl.velka.controller;
 
 import eu.sii.pl.velka.model.Debtor;
+import eu.sii.pl.velka.model.PaymentDeclaration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -28,6 +29,9 @@ public class LogInDebtorController {
     @Value("${login_endpoint}")
     private String API_URL_LOGIN;
 
+    @Value("paymentPlan_endpoint")
+    private String API_URL_Payment;
+
     private BalanceController balanceController;
 
     @Autowired
@@ -51,6 +55,18 @@ public class LogInDebtorController {
                 return AuthorisationEffect.NOT_RECOGNISED;
             } else {
                 LOG.log(Level.WARNING, "Error, http status code: " + e.getStatusCode().toString());
+            }
+        } catch (Exception e) {
+            LOG.log(Level.SEVERE, "Error connecting to server");
+        }
+        return AuthorisationEffect.ERROR;
+    }
+
+    AuthorisationEffect confirmPayment(PaymentDeclaration paymentDeclaration) {
+        try {
+            ResponseEntity response = restTemplate.postForEntity((API_URL + API_URL_LOGIN), paymentDeclaration, PaymentDeclaration.class);
+            if (response.getStatusCode() == HttpStatus.OK) {
+                return AuthorisationEffect.RECOGNISED;
             }
         } catch (Exception e) {
             LOG.log(Level.SEVERE, "Error connecting to server");

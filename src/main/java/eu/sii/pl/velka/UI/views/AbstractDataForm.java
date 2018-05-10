@@ -1,4 +1,4 @@
-package eu.sii.pl.velka.view;
+package eu.sii.pl.velka.UI.views;
 
 import com.vaadin.data.Binder;
 import com.vaadin.ui.VerticalLayout;
@@ -21,6 +21,9 @@ public abstract class AbstractDataForm<T> extends VerticalLayout {
 
     public T getModel(){
         return (T) binder.getBean();
+    }
+    public Binder getBinder() {
+        return this.binder;
     }
 
 }
