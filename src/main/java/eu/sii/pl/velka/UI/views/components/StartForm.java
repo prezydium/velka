@@ -69,7 +69,4 @@ public class StartForm extends AbstractDataForm<Debtor> {
         return Debtor.class;
     }
 
-    public Binder getBinder() {
-        return this.binder;
-    }
 }

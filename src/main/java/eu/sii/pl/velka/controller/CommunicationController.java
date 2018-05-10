@@ -34,13 +34,13 @@ public class CommunicationController {
         }
     }
 
-    public void sentPaymentToAPI(PaymentDeclaration paymentDeclaration) {
+    public void sentPaymentDeclarationToAPI(PaymentDeclaration paymentDeclaration) {
         AuthorisationEffect authorisationEffect = logInDebtorController.confirmPayment(paymentDeclaration);
         switchViewAfterApiResponse(authorisationEffect);
         if (authorisationEffect == AuthorisationEffect.RECOGNISED) {
-            springNavigator.navigateTo("successfullogin");
+            springNavigator.navigateTo("successfullogin");// TODO: in next subtask
         } else {
-            springNavigator.navigateTo("unrecognised");
+            springNavigator.navigateTo("unrecognised");// TODO: in next subtask
         }
     }
 

@@ -68,13 +68,6 @@ public class LogInDebtorController {
             if (response.getStatusCode() == HttpStatus.OK) {
                 return AuthorisationEffect.RECOGNISED;
             }
-        } catch (HttpClientErrorException e) {
-            if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
-                LOG.log(Level.INFO, "Debtor not found: " + paymentDeclaration.toString());
-                return AuthorisationEffect.NOT_RECOGNISED;
-            } else {
-                LOG.log(Level.WARNING, "Error, http status code: " + e.getStatusCode().toString());
-            }
         } catch (Exception e) {
             LOG.log(Level.SEVERE, "Error connecting to server");
         }

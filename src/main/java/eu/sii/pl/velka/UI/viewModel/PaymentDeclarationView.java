@@ -1,18 +1,14 @@
-package eu.sii.pl.velka.model;
+package eu.sii.pl.velka.UI.viewModel;
 
-import com.vaadin.spring.annotation.SpringComponent;
-import com.vaadin.spring.annotation.UIScope;
+import eu.sii.pl.velka.model.PaymentDeclaration;
 
 import java.math.BigDecimal;
 
-
-@SpringComponent
-@UIScope
-public class PaymentDeclaration {
+public class PaymentDeclarationView {
 
     private static final String CLIENT_ID = "velka";
 
-    private BigDecimal amount;
+    private String amount;
 
     private String debtUuid;
 
@@ -30,11 +26,11 @@ public class PaymentDeclaration {
         this.debtUuid = debtUuid;
     }
 
-    public BigDecimal getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
@@ -46,13 +42,16 @@ public class PaymentDeclaration {
         this.ssn = ssn;
     }
 
-    public PaymentDeclaration() {
+    public PaymentDeclarationView() {
     }
 
-    public PaymentDeclaration(BigDecimal amount, String debtUuid, String ssn) {
+    public PaymentDeclarationView(String amount, String debtUuid, String ssn) {
         this.amount = amount;
         this.debtUuid = debtUuid;
         this.ssn = ssn;
     }
+    public PaymentDeclaration mapToPaymentDeclaration(){
 
+        return new PaymentDeclaration(new BigDecimal(amount),this.debtUuid,this.ssn);
+    }
 }

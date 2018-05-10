@@ -4,14 +4,14 @@ import com.vaadin.annotations.PropertyId;
 import com.vaadin.shared.ui.ValueChangeMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
+import eu.sii.pl.velka.UI.viewModel.PaymentDeclarationView;
 import eu.sii.pl.velka.UI.views.AbstractDataForm;
-import eu.sii.pl.velka.model.PaymentDeclaration;
 import eu.sii.pl.velka.validation.AmountValidator;
 import eu.sii.pl.velka.validation.SsnValidator;
 import eu.sii.pl.velka.validation.UuidValidator;
 
 
-public class PaymentLayout extends AbstractDataForm<PaymentDeclaration> {
+public class PaymentLayout extends AbstractDataForm<PaymentDeclarationView> {
 
     private Label formHeader = new Label("Enter your details to pay your debts");
 
@@ -27,7 +27,7 @@ public class PaymentLayout extends AbstractDataForm<PaymentDeclaration> {
 
     public PaymentLayout(Button.ClickListener clickListener) {
         super();
-        setUpValidation();;
+        setUpValidation();
         binder.bindInstanceFields(this);
         styleUI();
         Button payButton = new Button("Submit", clickListener);
@@ -57,7 +57,7 @@ public class PaymentLayout extends AbstractDataForm<PaymentDeclaration> {
     }
 
     @Override
-    protected Class<PaymentDeclaration> getModelClass() {
-        return PaymentDeclaration.class;
+    protected Class<PaymentDeclarationView> getModelClass() {
+        return PaymentDeclarationView.class;
     }
 }

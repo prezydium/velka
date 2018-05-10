@@ -22,5 +22,8 @@ public abstract class AbstractDataForm<T> extends VerticalLayout {
     public T getModel(){
         return (T) binder.getBean();
     }
+    public Binder getBinder() {
+        return this.binder;
+    }
 
 }
