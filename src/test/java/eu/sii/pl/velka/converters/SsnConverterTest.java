@@ -29,7 +29,7 @@ public class SsnConverterTest {
         sb.insert(new Random().nextInt(3), '-');
         sb.insert(new Random().nextInt(9), '-');
         sb.insert(new Random().nextInt(9), '-');
-        String expected = "980-122-111";
+        String expected = "123-456-789";
         //when
         result = new SsnConverter().convertSsnToFormatAcceptableByAPI(sb.toString());
         //then
