@@ -3,6 +3,7 @@ package eu.sii.pl.velka.controller;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.spring.navigator.SpringNavigator;
+import eu.sii.pl.velka.converters.SsnConverter;
 import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.view.authorisation.ErrorLoginView;
 import eu.sii.pl.velka.view.authorisation.SuccessfulLoginView;
@@ -24,6 +25,7 @@ public class CommunicationController {
     private BalanceController balanceController;
 
     public void communicateWithAPI(Debtor debtor) {
+        debtor.setSsn(new SsnConverter().convertSsnToFormatAcceptableByAPI(debtor.getSsn()));
         AuthorisationEffect authorisationEffect = logInDebtorController.confirmThatDebtorExists(debtor);
         switchViewAfterApiResponse(authorisationEffect);
         if (authorisationEffect == AuthorisationEffect.RECOGNISED) {
