@@ -1,6 +1,7 @@
 package eu.sii.pl.velka.utils;
 
 import eu.sii.pl.velka.dataHolder.DebtCreator;
+import eu.sii.pl.velka.dataHolder.DebtorCreator;
 import eu.sii.pl.velka.model.Debt;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,15 +13,14 @@ import static org.junit.Assert.*;
 
 public class DebtSummaryDataTest {
 
-    @Autowired
-    DebtCreator debtCreator;
-    Debt debt;
-    Debt debtWithNullPayments;
+    private Debt debt;
+
+    private Debt debtWithNullPayments;
 
     @Test
     public void shouldReturnRemainingAmount() {
         //given
-        debt = debtCreator.createDebt();
+        debt = DebtCreator.createDebt();
         //when
         BigDecimal remainingAmount = DebtSummaryData.getRemainingAmount(debt);
         //then
@@ -30,7 +30,7 @@ public class DebtSummaryDataTest {
     @Test
     public void shouldReturnRemainingAmountWhithEmptyListOfPayments() {
         //given
-        debtWithNullPayments = debtCreator.createDebtWithNullPayments();
+        debtWithNullPayments = DebtCreator.createDebtWithNullPayments();
         //when
         BigDecimal sumPaymentAmount = DebtSummaryData.getRemainingAmount(debtWithNullPayments);
         //then
