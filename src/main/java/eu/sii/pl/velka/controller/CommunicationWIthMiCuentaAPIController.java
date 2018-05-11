@@ -16,7 +16,7 @@ import java.util.Map;
 
 @Controller
 @UIScope
-public class CommunicationController {
+public class CommunicationWIthMiCuentaAPIController {
 
     @Autowired
     private SpringNavigator springNavigator;
