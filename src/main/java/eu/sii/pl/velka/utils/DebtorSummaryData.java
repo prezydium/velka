@@ -1,15 +1,20 @@
 package eu.sii.pl.velka.utils;
 
+import com.sun.xml.internal.bind.v2.TODO;
+import eu.sii.pl.velka.UI.viewModel.PlannedPaymentTableView;
 import eu.sii.pl.velka.model.Debt;
 import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.UI.viewModel.DebtTableView;
+import eu.sii.pl.velka.model.PaymentPlan;
+import eu.sii.pl.velka.model.PlannedPayment;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
+// TODO make final, private constructor
 public class DebtorSummaryData {
 
     public static BigDecimal getDebtsSum(Debtor debtor) {
@@ -26,6 +31,14 @@ public class DebtorSummaryData {
         }
         return debtViewSet;
     }
+    public static List<PlannedPaymentTableView> createPaymentPlanViewSet(PaymentPlan paymentPlan) {
+        List<PlannedPayment> listOfDebts = paymentPlan.getPlannedPaymentList();
+        List<PlannedPaymentTableView> planedViewSet = new ArrayList<>();
+        for (PlannedPayment plannedPayment : listOfDebts) {
+            planedViewSet.add(new PlannedPaymentTableView(plannedPayment));
+        }
+        return planedViewSet;
+    } // TODO change to generic method
 
     public static BigDecimal getRemainingAmountSum(Debtor debtor) {
         Set<DebtTableView> setDebtsView = createDebtorViewSet(debtor);

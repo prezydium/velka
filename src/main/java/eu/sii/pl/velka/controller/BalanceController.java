@@ -38,5 +38,4 @@ public class BalanceController {
         Debtor localDebtor = restTemplate.getForObject(urlWithGet, Debtor.class);
         return localDebtor;
     }
-
 }

@@ -21,7 +21,7 @@ public class PaymentLayout extends AbstractDataForm<PaymentDeclarationView> {
     @PropertyId("ssn")
     private TextField textFieldSsn = new TextField("SSN: ");
 
-    @PropertyId("amount")
+    @PropertyId("amount")//TODO get snn from debtor in session
     private TextField textFieldAmount = new TextField("Amount: ");
 
 

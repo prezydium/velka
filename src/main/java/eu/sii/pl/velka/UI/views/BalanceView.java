@@ -29,7 +29,7 @@ public class BalanceView extends VerticalLayout implements View {
         this.addComponent(new HeaderLayout(debtor));
         this.addComponent(new TableLayout(debtor));
         this.addComponent(this.formLayout);
-        PaymentDeclarationView paymentDeclarationView=new PaymentDeclarationView();
+        PaymentDeclarationView paymentDeclarationView = new PaymentDeclarationView();
         formLayout.setModel(paymentDeclarationView);
     }
 
@@ -41,8 +41,6 @@ public class BalanceView extends VerticalLayout implements View {
             Notification.show("Validation error: "
                     + status.getValidationErrors().get(0).getErrorMessage());
         } else {
-
-
             PaymentDeclarationView paymentDeclarationView = (PaymentDeclarationView) formLayout.getModel();
             PaymentDeclaration paymentDeclaration = paymentDeclarationView.mapToPaymentDeclaration();
             communicateWithAPI.sentPaymentDeclarationToAPI(paymentDeclaration);

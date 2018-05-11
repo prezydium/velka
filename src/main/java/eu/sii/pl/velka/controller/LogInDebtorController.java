@@ -64,17 +64,5 @@ public class LogInDebtorController {
         return AuthorisationEffect.ERROR;
     }
 
-    AuthorisationEffect confirmPayment(PaymentDeclaration paymentDeclaration) {
-        try {
-            ResponseEntity<PaymentPlan> response = new RestTemplate().postForEntity(API_URL+API_URL_Payment,paymentDeclaration,PaymentPlan.class);
-            PaymentPlan Paymantplan = response.getBody();
-            if (response.getStatusCode() == HttpStatus.OK) {
 
-                return AuthorisationEffect.RECOGNISED;
-            }
-        } catch (Exception e) {
-            LOG.log(Level.SEVERE, "Error connecting to server");
-        }
-        return AuthorisationEffect.ERROR;
-    }
 }

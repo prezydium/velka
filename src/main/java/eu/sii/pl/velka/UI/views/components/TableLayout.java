@@ -8,7 +8,7 @@ import eu.sii.pl.velka.UI.viewModel.DebtTableView;
 import eu.sii.pl.velka.UI.viewModel.DebtorTableView;
 
 import java.util.Set;
-
+// TODO generic
 public class TableLayout extends VerticalLayout {
 
 

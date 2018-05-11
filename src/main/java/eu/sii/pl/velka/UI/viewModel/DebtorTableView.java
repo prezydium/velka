@@ -11,7 +11,7 @@ public class DebtorTableView {
     private String lastName;
     private String ssn;
     private Set<DebtTableView> debtViewSet;
-    private BigDecimal RemainingAmountSumView;
+    private BigDecimal remainingAmountSumView;
     private BigDecimal debtsSumView;
 
     public String getFirstName() {
@@ -31,7 +31,7 @@ public class DebtorTableView {
     }
 
     public BigDecimal getRemainingAmountSumView() {
-        return RemainingAmountSumView;
+        return remainingAmountSumView;
     }
 
     public BigDecimal getDebtsSumView() {
@@ -43,7 +43,7 @@ public class DebtorTableView {
         this.lastName = debtor.getLastName();
         this.ssn = debtor.getSsn();
         this.debtViewSet = DebtorSummaryData.createDebtorViewSet(debtor);
-        this.RemainingAmountSumView = DebtorSummaryData.getRemainingAmountSum(debtor);
+        this.remainingAmountSumView = DebtorSummaryData.getRemainingAmountSum(debtor);
         this.debtsSumView = DebtorSummaryData.getDebtsSum(debtor);
     }
 }

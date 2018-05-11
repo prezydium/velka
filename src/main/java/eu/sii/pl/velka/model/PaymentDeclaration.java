@@ -12,7 +12,7 @@ public class PaymentDeclaration {
 
     private static final String CLIENT_ID = "velka";
 
-    private BigDecimal amount;
+    private BigDecimal paymentAmount;
 
     private String debtUuid;
 
@@ -30,12 +30,12 @@ public class PaymentDeclaration {
         this.debtUuid = debtUuid;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
+    public BigDecimal getPaymentAmount() {
+        return paymentAmount;
     }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
+    public void setPaymentAmount(BigDecimal paymentAmount) {
+        this.paymentAmount = paymentAmount;
     }
 
     public String getSsn() {
@@ -49,8 +49,8 @@ public class PaymentDeclaration {
     public PaymentDeclaration() {
     }
 
-    public PaymentDeclaration(BigDecimal amount, String debtUuid, String ssn) {
-        this.amount = amount;
+    public PaymentDeclaration(BigDecimal paymentAmount, String debtUuid, String ssn) {
+        this.paymentAmount = paymentAmount;
         this.debtUuid = debtUuid;
         this.ssn = ssn;
     }

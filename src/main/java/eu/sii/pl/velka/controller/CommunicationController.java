@@ -22,6 +22,9 @@ public class CommunicationController {
     private LogInDebtorController logInDebtorController;
 
     @Autowired
+    private PaymentController paymentController;
+
+    @Autowired
     private BalanceController balanceController;
 
     public void communicateWithAPI(Debtor debtor) {
@@ -35,10 +38,10 @@ public class CommunicationController {
     }
 
     public void sentPaymentDeclarationToAPI(PaymentDeclaration paymentDeclaration) {
-        AuthorisationEffect authorisationEffect = logInDebtorController.confirmPayment(paymentDeclaration);
+        AuthorisationEffect authorisationEffect = paymentController.trySendPayment(paymentDeclaration);
         switchViewAfterApiResponse(authorisationEffect);
         if (authorisationEffect == AuthorisationEffect.RECOGNISED) {
-            springNavigator.navigateTo("successfullogin");// TODO: in next subtask
+            springNavigator.navigateTo("paymentPlan");
         } else {
             springNavigator.navigateTo("unrecognised");// TODO: in next subtask
         }
