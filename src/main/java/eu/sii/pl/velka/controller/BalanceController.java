@@ -9,12 +9,10 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.client.RestTemplate;
 
-
-
 @Controller
 public class BalanceController {
 
-    private final Logger LOG = LoggerFactory.getLogger(LogInDebtorController.class);
+    private final static Logger LOG = LoggerFactory.getLogger(LogInDebtorController.class);
 
     private RestTemplate restTemplate;
 

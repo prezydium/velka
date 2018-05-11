@@ -16,7 +16,7 @@ import org.springframework.web.client.RestTemplate;
 @Controller
 public class LogInDebtorController {
 
-    private final Logger LOG = LoggerFactory.getLogger(LogInDebtorController.class);
+    private final static Logger LOG = LoggerFactory.getLogger(LogInDebtorController.class);
 
     private RestTemplate restTemplate;
 
