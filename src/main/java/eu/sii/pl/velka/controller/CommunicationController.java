@@ -10,6 +10,9 @@ import eu.sii.pl.velka.view.authorisation.UnrecognisedUserLoginView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Controller
 @UIScope
 public class CommunicationController {
@@ -23,6 +26,11 @@ public class CommunicationController {
     @Autowired
     private BalanceController balanceController;
 
+    private Map<AuthorisationEffect, String> authorizationNavigationRout = new HashMap<AuthorisationEffect, String>() {{
+        put(AuthorisationEffect.RECOGNISED, SuccessfulLoginView.VIEW_NAME);
+        put(AuthorisationEffect.NOT_RECOGNISED, UnrecognisedUserLoginView.VIEW_NAME);
+    }};
+
     public void communicateWithAPI(Debtor debtor) {
         AuthorisationEffect authorisationEffect = logInDebtorController.confirmThatDebtorExists(debtor);
         switchViewAfterApiResponse(authorisationEffect);
@@ -34,15 +42,7 @@ public class CommunicationController {
     }
 
     private void switchViewAfterApiResponse(AuthorisationEffect authorisationEffect) {
-        switch (authorisationEffect) {
-            case NOT_RECOGNISED:
-                springNavigator.navigateTo(UnrecognisedUserLoginView.VIEW_NAME);
-                break;
-            case RECOGNISED:
-                springNavigator.navigateTo(SuccessfulLoginView.VIEW_NAME);
-                break;
-            default:
-                springNavigator.navigateTo(ErrorLoginView.VIEW_NAME);
-        }
+        String navigationTarget = authorizationNavigationRout.getOrDefault(authorisationEffect, ErrorLoginView.VIEW_NAME);
+        springNavigator.navigateTo(navigationTarget);
     }
 }
