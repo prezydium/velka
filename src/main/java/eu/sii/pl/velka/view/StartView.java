@@ -1,14 +1,11 @@
 package eu.sii.pl.velka.view;
 
+import com.vaadin.data.BinderValidationStatus;
 import com.vaadin.navigator.View;
 import com.vaadin.spring.annotation.SpringView;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
-import eu.sii.pl.velka.controller.CommunicationController;
-import eu.sii.pl.velka.controller.LogInDebtorController;
+import eu.sii.pl.velka.controller.CommunicationWIthMiCuentaAPIController;
 import eu.sii.pl.velka.model.Debtor;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,11 +15,11 @@ public class StartView extends VerticalLayout implements View {
     public static final String VIEW_NAME = "";
 
     @Autowired
-    private CommunicationController communicateWithAPI;
+    private CommunicationWIthMiCuentaAPIController communicateWithAPI;
 
     private StartForm formLayout = new StartForm(this::clickSubmitButton);
 
-    public StartView(){
+    public StartView() {
         this.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
         addHeader();
         addForm();
@@ -41,7 +38,14 @@ public class StartView extends VerticalLayout implements View {
     }
 
     private void clickSubmitButton(Button.ClickEvent clickEvent) {
-        Debtor localDebtor = (Debtor) formLayout.getModel();
-        communicateWithAPI.communicateWithAPI(localDebtor);
+        BinderValidationStatus<Debtor> status = formLayout.getBinder().validate();
+
+        if (status.hasErrors()) {
+            Notification.show("Validation error: "
+                    + status.getValidationErrors().get(0).getErrorMessage());
+        } else {
+            Debtor localDebtor = (Debtor) formLayout.getModel();
+            communicateWithAPI.communicateWithAPI(localDebtor);
+        }
     }
 }
