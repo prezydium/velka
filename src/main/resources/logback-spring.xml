@@ -2,7 +2,7 @@
 <configuration>
 
     <!--make sure that app has permission to dir-->
-    <property name="DEV_HOME" value="/var/logs/velka" />
+    <property name="DEV_HOME" value="/var/log/velka" />
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
