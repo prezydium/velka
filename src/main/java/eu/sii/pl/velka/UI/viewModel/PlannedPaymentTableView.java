@@ -10,7 +10,7 @@ public class PlannedPaymentTableView {
     private String debtName;
     private LocalDate expDate;
     private BigDecimal debtAmount;
-    private BigDecimal payedSum;
+    private BigDecimal remainingAmount;
     private BigDecimal plannedRepaymentAmount;
     private BigDecimal plannedRemainingDebtAmount;
 
@@ -46,12 +46,12 @@ public class PlannedPaymentTableView {
         this.debtAmount = debtAmount;
     }
 
-    public BigDecimal getPayedSum() {
-        return payedSum;
+    public BigDecimal getRemainingAmount() {
+        return remainingAmount;
     }
 
-    public void setPayedSum(BigDecimal payedSum) {
-        this.payedSum = payedSum;
+    public void setRemainingAmount(BigDecimal remainingAmount) {
+        this.remainingAmount = remainingAmount;
     }
 
     public BigDecimal getPlannedRepaymentAmount() {
@@ -73,13 +73,13 @@ public class PlannedPaymentTableView {
     public PlannedPaymentTableView() {
     }
 
-    public PlannedPaymentTableView(PlannedPayment plannedPayment) {
+    public PlannedPaymentTableView(PlannedPayment plannedPayment, DebtTableView debt) {
         this.uuid = plannedPayment.getUuid();
-        this.debtName = debtName;
-        this.expDate = expDate;
-        this.debtAmount = plannedPayment.getAmountOfRepaymentDebt();
-        this.payedSum = payedSum;
-        this.plannedRepaymentAmount = plannedRepaymentAmount;
-        this.plannedRemainingDebtAmount = plannedRemainingDebtAmount;
+        this.debtName = debt.getDebtViewName();
+        this.expDate = debt.getDebtViewDate();
+        this.debtAmount = debt.getDebtViewAmount();
+        this.remainingAmount = debt.getRemainingAmountView();
+        this.plannedRepaymentAmount = plannedPayment.getAmountOfRepaymentDebt();
+        this.plannedRemainingDebtAmount =debt.getRemainingAmountView().subtract(plannedPayment.getAmountOfRepaymentDebt());
     }
 }

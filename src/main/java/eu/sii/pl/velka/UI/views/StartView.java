@@ -1,10 +1,11 @@
-package eu.sii.pl.velka.view;
+package eu.sii.pl.velka.UI.views;
 
 import com.vaadin.data.BinderValidationStatus;
 import com.vaadin.navigator.View;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
+import eu.sii.pl.velka.UI.views.components.StartForm;
 import eu.sii.pl.velka.controller.CommunicationWIthMiCuentaAPIController;
 import eu.sii.pl.velka.model.Debtor;
 import org.springframework.beans.factory.annotation.Autowired;

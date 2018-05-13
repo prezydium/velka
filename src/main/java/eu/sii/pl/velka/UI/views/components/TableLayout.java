@@ -11,7 +11,6 @@ import java.util.Set;
 // TODO generic
 public class TableLayout extends VerticalLayout {
 
-
     public TableLayout(Debtor debtor) {
         DebtorTableView debtorTableView = new DebtorTableView(debtor);
         Grid<DebtTableView> grid = new Grid<>();

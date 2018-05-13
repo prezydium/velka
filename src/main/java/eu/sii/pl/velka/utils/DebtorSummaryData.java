@@ -1,6 +1,7 @@
 package eu.sii.pl.velka.utils;
 
 import com.sun.xml.internal.bind.v2.TODO;
+import eu.sii.pl.velka.UI.viewModel.DebtorTableView;
 import eu.sii.pl.velka.UI.viewModel.PlannedPaymentTableView;
 import eu.sii.pl.velka.model.Debt;
 import eu.sii.pl.velka.model.Debtor;
@@ -10,10 +11,8 @@ import eu.sii.pl.velka.model.PlannedPayment;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
 // TODO make final, private constructor
 public class DebtorSummaryData {
 
@@ -31,14 +30,16 @@ public class DebtorSummaryData {
         }
         return debtViewSet;
     }
-    public static List<PlannedPaymentTableView> createPaymentPlanViewSet(PaymentPlan paymentPlan) {
-        List<PlannedPayment> listOfDebts = paymentPlan.getPlannedPaymentList();
+    public static List<PlannedPaymentTableView> createPaymentPlanViewSet(PaymentPlan paymentPlan, DebtorTableView debtorTableView) {
+        List<PlannedPayment> listOfPlannedPayment = paymentPlan.getPlannedPaymentList();
         List<PlannedPaymentTableView> planedViewSet = new ArrayList<>();
-        for (PlannedPayment plannedPayment : listOfDebts) {
-            planedViewSet.add(new PlannedPaymentTableView(plannedPayment));
+        for (PlannedPayment plannedPayment : listOfPlannedPayment) {
+            DebtTableView debtTableView= debtorTableView.getDebtViewSet().stream()
+                    .filter(d->plannedPayment.getUuid().equals(d.getUuid())).findFirst().orElse(null);
+            planedViewSet.add(new PlannedPaymentTableView(plannedPayment,debtTableView));
         }
         return planedViewSet;
-    } // TODO change to generic method
+    } // TODO change to generic method, test
 
     public static BigDecimal getRemainingAmountSum(Debtor debtor) {
         Set<DebtTableView> setDebtsView = createDebtorViewSet(debtor);

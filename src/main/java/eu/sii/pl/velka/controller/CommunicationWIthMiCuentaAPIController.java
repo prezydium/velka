@@ -9,6 +9,7 @@ import eu.sii.pl.velka.UI.authorisation.ErrorLoginView;
 import eu.sii.pl.velka.UI.authorisation.SuccessfulLoginView;
 import eu.sii.pl.velka.UI.authorisation.UnrecognisedUserLoginView;
 import eu.sii.pl.velka.model.PaymentDeclaration;
+import eu.sii.pl.velka.model.PaymentPlan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -51,6 +52,8 @@ public class CommunicationWIthMiCuentaAPIController {
         AuthorisationEffect authorisationEffect = paymentController.trySendPayment(paymentDeclaration);
         switchViewAfterApiResponse(authorisationEffect);
         if (authorisationEffect == AuthorisationEffect.RECOGNISED) {
+            PaymentPlan paymentPlan=paymentController.getPaymentPlan(paymentDeclaration);
+            VaadinSession.getCurrent().setAttribute("paymentPlan", paymentPlan);
             springNavigator.navigateTo("paymentPlan");
         } else {
             springNavigator.navigateTo("unrecognised");// TODO: in next subtask
