@@ -1,8 +1,8 @@
 package eu.sii.pl.velka.controller;
 
 import eu.sii.pl.velka.model.Debtor;
-import eu.sii.pl.velka.model.PaymentDeclaration;
-import eu.sii.pl.velka.model.PaymentPlan;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -12,18 +12,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import javax.xml.ws.Response;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Controller
 public class LogInDebtorController {
 
-    private final Logger LOG = Logger.getLogger(LogInDebtorController.class.getName());
+    private final static Logger LOG = LoggerFactory.getLogger(LogInDebtorController.class);
 
     private RestTemplate restTemplate;
-
-    private String navigationTarget = "";
 
     @Value("${api_url}")
     private String API_URL;
@@ -49,20 +44,19 @@ public class LogInDebtorController {
         try {
             ResponseEntity response = restTemplate.postForEntity((API_URL + API_URL_LOGIN), debtor, Debtor.class);
             if (response.getStatusCode() == HttpStatus.OK) {
+                LOG.info("Login successful :" + debtor.getFirstName() + " " + debtor.getLastName());
                 return AuthorisationEffect.RECOGNISED;
             }
         } catch (HttpClientErrorException e) {
             if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
-                LOG.log(Level.INFO, "Debtor not found: " + debtor.toString());
+                LOG.warn("Debtor not found: " + debtor.toString());
                 return AuthorisationEffect.NOT_RECOGNISED;
             } else {
-                LOG.log(Level.WARNING, "Error, http status code: " + e.getStatusCode().toString());
+                LOG.error("Error, http status code: " + e.getStatusCode().toString());
             }
         } catch (Exception e) {
-            LOG.log(Level.SEVERE, "Error connecting to server");
+            LOG.error("Error connecting to server: " + e.getMessage());
         }
         return AuthorisationEffect.ERROR;
     }
-
-
 }

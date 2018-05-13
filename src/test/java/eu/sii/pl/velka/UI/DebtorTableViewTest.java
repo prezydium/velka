@@ -4,23 +4,19 @@ import eu.sii.pl.velka.dataHolder.DebtorCreator;
 import eu.sii.pl.velka.UI.viewModel.DebtorTableView;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
 
 public class DebtorTableViewTest {
 
-    @Autowired
-    DebtorCreator debtorCreator = new DebtorCreator();
-    DebtorTableView debtorTableView;
+    private DebtorTableView debtorTableView;
 
     @Before
     public void init() {
-        debtorTableView = new DebtorTableView(debtorCreator.createDebtor());
+        debtorTableView = new DebtorTableView(DebtorCreator.createDebtor());
     }
 
     @Test

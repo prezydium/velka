@@ -22,7 +22,7 @@ public class SsnValidatorTest {
     public void shouldNotValidateWhenEmptyString() {
         //given
         ssn = "";
-        //when then
+        //then
         Assert.assertTrue(ssnValidator.apply(ssn, new ValueContext()).isError());
     }
 
@@ -30,14 +30,14 @@ public class SsnValidatorTest {
     public void shouldNotValidateWhenSsnContainsChars() {
         //given
         String name = "222-22Z-222";
-        //when then
+        //then
         Assert.assertTrue(ssnValidator.apply(name, new ValueContext()).isError());
     }
     @Test
     public void shouldIgnoreDashes() {
         //given
         String name = "22-2--------222222";
-        //when then
+        //then
         Assert.assertFalse(ssnValidator.apply(name, new ValueContext()).isError());
     }
 }

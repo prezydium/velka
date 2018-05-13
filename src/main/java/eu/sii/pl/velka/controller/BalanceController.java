@@ -1,24 +1,18 @@
 package eu.sii.pl.velka.controller;
 
-import com.vaadin.spring.annotation.SpringComponent;
 import eu.sii.pl.velka.model.Debtor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.context.annotation.Scope;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.context.annotation.RequestScope;
-
-import java.util.logging.Logger;
 
 @Controller
 public class BalanceController {
 
-    private final Logger LOG = Logger.getLogger(LogInDebtorController.class.getName());
+    private final static Logger LOG = LoggerFactory.getLogger(LogInDebtorController.class);
 
     private RestTemplate restTemplate;
 
@@ -35,7 +29,12 @@ public class BalanceController {
 
     Debtor getFullData(String ssn) {
         String urlWithGet = API_URL + API_URL_GET_DEBTOR + ssn;
-        Debtor localDebtor = restTemplate.getForObject(urlWithGet, Debtor.class);
+        Debtor localDebtor = new Debtor();
+        try {
+            localDebtor = restTemplate.getForObject(urlWithGet, Debtor.class);
+        } catch (Exception e){
+            LOG.error("Error getting debtor data" + e.getMessage());
+        }
         return localDebtor;
     }
 }
