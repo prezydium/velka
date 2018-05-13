@@ -36,7 +36,7 @@ public class DebtorTableViewTest {
     public void shouldReturnRemainingAmountSum() {
         //given
         //when
-        BigDecimal remainingAmountSum = debtorTableView.getRemainingAmountSumView();
+        BigDecimal remainingAmountSum = debtorTableView.getPaymentAmountSumView();
         //then
         assertThat(remainingAmountSum, equalTo(new BigDecimal(280).setScale(2)));
     }

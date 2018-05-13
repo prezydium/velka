@@ -21,6 +21,11 @@ public class DebtorSummaryData {
         return listOfDebts.stream().map(Debt::getDebtAmount)
                 .reduce(BigDecimal.ZERO, BigDecimal::add).setScale(2, RoundingMode.HALF_EVEN);
     }
+    public static BigDecimal getPaymentPlanRepaymentSum(PaymentPlan paymentPlan) {
+        List<PlannedPayment> listOfPlannedPayment = paymentPlan.getPlannedPaymentList();
+        return listOfPlannedPayment.stream().map(PlannedPayment::getAmountOfRepaymentDebt)
+                .reduce(BigDecimal.ZERO, BigDecimal::add).setScale(2, RoundingMode.HALF_EVEN);
+    }
 
     public static Set<DebtTableView> createDebtorViewSet(Debtor debtor) {
         List<Debt> listOfDebts = debtor.getListOfDebts();
@@ -30,13 +35,14 @@ public class DebtorSummaryData {
         }
         return debtViewSet;
     }
+
     public static List<PlannedPaymentTableView> createPaymentPlanViewSet(PaymentPlan paymentPlan, DebtorTableView debtorTableView) {
         List<PlannedPayment> listOfPlannedPayment = paymentPlan.getPlannedPaymentList();
         List<PlannedPaymentTableView> planedViewSet = new ArrayList<>();
         for (PlannedPayment plannedPayment : listOfPlannedPayment) {
-            DebtTableView debtTableView= debtorTableView.getDebtViewSet().stream()
-                    .filter(d->plannedPayment.getUuid().equals(d.getUuid())).findFirst().orElse(null);
-            planedViewSet.add(new PlannedPaymentTableView(plannedPayment,debtTableView));
+            DebtTableView debtTableView = debtorTableView.getDebtViewSet().stream()
+                    .filter(d -> plannedPayment.getUuid().equals(d.getUuid())).findFirst().orElse(null);
+            planedViewSet.add(new PlannedPaymentTableView(plannedPayment, debtTableView));
         }
         return planedViewSet;
     } // TODO change to generic method, test

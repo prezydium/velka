@@ -11,11 +11,11 @@ public class DebtSummaryData {
 
     public DebtSummaryData() {
     }
-    public static BigDecimal getRemainingAmount(Debt debt) {
+    public static BigDecimal getSumPaymentsAmount(Debt debt) {
             BigDecimal debtPaymentsSum = debt.getListOfPayments().stream()
                     .map(Payment::getPaymentAmount)
                     .reduce(BigDecimal.ZERO, BigDecimal::add)
                     .setScale(2, RoundingMode.HALF_EVEN);
-            return debt.getDebtAmount().subtract(debtPaymentsSum);
+            return debtPaymentsSum;
     }
 }

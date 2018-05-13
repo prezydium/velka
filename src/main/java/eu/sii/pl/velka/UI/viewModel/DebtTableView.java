@@ -13,6 +13,7 @@ public class DebtTableView {
     private String uuid;
     private LocalDate debtViewDate;
     private BigDecimal debtViewAmount;
+    private BigDecimal sumRemainingViewAmount;
     private BigDecimal sumPaymentViewAmount;
 
     public LocalDate getDebtViewDate() {
@@ -24,7 +25,7 @@ public class DebtTableView {
     }
 
     public BigDecimal getRemainingAmountView() {
-        return sumPaymentViewAmount;
+        return sumRemainingViewAmount;
     }
 
     public String getDebtViewName() {
@@ -33,6 +34,10 @@ public class DebtTableView {
 
     public String getUuid() {
         return uuid;
+    }
+
+    public BigDecimal getSumPaymentViewAmount() {
+        return sumPaymentViewAmount;
     }
 
     public void setUuid(String uuid) {
@@ -51,19 +56,19 @@ public class DebtTableView {
         this.debtViewAmount = debtViewAmount;
     }
 
-    public void setSumPaymentViewAmount(BigDecimal sumPaymentViewAmount) {
-        this.sumPaymentViewAmount = sumPaymentViewAmount;
+    public void setSumPaymentViewAmount(BigDecimal sumRemainingViewAmount) {
+        this.sumRemainingViewAmount = sumRemainingViewAmount;
     }
 
     public DebtTableView() {
     }
-
     public DebtTableView(Debt debt) {
         this.debtViewName = debt.getDebtName();
         this.uuid=debt.getUuid();
         this.debtViewDate = debt.getRepaymentDate();
         this.debtViewAmount = debt.getDebtAmount();
-        this.sumPaymentViewAmount = DebtSummaryData.getRemainingAmount(debt);
+        this.sumRemainingViewAmount =  debt.getDebtAmount().subtract(DebtSummaryData.getSumPaymentsAmount(debt));
+        this.sumPaymentViewAmount= DebtSummaryData.getSumPaymentsAmount(debt);
     }
 
     @Override
@@ -73,7 +78,8 @@ public class DebtTableView {
                 ", uuid='" + uuid + '\'' +
                 ", debtViewDate=" + debtViewDate +
                 ", debtViewAmount=" + debtViewAmount +
-                ", sumPaymentViewAmount=" + sumPaymentViewAmount +
+                ", sumRemainingViewAmount=" + sumRemainingViewAmount +
+                ", sumPViewAmount=" + sumPaymentViewAmount +
                 '}';
     }
 }

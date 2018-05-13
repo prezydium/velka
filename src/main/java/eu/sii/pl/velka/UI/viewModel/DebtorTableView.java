@@ -11,6 +11,7 @@ public class DebtorTableView {
     private String lastName;
     private String ssn;
     private Set<DebtTableView> debtViewSet;
+    private BigDecimal paymentAmountSumView;
     private BigDecimal remainingAmountSumView;
     private BigDecimal debtsSumView;
 
@@ -18,24 +19,56 @@ public class DebtorTableView {
         return firstName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getLastName() {
         return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getSsn() {
         return ssn;
     }
 
+    public void setSsn(String ssn) {
+        this.ssn = ssn;
+    }
+
     public Set<DebtTableView> getDebtViewSet() {
         return debtViewSet;
+    }
+
+    public void setDebtViewSet(Set<DebtTableView> debtViewSet) {
+        this.debtViewSet = debtViewSet;
+    }
+
+    public BigDecimal getPaymentAmountSumView() {
+        return paymentAmountSumView;
+    }
+
+    public void setPaymentAmountSumView(BigDecimal paymentAmountSumView) {
+        this.paymentAmountSumView = paymentAmountSumView;
     }
 
     public BigDecimal getRemainingAmountSumView() {
         return remainingAmountSumView;
     }
 
+    public void setRemainingAmountSumView(BigDecimal remainingAmountSumView) {
+        this.remainingAmountSumView = remainingAmountSumView;
+    }
+
     public BigDecimal getDebtsSumView() {
         return debtsSumView;
+    }
+
+    public void setDebtsSumView(BigDecimal debtsSumView) {
+        this.debtsSumView = debtsSumView;
     }
 
     public DebtorTableView(Debtor debtor) {
@@ -43,7 +76,8 @@ public class DebtorTableView {
         this.lastName = debtor.getLastName();
         this.ssn = debtor.getSsn();
         this.debtViewSet = DebtorSummaryData.createDebtorViewSet(debtor);
-        this.remainingAmountSumView = DebtorSummaryData.getRemainingAmountSum(debtor);
         this.debtsSumView = DebtorSummaryData.getDebtsSum(debtor);
+        this.remainingAmountSumView=DebtorSummaryData.getRemainingAmountSum(debtor);
+        this.paymentAmountSumView = DebtorSummaryData.getDebtsSum(debtor).subtract(DebtorSummaryData.getRemainingAmountSum(debtor));
     }
 }
