@@ -18,10 +18,7 @@ public class PaymentLayout extends AbstractDataForm<PaymentDeclarationView> {
     @PropertyId("debtUuid")
     private TextField textFieldDebtId = new TextField("debtUuid: ");
 
-    @PropertyId("ssn")
-    private TextField textFieldSsn = new TextField("SSN: ");
-
-    @PropertyId("amount")//TODO get snn from debtor in session
+    @PropertyId("amount")
     private TextField textFieldAmount = new TextField("Amount: ");
 
 
@@ -31,8 +28,10 @@ public class PaymentLayout extends AbstractDataForm<PaymentDeclarationView> {
         binder.bindInstanceFields(this);
         styleUI();
         Button payButton = new Button("Submit", clickListener);
-        addComponents(formHeader, textFieldDebtId, textFieldSsn,
-                textFieldAmount, payButton);
+        addComponents(formHeader, textFieldDebtId,
+                //textFieldSsn,
+                textFieldAmount,
+                payButton);
     }
 
     private void styleUI() {
@@ -43,10 +42,6 @@ public class PaymentLayout extends AbstractDataForm<PaymentDeclarationView> {
     }
 
     private void setUpValidation() {
-        textFieldSsn.setValueChangeMode(ValueChangeMode.BLUR);
-        binder.forMemberField(textFieldSsn)
-                .withValidator(new SsnValidator())
-                .asRequired();
         textFieldAmount.setValueChangeMode(ValueChangeMode.BLUR);
         binder.forMemberField(textFieldAmount)
                 .withValidator(new AmountValidator())

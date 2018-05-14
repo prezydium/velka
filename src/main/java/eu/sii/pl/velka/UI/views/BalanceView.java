@@ -18,30 +18,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class BalanceView extends VerticalLayout implements View {
 
 
-    private PaymentLayout formLayout = new PaymentLayout(this::clickSubmitButton);
+    private PaymentLayout paymentLayout = new PaymentLayout(this::clickSubmitButton);
 
     @Autowired
     private CommunicationWIthMiCuentaAPIController communicateWithAPI;
 
+    private Debtor debtor = (Debtor) VaadinSession.getCurrent().getAttribute("debtor");
 
     public BalanceView() {
-        Debtor debtor = (Debtor) VaadinSession.getCurrent().getAttribute("debtor");
         this.addComponent(new HeaderLayout(debtor));
         this.addComponent(new TableLayout(debtor));
-        this.addComponent(this.formLayout);
+        this.addComponent(this.paymentLayout);
         PaymentDeclarationView paymentDeclarationView = new PaymentDeclarationView();
-        formLayout.setModel(paymentDeclarationView);
+        paymentLayout.setModel(paymentDeclarationView);
     }
 
     private void clickSubmitButton(Button.ClickEvent clickEvent) {
-
-        BinderValidationStatus<PaymentDeclarationView> status = formLayout.getBinder().validate();
+        BinderValidationStatus<PaymentDeclarationView> status = paymentLayout.getBinder().validate();
 
         if (status.hasErrors()) {
             Notification.show("Validation error: "
                     + status.getValidationErrors().get(0).getErrorMessage());
         } else {
-            PaymentDeclarationView paymentDeclarationView = (PaymentDeclarationView) formLayout.getModel();
+            PaymentDeclarationView paymentDeclarationView = (PaymentDeclarationView) paymentLayout.getModel();
+            paymentDeclarationView.setSsn(debtor.getSsn());
             PaymentDeclaration paymentDeclaration = paymentDeclarationView.mapToPaymentDeclaration();
             communicateWithAPI.sentPaymentDeclarationToAPI(paymentDeclaration);
         }

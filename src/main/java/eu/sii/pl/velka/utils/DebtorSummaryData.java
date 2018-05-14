@@ -41,7 +41,7 @@ public class DebtorSummaryData {
         List<PlannedPaymentTableView> planedViewSet = new ArrayList<>();
         for (PlannedPayment plannedPayment : listOfPlannedPayment) {
             DebtTableView debtTableView = debtorTableView.getDebtViewSet().stream()
-                    .filter(d -> plannedPayment.getUuid().equals(d.getUuid())).findFirst().orElse(null);
+                    .filter(d -> plannedPayment.getUuid().equals(d.getUuid())).findFirst().orElse(new DebtTableView());
             planedViewSet.add(new PlannedPaymentTableView(plannedPayment, debtTableView));
         }
         return planedViewSet;
