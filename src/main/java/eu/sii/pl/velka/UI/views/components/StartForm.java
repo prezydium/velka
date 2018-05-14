@@ -1,8 +1,6 @@
 package eu.sii.pl.velka.UI.views.components;
 
 import com.vaadin.annotations.PropertyId;
-import com.vaadin.data.Binder;
-import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.shared.ui.ValueChangeMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;

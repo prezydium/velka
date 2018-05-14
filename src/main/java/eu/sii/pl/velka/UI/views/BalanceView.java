@@ -5,18 +5,19 @@ import com.vaadin.navigator.View;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
-import eu.sii.pl.velka.UI.viewModel.PaymentDeclarationView;
 import eu.sii.pl.velka.UI.views.components.HeaderLayout;
 import eu.sii.pl.velka.UI.views.components.PaymentLayout;
 import eu.sii.pl.velka.UI.views.components.TableLayout;
+import eu.sii.pl.velka.UI.viewModel.PaymentDeclarationView;
 import eu.sii.pl.velka.controller.CommunicationWIthMiCuentaAPIController;
 import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.model.PaymentDeclaration;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@SpringView(name = "balance")
+@SpringView(name = BalanceView.VIEW_NAME)
 public class BalanceView extends VerticalLayout implements View {
 
+    public static final String VIEW_NAME = "balance";
 
     private PaymentLayout paymentLayout = new PaymentLayout(this::clickSubmitButton);
 

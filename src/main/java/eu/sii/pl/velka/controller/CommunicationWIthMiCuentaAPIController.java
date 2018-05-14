@@ -49,15 +49,9 @@ public class CommunicationWIthMiCuentaAPIController {
     }
 
     public void sentPaymentDeclarationToAPI(PaymentDeclaration paymentDeclaration) {
-        AuthorisationEffect authorisationEffect = paymentController.trySendPayment(paymentDeclaration);
-        switchViewAfterApiResponse(authorisationEffect);
-        if (authorisationEffect == AuthorisationEffect.RECOGNISED) {
             PaymentPlan paymentPlan=paymentController.getPaymentPlan(paymentDeclaration);
             VaadinSession.getCurrent().setAttribute("paymentPlan", paymentPlan);
             springNavigator.navigateTo("paymentPlan");
-        } else {
-            springNavigator.navigateTo("unrecognised");// TODO: in next subtask
-        }
     }
 
     private void switchViewAfterApiResponse(AuthorisationEffect authorisationEffect) {

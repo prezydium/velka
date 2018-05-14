@@ -3,8 +3,8 @@ package eu.sii.pl.velka.UI.views.components;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.components.grid.FooterRow;
-import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.UI.viewModel.DebtTableView;
+import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.UI.viewModel.DebtorTableView;
 
 import java.util.Set;

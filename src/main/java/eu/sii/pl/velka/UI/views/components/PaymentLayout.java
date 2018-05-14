@@ -7,7 +7,6 @@ import com.vaadin.ui.themes.ValoTheme;
 import eu.sii.pl.velka.UI.viewModel.PaymentDeclarationView;
 import eu.sii.pl.velka.UI.views.AbstractDataForm;
 import eu.sii.pl.velka.validation.AmountValidator;
-import eu.sii.pl.velka.validation.SsnValidator;
 import eu.sii.pl.velka.validation.UuidValidator;
 
 

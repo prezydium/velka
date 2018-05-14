@@ -63,10 +63,8 @@ public class LogInDebtorControllerTest {
                 .requestTo("/TEST_URL/login"))
                 .andExpect(MockRestRequestMatchers.method(HttpMethod.POST))
                 .andRespond(MockRestResponseCreators.withStatus(HttpStatus.OK));
-
         //when
         AuthorisationEffect actual = logInDebtorController.confirmThatDebtorExists(debtor);
-
         //then
         Assert.assertEquals(AuthorisationEffect.RECOGNISED, actual);
     }

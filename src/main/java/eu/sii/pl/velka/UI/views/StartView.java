@@ -40,7 +40,6 @@ public class StartView extends VerticalLayout implements View {
 
     private void clickSubmitButton(Button.ClickEvent clickEvent) {
         BinderValidationStatus<Debtor> status = formLayout.getBinder().validate();
-
         if (status.hasErrors()) {
             Notification.show("Validation error: "
                     + status.getValidationErrors().get(0).getErrorMessage());
