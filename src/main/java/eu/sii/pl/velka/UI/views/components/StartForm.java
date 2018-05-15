@@ -29,8 +29,6 @@ public class StartForm extends AbstractDataForm<Debtor> {
     private Label labelSurnameError = new Label("");
     private Label labelSsnError = new Label("");
 
-    private Label errors = new Label();
-
     private Button confirmButton;
 
     public StartForm(Button.ClickListener clickListener) {

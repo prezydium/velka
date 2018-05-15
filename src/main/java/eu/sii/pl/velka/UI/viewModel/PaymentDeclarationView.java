@@ -10,7 +10,7 @@ public class PaymentDeclarationView {
 
     private String amount;
 
-    private String debtUuid;
+    private String debtUuid="";
 
     private String ssn;
 

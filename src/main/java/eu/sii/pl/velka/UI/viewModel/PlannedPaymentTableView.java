@@ -12,8 +12,8 @@ public class PlannedPaymentTableView {
     private BigDecimal debtAmount;
     private BigDecimal sumPaymentAmount;
     private BigDecimal remainingAmount;
-    private BigDecimal plannedRepaymentAmount=new BigDecimal(0);
-    private BigDecimal plannedRemainingDebtAmount=new BigDecimal(0);
+    private BigDecimal plannedRepaymentAmount;
+    private BigDecimal plannedRemainingDebtAmount;
 
     public String getUuid() {
         return uuid;

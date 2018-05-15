@@ -14,7 +14,7 @@ public class PaymentDeclaration {
 
     private BigDecimal paymentAmount;
 
-    private String debtUuid;
+    private String debtUuid="";
 
     private String ssn;
 

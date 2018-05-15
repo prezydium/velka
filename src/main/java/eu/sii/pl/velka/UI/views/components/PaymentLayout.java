@@ -31,7 +31,6 @@ public class PaymentLayout extends AbstractDataForm<PaymentDeclarationView> {
         styleUI();
         Button payButton = new Button("Submit", clickListener);
         addComponents(formHeader, textFieldDebtId,
-                //textFieldSsn,
                 textFieldAmount,
                 payButton);
     }

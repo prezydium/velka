@@ -9,7 +9,6 @@ import eu.sii.pl.velka.model.Debtor;
 
 import java.util.Set;
 
-// TODO generic
 public class TableLayout extends VerticalLayout {
 
     public TableLayout(Debtor debtor) {
