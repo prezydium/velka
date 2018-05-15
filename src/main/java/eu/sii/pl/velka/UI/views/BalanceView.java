@@ -11,7 +11,7 @@ import eu.sii.pl.velka.UI.viewModel.PaymentDeclarationView;
 import eu.sii.pl.velka.UI.views.components.HeaderLayout;
 import eu.sii.pl.velka.UI.views.components.PaymentLayout;
 import eu.sii.pl.velka.UI.views.components.TableLayout;
-import eu.sii.pl.velka.controller.CommunicationWIthMiCuentaAPIController;
+import eu.sii.pl.velka.controller.APIController;
 import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.model.PaymentDeclaration;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class BalanceView extends VerticalLayout implements View {
     private PaymentLayout paymentLayout = new PaymentLayout(this::clickSubmitButton);
 
     @Autowired
-    private CommunicationWIthMiCuentaAPIController communicateWithAPI;
+    private APIController communicateWithAPI;
 
     private Debtor debtor = (Debtor) VaadinSession.getCurrent().getAttribute("debtor");
 
