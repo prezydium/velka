@@ -33,7 +33,7 @@ public class TablePannedPayment extends VerticalLayout {
         footer.getCell("Sum Payment Amount").setText(debtorTableView.getPaymentAmountSumView().toString());
         footer.getCell("Remaining Amount").setText(debtorTableView.getRemainingAmountSumView().toString());
         footer.getCell("Planned Repayment Amount").setText(paymentPlanTableView.getSumOfPlannedRepaymentAmount().toString());
-        footer.getCell("Planned Remaining Amount").setText(paymentPlanTableView.getSumOfPlannedRemaingAmount().toString());
+        footer.getCell("Planned Remaining Amount").setText(paymentPlanTableView.getSumOfPlannedRemainingAmount().toString());
         grid.setSizeFull();
         addComponent(grid);
     }

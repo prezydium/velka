@@ -62,13 +62,14 @@ public class DebtTableView {
 
     public DebtTableView() {
     }
+
     public DebtTableView(Debt debt) {
         this.debtViewName = debt.getDebtName();
-        this.uuid=debt.getUuid();
+        this.uuid = debt.getUuid();
         this.debtViewDate = debt.getRepaymentDate();
         this.debtViewAmount = debt.getDebtAmount();
-        this.sumRemainingViewAmount =  debt.getDebtAmount().subtract(DebtSummaryDataUtil.getSumPaymentsAmount(debt));
-        this.sumPaymentViewAmount= DebtSummaryDataUtil.getSumPaymentsAmount(debt);
+        this.sumRemainingViewAmount = debt.getDebtAmount().subtract(DebtSummaryDataUtil.getSumPaymentsAmount(debt));
+        this.sumPaymentViewAmount = DebtSummaryDataUtil.getSumPaymentsAmount(debt);
     }
 
     @Override

@@ -10,7 +10,7 @@ import com.vaadin.ui.VerticalLayout;
 
 @UIScope
 @SpringView(name = ErrorPaymentDeclaration.VIEW_NAME)
-public class ErrorPaymentDeclaration  extends VerticalLayout implements View {
+public class ErrorPaymentDeclaration extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "errorPayment";
 

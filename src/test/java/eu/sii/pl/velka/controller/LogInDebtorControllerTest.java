@@ -18,6 +18,8 @@ import org.springframework.test.web.client.response.MockRestResponseCreators;
 
 import java.util.Collections;
 
+import static org.junit.Assert.*;
+
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource("/testapplication.properties")
@@ -42,7 +44,7 @@ public class LogInDebtorControllerTest {
         //when
         String testUrl = logInDebtorController.getAPI_URL();
         //then
-        Assert.assertFalse(testUrl.isEmpty());
+        assertFalse(testUrl.isEmpty());
     }
 
     @Test
@@ -53,7 +55,9 @@ public class LogInDebtorControllerTest {
                 .andExpect(MockRestRequestMatchers.method(HttpMethod.POST))
                 .andRespond(MockRestResponseCreators.withServerError());
         //when
-        logInDebtorController.confirmThatDebtorExists(debtor);
+        AuthorisationEffect actual = logInDebtorController.confirmThatDebtorExists(debtor);
+        //then
+        assertEquals(AuthorisationEffect.ERROR, actual);
     }
 
     @Test
@@ -66,6 +70,6 @@ public class LogInDebtorControllerTest {
         //when
         AuthorisationEffect actual = logInDebtorController.confirmThatDebtorExists(debtor);
         //then
-        Assert.assertEquals(AuthorisationEffect.RECOGNISED, actual);
+        assertEquals(AuthorisationEffect.RECOGNISED, actual);
     }
 }

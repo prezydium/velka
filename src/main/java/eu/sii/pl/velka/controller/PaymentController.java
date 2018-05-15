@@ -32,26 +32,26 @@ public class PaymentController {
 
     AuthorisationEffect trySendPayment(PaymentDeclaration paymentDeclaration) {
         try {
-            ResponseEntity<PaymentPlan> response = new RestTemplate().postForEntity(API_URL + API_URL_Payment, paymentDeclaration, PaymentPlan.class);
+            ResponseEntity<PaymentPlan> response = restTemplate.postForEntity(API_URL + API_URL_Payment, paymentDeclaration, PaymentPlan.class);
             if (response.getStatusCode() == HttpStatus.OK) {
+                LOG.info("Sent payment declaration with httpstatus OK");
                 return AuthorisationEffect.RECOGNISED;
             }
         } catch (Exception e) {
-            LOG.error( "Error connecting to server " + e.getMessage());
+            LOG.error("Error connecting to server " + e.getMessage());
         }
-        return AuthorisationEffect.ERROR;}
+        return AuthorisationEffect.ERROR;
+    }
 
     PaymentPlan getPaymentPlan(PaymentDeclaration paymentDeclaration) {
         String paymentUrl = API_URL + API_URL_Payment;
-        PaymentPlan paymentPlan= new PaymentPlan();
-        try{
-        ResponseEntity<PaymentPlan> response = new RestTemplate().postForEntity(paymentUrl, paymentDeclaration, PaymentPlan.class);
-        LOG.info("Geting Payment Plan from API");
-        return response.getBody();
-        }
-        catch (Exception e) {
-            LOG.error(e.getMessage());
-            LOG.error("Error connecting to server");
+        PaymentPlan paymentPlan = new PaymentPlan();
+        try {
+            ResponseEntity<PaymentPlan> response = restTemplate.postForEntity(paymentUrl, paymentDeclaration, PaymentPlan.class);
+            LOG.info("Geting Payment Plan from API");
+            return response.getBody();
+        } catch (Exception e) {
+            LOG.error("Error connecting to server: " + e.getMessage());
         }
         return paymentPlan;
     }

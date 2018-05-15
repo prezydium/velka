@@ -2,7 +2,10 @@ package eu.sii.pl.velka.UI.views.components;
 
 import com.vaadin.annotations.PropertyId;
 import com.vaadin.shared.ui.ValueChangeMode;
-import com.vaadin.ui.*;
+import com.vaadin.ui.Alignment;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.TextField;
 import com.vaadin.ui.themes.ValoTheme;
 import eu.sii.pl.velka.UI.viewModel.PaymentDeclarationView;
 import eu.sii.pl.velka.UI.views.AbstractDataForm;

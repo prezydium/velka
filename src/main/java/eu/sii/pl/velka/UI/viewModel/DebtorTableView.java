@@ -77,7 +77,7 @@ public class DebtorTableView {
         this.ssn = debtor.getSsn();
         this.debtViewSet = DebtorSummaryDataUtil.createDebtorViewSet(debtor);
         this.debtsSumView = DebtorSummaryDataUtil.getDebtsSum(debtor);
-        this.remainingAmountSumView=DebtorSummaryDataUtil.getRemainingAmountSum(debtor);
+        this.remainingAmountSumView = DebtorSummaryDataUtil.getRemainingAmountSum(debtor);
         this.paymentAmountSumView = DebtorSummaryDataUtil.getDebtsSum(debtor).subtract(DebtorSummaryDataUtil.getRemainingAmountSum(debtor));
     }
 }

@@ -18,5 +18,4 @@ public class ResourcesProvider {
                 .getPath());
         return new String(Files.readAllBytes(path));
     }
-
 }

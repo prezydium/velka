@@ -6,32 +6,20 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
 
 public class DebtSummaryDataUtilTest {
 
     private Debt debt;
 
-    private Debt debtWithNullPayments;
-
     @Test
-    public void shouldReturnRemainingAmount() {
+    public void shouldReturnRepaymentAmount() {
         //given
         debt = DebtCreator.createDebt();
         //when
         BigDecimal remainingAmount = DebtSummaryDataUtil.getSumPaymentsAmount(debt);
         //then
-        assertThat(remainingAmount, equalTo(new BigDecimal(40).setScale(2)));
-    }
-
-    @Test
-    public void shouldReturnRemainingAmountWhithEmptyListOfPayments() {
-        //given
-        debtWithNullPayments = DebtCreator.createDebtWithNullPayments();
-        //when
-        BigDecimal sumPaymentAmount = DebtSummaryDataUtil.getSumPaymentsAmount(debtWithNullPayments);
-        //then
-        assertThat(sumPaymentAmount, equalTo(debtWithNullPayments.getDebtAmount().setScale(2)));
+        assertThat(remainingAmount, equalTo(new BigDecimal(160).setScale(2)));
     }
 }

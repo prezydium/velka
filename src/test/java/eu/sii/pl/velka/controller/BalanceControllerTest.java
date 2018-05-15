@@ -44,5 +44,7 @@ public class BalanceControllerTest {
                 .andRespond(MockRestResponseCreators.withSuccess(jsonResponse, MediaType.APPLICATION_JSON ));
         Debtor debtor = balanceController.getFullData("980-122-111");
         Assertions.assertThat(!debtor.getLastName().isEmpty());
+        Assertions.assertThat(!debtor.getFirstName().isEmpty());
+        Assertions.assertThat(!debtor.getSsn().isEmpty());
     }
 }

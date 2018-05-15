@@ -22,8 +22,4 @@ public class DebtCreator {
     public static Debt createDebt() {
         return new Debt(1L, "Fast loan", new BigDecimal(200), LocalDate.now(), payments);
     }
-
-    public static Debt createDebtWithNullPayments() {
-        return new Debt(1L, "Fast loan", new BigDecimal(200), LocalDate.now(), Collections.emptyList());
-    }
 }

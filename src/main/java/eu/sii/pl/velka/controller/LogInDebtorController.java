@@ -26,9 +26,6 @@ public class LogInDebtorController {
     @Value("${login_endpoint}")
     private String API_URL_LOGIN;
 
-    @Value("${paymentPlan_endpoint}")
-    private String API_URL_Payment;
-
     @Autowired
     public LogInDebtorController(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder.build();

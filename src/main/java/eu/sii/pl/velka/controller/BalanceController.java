@@ -33,7 +33,7 @@ public class BalanceController {
         try {
             localDebtor = restTemplate.getForObject(urlWithGet, Debtor.class);
             LOG.info("Getting debtor from api");
-        } catch (Exception e){
+        } catch (Exception e) {
             LOG.error("Error getting debtor data" + e.getMessage());
         }
         return localDebtor;

@@ -50,8 +50,9 @@ public class PaymentDeclarationView {
         this.debtUuid = debtUuid;
         this.ssn = ssn;
     }
-    public PaymentDeclaration mapToPaymentDeclaration(){
 
-        return new PaymentDeclaration(new BigDecimal(amount),this.debtUuid,this.ssn);
+    public PaymentDeclaration mapToPaymentDeclaration() {
+
+        return new PaymentDeclaration(new BigDecimal(amount), this.debtUuid, this.ssn);
     }
 }

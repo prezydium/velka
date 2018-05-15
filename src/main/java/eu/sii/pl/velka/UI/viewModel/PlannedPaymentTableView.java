@@ -12,8 +12,8 @@ public class PlannedPaymentTableView {
     private BigDecimal debtAmount;
     private BigDecimal sumPaymentAmount;
     private BigDecimal remainingAmount;
-    private BigDecimal plannedRepaymentAmount;
-    private BigDecimal plannedRemainingDebtAmount;
+    private BigDecimal plannedRepaymentAmount=new BigDecimal(0);
+    private BigDecimal plannedRemainingDebtAmount=new BigDecimal(0);
 
     public String getUuid() {
         return uuid;
@@ -83,7 +83,7 @@ public class PlannedPaymentTableView {
     }
 
     public PlannedPaymentTableView(PlannedPayment plannedPayment, DebtTableView debt) {
-        this.uuid = plannedPayment.getUuid();
+        this.uuid = debt.getUuid();
         this.debtName = debt.getDebtViewName();
         this.expDate = debt.getDebtViewDate();
         this.debtAmount = debt.getDebtViewAmount();
