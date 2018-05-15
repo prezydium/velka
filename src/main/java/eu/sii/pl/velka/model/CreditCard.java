@@ -3,6 +3,7 @@ package eu.sii.pl.velka.model;
 
 import java.time.LocalDate;
 
+
 public class CreditCard {
 
     private Long id;
@@ -11,12 +12,19 @@ public class CreditCard {
 
     private String cvv;
 
+    public String getIssuingNetwork() {
+        return issuingNetwork;
+    }
+
+    public void setIssuingNetwork(String issuingNetwork) {
+        this.issuingNetwork = issuingNetwork;
+    }
+
     private String issuingNetwork;
 
     private String firstName;
 
     private String lastName;
-
 
     private LocalDate expDate;
 
@@ -76,7 +84,7 @@ public class CreditCard {
         this.cvv = cvv;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.expDate=expDate;
+        this.expDate = expDate;
 
     }
 }

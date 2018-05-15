@@ -1,12 +1,10 @@
 package eu.sii.pl.velka.view;
 
 import com.vaadin.annotations.PropertyId;
-import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.themes.ValoTheme;
-import com.vaadin.ui.Button;
 
 public class PaymentForm extends AbstractDataForm<PaymentForm> {
 
@@ -23,9 +21,6 @@ public class PaymentForm extends AbstractDataForm<PaymentForm> {
 
     public PaymentForm() {
         super();
-//        binder.bindInstanceFields(this);
-//        styleUI();
-//        Button confirmButton = new Button("Submit", clickListener);
         addComponents( formHeader, textFieldName,textFieldSsn,textFieldSurname);
     }
 
