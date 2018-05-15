@@ -1,7 +1,7 @@
 package eu.sii.pl.velka.UI.viewModel;
 
 import eu.sii.pl.velka.model.Debt;
-import eu.sii.pl.velka.utils.DebtSummaryData;
+import eu.sii.pl.velka.utils.DebtSummaryDataUtil;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -67,8 +67,8 @@ public class DebtTableView {
         this.uuid=debt.getUuid();
         this.debtViewDate = debt.getRepaymentDate();
         this.debtViewAmount = debt.getDebtAmount();
-        this.sumRemainingViewAmount =  debt.getDebtAmount().subtract(DebtSummaryData.getSumPaymentsAmount(debt));
-        this.sumPaymentViewAmount= DebtSummaryData.getSumPaymentsAmount(debt);
+        this.sumRemainingViewAmount =  debt.getDebtAmount().subtract(DebtSummaryDataUtil.getSumPaymentsAmount(debt));
+        this.sumPaymentViewAmount= DebtSummaryDataUtil.getSumPaymentsAmount(debt);
     }
 
     @Override

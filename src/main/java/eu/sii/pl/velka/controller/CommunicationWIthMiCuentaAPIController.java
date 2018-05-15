@@ -49,13 +49,18 @@ public class CommunicationWIthMiCuentaAPIController {
     }
 
     public void sentPaymentDeclarationToAPI(PaymentDeclaration paymentDeclaration) {
-            PaymentPlan paymentPlan=paymentController.getPaymentPlan(paymentDeclaration);
+        AuthorisationEffect authorisationEffect = paymentController.trySendPayment(paymentDeclaration);
+        switchViewAfterApiResponse(authorisationEffect);
+        if (authorisationEffect == AuthorisationEffect.RECOGNISED) {
+            PaymentPlan paymentPlan = paymentController.getPaymentPlan(paymentDeclaration);
             VaadinSession.getCurrent().setAttribute("paymentPlan", paymentPlan);
             springNavigator.navigateTo("paymentPlan");
+        }else{springNavigator.navigateTo("errorPayment");}
     }
 
-    private void switchViewAfterApiResponse(AuthorisationEffect authorisationEffect) {
-        String navigationTarget = authorizationNavigationRout.getOrDefault(authorisationEffect, ErrorLoginView.VIEW_NAME);
-        springNavigator.navigateTo(navigationTarget);
+        private void switchViewAfterApiResponse (AuthorisationEffect authorisationEffect){
+            String navigationTarget = authorizationNavigationRout.getOrDefault(authorisationEffect, ErrorLoginView.VIEW_NAME);
+            springNavigator.navigateTo(navigationTarget);
+
     }
 }

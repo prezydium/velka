@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-public class DebtSummaryDataTest {
+public class DebtSummaryDataUtilTest {
 
     private Debt debt;
 
@@ -20,7 +20,7 @@ public class DebtSummaryDataTest {
         //given
         debt = DebtCreator.createDebt();
         //when
-        BigDecimal remainingAmount = DebtSummaryData.getSumPaymentsAmount(debt);
+        BigDecimal remainingAmount = DebtSummaryDataUtil.getSumPaymentsAmount(debt);
         //then
         assertThat(remainingAmount, equalTo(new BigDecimal(40).setScale(2)));
     }
@@ -30,7 +30,7 @@ public class DebtSummaryDataTest {
         //given
         debtWithNullPayments = DebtCreator.createDebtWithNullPayments();
         //when
-        BigDecimal sumPaymentAmount = DebtSummaryData.getSumPaymentsAmount(debtWithNullPayments);
+        BigDecimal sumPaymentAmount = DebtSummaryDataUtil.getSumPaymentsAmount(debtWithNullPayments);
         //then
         assertThat(sumPaymentAmount, equalTo(debtWithNullPayments.getDebtAmount().setScale(2)));
     }

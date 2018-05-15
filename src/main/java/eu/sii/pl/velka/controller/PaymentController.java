@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.client.RestTemplate;
@@ -28,6 +29,17 @@ public class PaymentController {
     public PaymentController(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder.build();
     }
+
+    AuthorisationEffect trySendPayment(PaymentDeclaration paymentDeclaration) {
+        try {
+            ResponseEntity<PaymentPlan> response = new RestTemplate().postForEntity(API_URL + API_URL_Payment, paymentDeclaration, PaymentPlan.class);
+            if (response.getStatusCode() == HttpStatus.OK) {
+                return AuthorisationEffect.RECOGNISED;
+            }
+        } catch (Exception e) {
+            LOG.error( "Error connecting to server " + e.getMessage());
+        }
+        return AuthorisationEffect.ERROR;}
 
     PaymentPlan getPaymentPlan(PaymentDeclaration paymentDeclaration) {
         String paymentUrl = API_URL + API_URL_Payment;

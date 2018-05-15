@@ -1,7 +1,7 @@
 package eu.sii.pl.velka.UI.viewModel;
 
 import eu.sii.pl.velka.model.Debtor;
-import eu.sii.pl.velka.utils.DebtorSummaryData;
+import eu.sii.pl.velka.utils.DebtorSummaryDataUtil;
 
 import java.math.BigDecimal;
 import java.util.Set;
@@ -75,9 +75,9 @@ public class DebtorTableView {
         this.firstName = debtor.getFirstName();
         this.lastName = debtor.getLastName();
         this.ssn = debtor.getSsn();
-        this.debtViewSet = DebtorSummaryData.createDebtorViewSet(debtor);
-        this.debtsSumView = DebtorSummaryData.getDebtsSum(debtor);
-        this.remainingAmountSumView=DebtorSummaryData.getRemainingAmountSum(debtor);
-        this.paymentAmountSumView = DebtorSummaryData.getDebtsSum(debtor).subtract(DebtorSummaryData.getRemainingAmountSum(debtor));
+        this.debtViewSet = DebtorSummaryDataUtil.createDebtorViewSet(debtor);
+        this.debtsSumView = DebtorSummaryDataUtil.getDebtsSum(debtor);
+        this.remainingAmountSumView=DebtorSummaryDataUtil.getRemainingAmountSum(debtor);
+        this.paymentAmountSumView = DebtorSummaryDataUtil.getDebtsSum(debtor).subtract(DebtorSummaryDataUtil.getRemainingAmountSum(debtor));
     }
 }

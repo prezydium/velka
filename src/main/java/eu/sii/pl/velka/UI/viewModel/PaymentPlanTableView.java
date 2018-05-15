@@ -1,7 +1,7 @@
 package eu.sii.pl.velka.UI.viewModel;
 
 import eu.sii.pl.velka.model.PaymentPlan;
-import eu.sii.pl.velka.utils.DebtorSummaryData;
+import eu.sii.pl.velka.utils.DebtorSummaryDataUtil;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -77,8 +77,8 @@ public class PaymentPlanTableView {
     public PaymentPlanTableView(PaymentPlan paymentPlan, DebtorTableView debtorTableView) {
         this.message = paymentPlan.getMessage();
         this.ssn = paymentPlan.getSsn();
-        this.sumOfPlannedRepaymentAmount=DebtorSummaryData.getPaymentPlanRepaymentSum(paymentPlan);
-        this.sumOfPlannedRemaingAmount=debtorTableView.getDebtsSumView().subtract(DebtorSummaryData.getPaymentPlanRepaymentSum(paymentPlan));
-        this.plannedPaymentList =  DebtorSummaryData.createPaymentPlanViewSet(paymentPlan, debtorTableView);
+        this.sumOfPlannedRepaymentAmount=DebtorSummaryDataUtil.getPlanRepaymentSum(paymentPlan);
+        this.sumOfPlannedRemaingAmount=debtorTableView.getDebtsSumView().subtract(DebtorSummaryDataUtil.getPlanRepaymentSum(paymentPlan));
+        this.plannedPaymentList =  DebtorSummaryDataUtil.createPaymentPlanViewSet(paymentPlan, debtorTableView);
     }
 }

@@ -7,10 +7,11 @@ import eu.sii.pl.velka.model.PlannedPayment;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class DebtSummaryData {
+public final class DebtSummaryDataUtil {
 
-    public DebtSummaryData() {
+    private DebtSummaryDataUtil() {
     }
+
     public static BigDecimal getSumPaymentsAmount(Debt debt) {
             BigDecimal debtPaymentsSum = debt.getListOfPayments().stream()
                     .map(Payment::getPaymentAmount)

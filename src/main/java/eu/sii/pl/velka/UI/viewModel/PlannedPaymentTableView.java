@@ -87,9 +87,9 @@ public class PlannedPaymentTableView {
         this.debtName = debt.getDebtViewName();
         this.expDate = debt.getDebtViewDate();
         this.debtAmount = debt.getDebtViewAmount();
-        this.sumPaymentAmount=debt.getSumPaymentViewAmount();
+        this.sumPaymentAmount = debt.getSumPaymentViewAmount();
         this.remainingAmount = debt.getRemainingAmountView();
         this.plannedRepaymentAmount = plannedPayment.getAmountOfRepaymentDebt();
-        this.plannedRemainingDebtAmount =debt.getRemainingAmountView().subtract(plannedPayment.getAmountOfRepaymentDebt());
+        this.plannedRemainingDebtAmount = debt.getRemainingAmountView().subtract(plannedPayment.getAmountOfRepaymentDebt());
     }
 }

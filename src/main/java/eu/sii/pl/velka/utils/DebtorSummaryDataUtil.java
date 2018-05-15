@@ -1,6 +1,5 @@
 package eu.sii.pl.velka.utils;
 
-import com.sun.xml.internal.bind.v2.TODO;
 import eu.sii.pl.velka.UI.viewModel.DebtorTableView;
 import eu.sii.pl.velka.UI.viewModel.PlannedPaymentTableView;
 import eu.sii.pl.velka.model.Debt;
@@ -13,15 +12,18 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
 
-// TODO make final, private constructor
-public class DebtorSummaryData {
+
+public final class DebtorSummaryDataUtil {
+
+    private DebtorSummaryDataUtil() {
+    }
 
     public static BigDecimal getDebtsSum(Debtor debtor) {
         List<Debt> listOfDebts = debtor.getListOfDebts();
         return listOfDebts.stream().map(Debt::getDebtAmount)
                 .reduce(BigDecimal.ZERO, BigDecimal::add).setScale(2, RoundingMode.HALF_EVEN);
     }
-    public static BigDecimal getPaymentPlanRepaymentSum(PaymentPlan paymentPlan) {
+    public static BigDecimal getPlanRepaymentSum(PaymentPlan paymentPlan) {
         List<PlannedPayment> listOfPlannedPayment = paymentPlan.getPlannedPaymentList();
         return listOfPlannedPayment.stream().map(PlannedPayment::getAmountOfRepaymentDebt)
                 .reduce(BigDecimal.ZERO, BigDecimal::add).setScale(2, RoundingMode.HALF_EVEN);
@@ -45,7 +47,7 @@ public class DebtorSummaryData {
             planedViewSet.add(new PlannedPaymentTableView(plannedPayment, debtTableView));
         }
         return planedViewSet;
-    } // TODO change to generic method, test
+    }
 
     public static BigDecimal getRemainingAmountSum(Debtor debtor) {
         Set<DebtTableView> setDebtsView = createDebtorViewSet(debtor);
