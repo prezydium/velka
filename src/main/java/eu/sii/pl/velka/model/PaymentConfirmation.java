@@ -1,0 +1,30 @@
+package eu.sii.pl.velka.model;
+
+public class PaymentConfirmation {
+
+    private PaymentDeclaration paymentDeclaration;
+
+    private CreditCard creditCard;
+
+    public PaymentDeclaration getPaymentDeclaration() {
+        return paymentDeclaration;
+    }
+
+    public void setPaymentDeclaration(PaymentDeclaration paymentDeclaration) {
+        this.paymentDeclaration = paymentDeclaration;
+    }
+
+    public CreditCard getCreditCard() {
+        return creditCard;
+    }
+
+    public void setCreditCard(CreditCard creditCard) {
+        this.creditCard = creditCard;
+    }
+
+    public PaymentConfirmation(PaymentDeclaration paymentDeclaration, CreditCard creditCard) {
+        this.paymentDeclaration = paymentDeclaration;
+        this.creditCard = creditCard;
+    }
+
+}
