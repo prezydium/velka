@@ -21,7 +21,7 @@ public class PaymentConfirmationController {
 
     public void sendPaymentConfirmation(PaymentConfirmation paymentConfirmation) {
         ResponseEntity response = restTemplate.postForEntity(
-                "http://ec2-34-252-93-5.eu-west-1.compute.amazonaws.com/api-payment-methods-creditcard-endpoint=/paymentmethods/creditcard"
+                "http://ec2-34-252-93-5.eu-west-1.compute.amazonaws.com/paymentmethods/creditcard"
                 , paymentConfirmation, PaymentConfirmation.class);
         if (response.getStatusCode() == HttpStatus.OK) {
             System.out.println("GREAT SUCCESS");
