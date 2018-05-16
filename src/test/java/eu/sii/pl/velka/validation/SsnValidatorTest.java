@@ -40,4 +40,19 @@ public class SsnValidatorTest {
         //then
         Assert.assertFalse(ssnValidator.apply(name, new ValueContext()).isError());
     }
+
+    @Test
+    public void shouldNotValidateWhenLessThanNineDigits() {
+        //given
+        String name = "111";
+        //then
+        Assert.assertTrue(ssnValidator.apply(name, new ValueContext()).isError());
+    }
+    @Test
+    public void shouldNotValidateWhenMoreThanNineDigits() {
+        //given
+        String name = "1234567890";
+        //then
+        Assert.assertTrue(ssnValidator.apply(name, new ValueContext()).isError());
+    }
 }

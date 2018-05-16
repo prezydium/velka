@@ -15,8 +15,6 @@ public class DebtTableView {
     private BigDecimal debtViewAmount;
     private BigDecimal sumPaymentViewAmount;
 
-
-
     public LocalDate getDebtViewDate() {
         return debtViewDate;
     }
@@ -62,7 +60,7 @@ public class DebtTableView {
 
     public DebtTableView(Debt debt) {
         this.debtViewName = debt.getDebtName();
-        this.uuid=debt.getUuid();
+        this.uuid = debt.getUuid();
         this.debtViewDate = debt.getRepaymentDate();
         this.debtViewAmount = debt.getDebtAmount();
         this.sumPaymentViewAmount = DebtSummaryData.getRemainingAmount(debt);

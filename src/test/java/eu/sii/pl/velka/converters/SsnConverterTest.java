@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 public class SsnConverterTest {
 
-    String result;
+    private String result;
 
     @Test
     public void ShouldConvertSsnToThreeIntegersDashThreeIntegersDashThreeIntegers() {
@@ -26,9 +26,9 @@ public class SsnConverterTest {
         //given
         String s = "123456789";
         StringBuilder sb = new StringBuilder(s);
-        sb.insert(new Random().nextInt(3), '-');
-        sb.insert(new Random().nextInt(9), '-');
-        sb.insert(new Random().nextInt(9), '-');
+        sb.insert(3, '-');
+        sb.insert(4, '-');
+        sb.insert(10, '-');
         String expected = "123-456-789";
         //when
         result = new SsnConverter().convertSsnToFormatAcceptableByAPI(sb.toString());
