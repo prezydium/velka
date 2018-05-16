@@ -51,7 +51,7 @@ public class LogInDebtorControllerTest {
     public void shouldNotThrowException() {
         //given
         mockRestServiceServer.expect(MockRestRequestMatchers
-                .requestTo("/TEST_URL/login"))
+                .requestTo("/TEST_URL/login/"))
                 .andExpect(MockRestRequestMatchers.method(HttpMethod.POST))
                 .andRespond(MockRestResponseCreators.withServerError());
         //when
@@ -64,7 +64,7 @@ public class LogInDebtorControllerTest {
     public void shouldReturnAuthorisationEffectAsRecognised() {
         //given
         mockRestServiceServer.expect(MockRestRequestMatchers
-                .requestTo("/TEST_URL/login"))
+                .requestTo("/TEST_URL/login/"))
                 .andExpect(MockRestRequestMatchers.method(HttpMethod.POST))
                 .andRespond(MockRestResponseCreators.withStatus(HttpStatus.OK));
         //when

@@ -16,7 +16,7 @@ public class DebtCreator {
     public static CreditCard creditCard = new CreditCard(
             "232345", "222", "Ana", "Smith", LocalDate.now());
     public static Payment payment = new Payment(1L, LocalDate.now(), new BigDecimal(30), creditCard);
-    public static Payment payment1 = new Payment(1L, LocalDate.now(), new BigDecimal(130), creditCard);
+    public static Payment payment1 = new Payment(1L, LocalDate.now(), new BigDecimal(30), creditCard);
     public static List<Payment> payments = new ArrayList<>(Arrays.asList(payment, payment1));
 
     public static Debt createDebt() {
