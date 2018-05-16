@@ -1,9 +1,10 @@
-package eu.sii.pl.velka.view.paymentWindow;
+package eu.sii.pl.velka.ui.windows.payment;
 
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.TextField;
 import eu.sii.pl.velka.model.Debtor;
+import eu.sii.pl.velka.ui.windows.payment.CreditCardForm;
 import org.junit.Before;
 import org.junit.Test;
 

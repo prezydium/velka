@@ -1,8 +1,8 @@
 package eu.sii.pl.velka.controller;
 
-import eu.sii.pl.velka.dataHolder.ResourcesProvider;
 import eu.sii.pl.velka.model.PaymentDeclaration;
 import eu.sii.pl.velka.model.PaymentPlan;
+import eu.sii.pl.velka.LoadFile;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,7 +36,7 @@ public class PaymentControllerTest {
     @Autowired
     private MockRestServiceServer mockRestServiceServer;
 
-    private String jsonResponse = ResourcesProvider.getFileContent("paymentPlan.json");
+    private String jsonResponse =LoadFile.loadJsonFile("paymentPlan.json");
 
     private PaymentDeclaration paymentDeclaration;
 

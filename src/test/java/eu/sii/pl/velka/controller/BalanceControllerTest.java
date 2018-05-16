@@ -1,8 +1,8 @@
 package eu.sii.pl.velka.controller;
 
+import eu.sii.pl.velka.LoadFile;
 import eu.sii.pl.velka.dataHolder.ResourcesProvider;
 import eu.sii.pl.velka.model.Debtor;
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import org.springframework.test.web.client.response.MockRestResponseCreators;
 
 import java.io.IOException;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 @SpringBootTest
@@ -33,7 +33,7 @@ public class BalanceControllerTest {
     @Autowired
     private MockRestServiceServer mockRestServiceServer;
 
-    private String jsonResponse = ResourcesProvider.getFileContent("balance.json");
+    private String jsonResponse = LoadFile.loadJsonFile("balance.json");
 
     public BalanceControllerTest() throws IOException {
     }

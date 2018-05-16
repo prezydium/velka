@@ -1,4 +1,4 @@
-package eu.sii.pl.velka.view.paymentWindow;
+package eu.sii.pl.velka.ui.windows.payment;
 
 import com.vaadin.annotations.PropertyId;
 import com.vaadin.data.BinderValidationStatus;
