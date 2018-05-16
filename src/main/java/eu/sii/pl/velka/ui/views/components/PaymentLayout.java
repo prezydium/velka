@@ -13,6 +13,7 @@ import eu.sii.pl.velka.validation.AmountValidator;
 import eu.sii.pl.velka.validation.UuidValidator;
 
 
+
 public class PaymentLayout extends AbstractDataForm<PaymentDeclarationView> {
 
     private Label formHeader = new Label("Enter your details to pay your debts");

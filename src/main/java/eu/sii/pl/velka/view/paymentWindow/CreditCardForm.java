@@ -6,10 +6,11 @@ import com.vaadin.shared.ui.ValueChangeMode;
 import com.vaadin.ui.*;
 import eu.sii.pl.velka.model.CreditCard;
 import eu.sii.pl.velka.model.Debtor;
+import eu.sii.pl.velka.ui.views.AbstractDataForm;
 import eu.sii.pl.velka.validation.CreditCardNumberValidator;
 import eu.sii.pl.velka.validation.CvvValidator;
 import eu.sii.pl.velka.validation.NameValidator;
-import eu.sii.pl.velka.view.AbstractDataForm;
+
 
 public class CreditCardForm extends AbstractDataForm {
 

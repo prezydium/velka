@@ -2,6 +2,7 @@ package eu.sii.pl.velka.validation;
 
 import com.vaadin.data.ValidationResult;
 import com.vaadin.data.ValueContext;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;

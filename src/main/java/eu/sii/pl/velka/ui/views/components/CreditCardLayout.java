@@ -3,8 +3,9 @@ package eu.sii.pl.velka.ui.views.components;
 import com.vaadin.annotations.PropertyId;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.TextField;
-import eu.sii.pl.velka.ui.views.AbstractDataForm;
 import eu.sii.pl.velka.model.CreditCard;
+import eu.sii.pl.velka.ui.views.AbstractDataForm;
+
 
 public class CreditCardLayout extends AbstractDataForm<CreditCard> {
     private Label creditCartHeader = new Label("Credit Card data:");
