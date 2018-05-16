@@ -11,9 +11,21 @@ public class CvvValidator implements Validator<String> {
 
     @Override
     public ValidationResult apply(String cvvNumber, ValueContext valueContext) {
-        return ((cvvNumber == null) || cvvNumber.isEmpty()) ? error("CVV number cannot be empty")
-                : ((!cvvNumber.matches("[0-9]*$")) ? error("CVV number can only contain digits")
-                : (cvvNumber.length() != 3) ? error("Credit card number must have 3 digits")
-                : ok());
+        if (nullOrEmpty(cvvNumber)) return error("CVV number cannot be empty");
+        if (notOnlyDigits(cvvNumber)) return error("CVV number can only contain digits");
+        if (lengthIsNotThree(cvvNumber)) return error("CVV number must have 3 digits");
+        return ok();
+    }
+
+    private boolean lengthIsNotThree(String cvvNumber) {
+        return (cvvNumber.length() != 3);
+    }
+
+    private boolean notOnlyDigits(String cvvNumber) {
+        return (!cvvNumber.matches("[0-9]*$"));
+    }
+
+    private boolean nullOrEmpty(String cvvNumber) {
+        return ((cvvNumber == null) || cvvNumber.isEmpty());
     }
 }

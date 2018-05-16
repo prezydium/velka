@@ -11,9 +11,22 @@ public class CreditCardNumberValidator implements Validator<String> {
 
     @Override
     public ValidationResult apply(String ccNumber, ValueContext valueContext) {
-        return ((ccNumber == null) || ccNumber.isEmpty()) ? error("Credit card number cannot be empty")
-                : ((!ccNumber.matches("[0-9\\s]*$")) ? error("Credit card number can only contain digits")
-                : ((ccNumber.replace(" ", "").length() != 16) ? error("Credit card number must have 16 digits")
-                : ok()));
+        if (nullOrEmpty(ccNumber)) return error("Credit card number cannot be empty");
+        if (notOnlyDigitsOrSpaces(ccNumber)) return error("Credit card number can only contain digits");
+        if (lengthIsNotNine(ccNumber)) return error("Credit card number must have 16 digits");
+        return ok();
+
+    }
+
+    private boolean lengthIsNotNine(String ccNumber) {
+        return (ccNumber.replace(" ", "").length() != 16);
+    }
+
+    private boolean notOnlyDigitsOrSpaces(String ccNumber) {
+        return (!ccNumber.matches("[0-9\\s]*$"));
+    }
+
+    private boolean nullOrEmpty(String ccNumber) {
+        return ((ccNumber == null) || ccNumber.isEmpty());
     }
 }
