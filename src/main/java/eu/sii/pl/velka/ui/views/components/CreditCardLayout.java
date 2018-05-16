@@ -1,9 +1,9 @@
-package eu.sii.pl.velka.UI.views.components;
+package eu.sii.pl.velka.ui.views.components;
 
 import com.vaadin.annotations.PropertyId;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.TextField;
-import eu.sii.pl.velka.UI.views.AbstractDataForm;
+import eu.sii.pl.velka.ui.views.AbstractDataForm;
 import eu.sii.pl.velka.model.CreditCard;
 
 public class CreditCardLayout extends AbstractDataForm<CreditCard> {

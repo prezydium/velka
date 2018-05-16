@@ -1,4 +1,4 @@
-package eu.sii.pl.velka.UI.authorisation;
+package eu.sii.pl.velka.ui.authorisation;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;

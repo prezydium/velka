@@ -1,11 +1,11 @@
-package eu.sii.pl.velka.UI.views;
+package eu.sii.pl.velka.ui.views;
 
 import com.vaadin.navigator.View;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.VerticalLayout;
-import eu.sii.pl.velka.UI.views.components.HeaderPaymentPlan;
-import eu.sii.pl.velka.UI.views.components.TablePlannedPayment;
+import eu.sii.pl.velka.ui.views.components.HeaderPaymentPlan;
+import eu.sii.pl.velka.ui.views.components.TablePlannedPayment;
 import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.model.PaymentPlan;
 

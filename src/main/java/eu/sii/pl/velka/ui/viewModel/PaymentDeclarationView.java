@@ -1,4 +1,4 @@
-package eu.sii.pl.velka.UI.viewModel;
+package eu.sii.pl.velka.ui.viewModel;
 
 import eu.sii.pl.velka.model.PaymentDeclaration;
 

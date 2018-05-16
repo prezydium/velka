@@ -1,4 +1,4 @@
-package eu.sii.pl.velka.UI.views.components;
+package eu.sii.pl.velka.ui.views.components;
 
 import com.vaadin.annotations.PropertyId;
 import com.vaadin.shared.ui.ValueChangeMode;
@@ -7,7 +7,7 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.themes.ValoTheme;
-import eu.sii.pl.velka.UI.views.AbstractDataForm;
+import eu.sii.pl.velka.ui.views.AbstractDataForm;
 import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.validation.NameValidator;
 import eu.sii.pl.velka.validation.SsnValidator;

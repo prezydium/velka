@@ -1,4 +1,4 @@
-package eu.sii.pl.velka.UI.views;
+package eu.sii.pl.velka.ui.views;
 
 import com.vaadin.data.Binder;
 import com.vaadin.ui.VerticalLayout;

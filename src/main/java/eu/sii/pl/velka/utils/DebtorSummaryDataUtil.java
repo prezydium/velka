@@ -1,8 +1,8 @@
 package eu.sii.pl.velka.utils;
 
-import eu.sii.pl.velka.UI.viewModel.DebtTableView;
-import eu.sii.pl.velka.UI.viewModel.DebtorTableView;
-import eu.sii.pl.velka.UI.viewModel.PlannedPaymentTableView;
+import eu.sii.pl.velka.ui.viewModel.DebtTableView;
+import eu.sii.pl.velka.ui.viewModel.DebtorTableView;
+import eu.sii.pl.velka.ui.viewModel.PlannedPaymentTableView;
 import eu.sii.pl.velka.model.Debt;
 import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.model.PaymentPlan;

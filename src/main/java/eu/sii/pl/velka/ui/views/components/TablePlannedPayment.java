@@ -1,10 +1,10 @@
-package eu.sii.pl.velka.UI.views.components;
+package eu.sii.pl.velka.ui.views.components;
 
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.components.grid.FooterRow;
-import eu.sii.pl.velka.UI.viewModel.DebtorTableView;
-import eu.sii.pl.velka.UI.viewModel.PaymentPlanTableView;
-import eu.sii.pl.velka.UI.viewModel.PlannedPaymentTableView;
+import eu.sii.pl.velka.ui.viewModel.DebtorTableView;
+import eu.sii.pl.velka.ui.viewModel.PaymentPlanTableView;
+import eu.sii.pl.velka.ui.viewModel.PlannedPaymentTableView;
 import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.model.PaymentPlan;
 
