@@ -27,4 +27,12 @@ public class PaymentConfirmation {
         this.creditCard = creditCard;
     }
 
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("PaymentConfirmation{");
+        sb.append("paymentDeclaration=").append(paymentDeclaration);
+        sb.append(", creditCard=").append(creditCard);
+        sb.append('}');
+        return sb.toString();
+    }
 }

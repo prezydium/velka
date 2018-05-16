@@ -4,12 +4,16 @@ import com.vaadin.annotations.PropertyId;
 import com.vaadin.data.BinderValidationStatus;
 import com.vaadin.shared.ui.ValueChangeMode;
 import com.vaadin.ui.*;
+import eu.sii.pl.velka.controller.PaymentConfirmationController;
 import eu.sii.pl.velka.model.CreditCard;
 import eu.sii.pl.velka.model.Debtor;
+import eu.sii.pl.velka.model.PaymentConfirmation;
 import eu.sii.pl.velka.ui.views.AbstractDataForm;
 import eu.sii.pl.velka.validation.CreditCardNumberValidator;
 import eu.sii.pl.velka.validation.CvvValidator;
 import eu.sii.pl.velka.validation.NameValidator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 
 
 public class CreditCardForm extends AbstractDataForm {
@@ -32,6 +36,7 @@ public class CreditCardForm extends AbstractDataForm {
     @PropertyId("lastName")
     private TextField lastName = new TextField("Last name:");
 
+    private PaymentConfirmationController paymentConfirmationController = new PaymentConfirmationController(new RestTemplateBuilder());
 
     private Button submitButton = new Button("Confirm payment", this::submitButtonClick);
 
@@ -87,7 +92,8 @@ public class CreditCardForm extends AbstractDataForm {
                     + status.getValidationErrors().get(0).getErrorMessage());
         } else {
             CreditCard localCreditCard = (CreditCard) this.getModel();
-            //TODO send data to api (next ticket)
+            PaymentConfirmation paymentConfirmation = new PaymentConfirmation(null, localCreditCard);
+            paymentConfirmationController.sendPaymentConfirmation(paymentConfirmation);
         }
     }
 }

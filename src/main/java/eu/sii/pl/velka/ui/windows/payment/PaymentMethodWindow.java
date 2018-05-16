@@ -9,8 +9,6 @@ import java.util.Map;
 
 public class PaymentMethodWindow extends Window {
 
-    private CreditCardForm creditCardForm;
-
     private Button creditCardButton = new Button("Pay by credit card", this::buttonClick);
 
     private Button bitcoinButton = new Button(" Pay by Bitcoin", this::buttonClick);
