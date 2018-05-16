@@ -1,7 +1,9 @@
 package eu.sii.pl.velka.controller;
 
-import eu.sii.pl.velka.model.Debtor;
-import org.junit.Assert;
+import eu.sii.pl.velka.dataHolder.ResourcesProvider;
+import eu.sii.pl.velka.model.PaymentDeclaration;
+import eu.sii.pl.velka.model.PaymentPlan;
+import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,65 +12,64 @@ import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.test.web.client.match.MockRestRequestMatchers;
 import org.springframework.test.web.client.response.MockRestResponseCreators;
 
-import java.util.Collections;
+import java.io.IOException;
+import java.math.BigDecimal;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource("/testapplication.properties")
-@RestClientTest(LogInDebtorController.class)
-public class LogInDebtorControllerTest {
+@RestClientTest(PaymentController.class)
+public class PaymentControllerTest {
 
     @Autowired
-    private LogInDebtorController logInDebtorController;
+    private PaymentController paymentController;
 
     @Autowired
     private MockRestServiceServer mockRestServiceServer;
 
-    private Debtor debtor;
+    private String jsonResponse = ResourcesProvider.getFileContent("paymentPlan.json");
+
+    private PaymentDeclaration paymentDeclaration;
 
     @Before
     public void setUp() {
-        debtor = new Debtor("Adam", "Pawłowicz", "999-999-999", Collections.EMPTY_LIST);
+        paymentDeclaration = new PaymentDeclaration(new BigDecimal(10), "999888777666", "980-122-111");
+    }
+
+    public PaymentControllerTest() throws IOException {
     }
 
     @Test
-    public void shouldGetValueFromPropertiesFile() {
-        //when
-        String testUrl = logInDebtorController.getAPI_URL();
-        //then
-        assertFalse(testUrl.isEmpty());
-    }
-
-    @Test
-    public void shouldNotThrowException() {
+    public void shouldCallApiForFullData() throws Exception {
         //given
         mockRestServiceServer.expect(MockRestRequestMatchers
-                .requestTo("/TEST_URL/login"))
+                .requestTo("/TEST_URL/paymentplan"))
                 .andExpect(MockRestRequestMatchers.method(HttpMethod.POST))
-                .andRespond(MockRestResponseCreators.withServerError());
-        //when
-        AuthorisationEffect actual = logInDebtorController.confirmThatDebtorExists(debtor);
-        //then
-        assertEquals(AuthorisationEffect.ERROR, actual);
+                .andRespond(MockRestResponseCreators.withSuccess(jsonResponse, MediaType.APPLICATION_JSON));
+        PaymentPlan paymentplan = paymentController.getPaymentPlan(paymentDeclaration);
+        Assertions.assertThat(!paymentplan.getSsn().isEmpty());
+        Assertions.assertThat(!paymentplan.getMessage().isEmpty());
+        Assertions.assertThat(!paymentplan.getPlannedPaymentList().isEmpty());
     }
 
     @Test
     public void shouldReturnAuthorisationEffectAsRecognised() {
         //given
         mockRestServiceServer.expect(MockRestRequestMatchers
-                .requestTo("/TEST_URL/login"))
+                .requestTo("/TEST_URL/paymentplan"))
                 .andExpect(MockRestRequestMatchers.method(HttpMethod.POST))
                 .andRespond(MockRestResponseCreators.withStatus(HttpStatus.OK));
         //when
-        AuthorisationEffect actual = logInDebtorController.confirmThatDebtorExists(debtor);
+        AuthorisationEffect actual = paymentController.trySendPayment(paymentDeclaration);
         //then
         assertEquals(AuthorisationEffect.RECOGNISED, actual);
     }

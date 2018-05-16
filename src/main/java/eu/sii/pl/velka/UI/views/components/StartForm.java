@@ -1,7 +1,6 @@
 package eu.sii.pl.velka.UI.views.components;
 
 import com.vaadin.annotations.PropertyId;
-import com.vaadin.data.Binder;
 import com.vaadin.shared.ui.ValueChangeMode;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
@@ -26,7 +25,9 @@ public class StartForm extends AbstractDataForm<Debtor> {
     @PropertyId("ssn")
     private TextField textFieldSsn = new TextField("SSN: ");
 
-    private Label errors = new Label();
+    private Label labelNameError = new Label("");
+    private Label labelSurnameError = new Label("");
+    private Label labelSsnError = new Label("");
 
     private Button confirmButton;
 
@@ -36,7 +37,8 @@ public class StartForm extends AbstractDataForm<Debtor> {
         binder.bindInstanceFields(this);
         styleUI();
         confirmButton = new Button("Submit", clickListener);
-        addComponents(formHeader, errors, textFieldName, textFieldSurname, textFieldSsn, confirmButton);
+        addComponents(formHeader, textFieldName, labelNameError, textFieldSurname,
+                labelSurnameError, textFieldSsn, labelSsnError, confirmButton);
     }
 
     private void styleUI() {
@@ -44,6 +46,9 @@ public class StartForm extends AbstractDataForm<Debtor> {
         textFieldSurname.setWidth("50%");
         textFieldSsn.setWidth("50%");
         formHeader.addStyleName(ValoTheme.TEXTFIELD_HUGE);
+        labelNameError.addStyleName(ValoTheme.LABEL_FAILURE);
+        labelSurnameError.addStyleName(ValoTheme.LABEL_FAILURE);
+        labelSsnError.addStyleName(ValoTheme.LABEL_FAILURE);
         setSpacing(true);
         setWidth("80%");
         setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
@@ -55,12 +60,15 @@ public class StartForm extends AbstractDataForm<Debtor> {
         textFieldSsn.setValueChangeMode(ValueChangeMode.BLUR);
         binder.forMemberField(textFieldName)
                 .withValidator(new NameValidator())
+                .withStatusLabel(labelNameError)
                 .asRequired();
         binder.forMemberField(textFieldSurname)
                 .withValidator(new NameValidator())
+                .withStatusLabel(labelSurnameError)
                 .asRequired();
         binder.forMemberField(textFieldSsn)
                 .withValidator(new SsnValidator())
+                .withStatusLabel(labelSsnError)
                 .asRequired();
     }
 

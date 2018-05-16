@@ -4,7 +4,6 @@ package eu.sii.pl.velka.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
@@ -16,7 +15,6 @@ public class CreditCard {
     @Pattern(regexp = "//d{16}")
     private String ccNumber;
 
-
     @Digits(integer = 3, fraction = 0)
     private String cvv;
 
@@ -26,7 +24,6 @@ public class CreditCard {
     @Size(min = 2, max = 30)
     @Pattern(regexp = "[a-zA-Z0-9_.]*")
     private String firstName;
-
 
     @Size(min = 2, max = 30)
     @Pattern(regexp = "[a-zA-Z0-9_.]*")
@@ -99,7 +96,7 @@ public class CreditCard {
         this.cvv = cvv;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.expDate=expDate;
+        this.expDate = expDate;
 
     }
 }

@@ -3,8 +3,8 @@ package eu.sii.pl.velka.UI.views.components;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
-import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.UI.viewModel.DebtorTableView;
+import eu.sii.pl.velka.model.Debtor;
 
 public class HeaderLayout extends VerticalLayout {
 
