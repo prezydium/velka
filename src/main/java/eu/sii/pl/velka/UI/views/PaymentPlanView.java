@@ -5,7 +5,7 @@ import com.vaadin.server.VaadinSession;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.VerticalLayout;
 import eu.sii.pl.velka.UI.views.components.HeaderPaymentPlan;
-import eu.sii.pl.velka.UI.views.components.TablePannedPayment;
+import eu.sii.pl.velka.UI.views.components.TablePlannedPayment;
 import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.model.PaymentPlan;
 
@@ -16,6 +16,6 @@ public class PaymentPlanView extends VerticalLayout implements View {
         Debtor debtor = (Debtor) VaadinSession.getCurrent().getAttribute("debtor");
         PaymentPlan paymentPlan = (PaymentPlan) VaadinSession.getCurrent().getAttribute("paymentPlan");
         this.addComponent(new HeaderPaymentPlan(paymentPlan));
-        this.addComponent(new TablePannedPayment(debtor, paymentPlan));
+        this.addComponent(new TablePlannedPayment(debtor, paymentPlan));
     }
 }

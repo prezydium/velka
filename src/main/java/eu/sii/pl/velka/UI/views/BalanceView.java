@@ -10,7 +10,7 @@ import com.vaadin.ui.VerticalLayout;
 import eu.sii.pl.velka.UI.viewModel.PaymentDeclarationView;
 import eu.sii.pl.velka.UI.views.components.HeaderLayout;
 import eu.sii.pl.velka.UI.views.components.PaymentLayout;
-import eu.sii.pl.velka.UI.views.components.TableLayout;
+import eu.sii.pl.velka.UI.views.components.TableBalanceLayout;
 import eu.sii.pl.velka.controller.APIController;
 import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.model.PaymentDeclaration;
@@ -30,7 +30,7 @@ public class BalanceView extends VerticalLayout implements View {
 
     public BalanceView() {
         this.addComponent(new HeaderLayout(debtor));
-        this.addComponent(new TableLayout(debtor));
+        this.addComponent(new TableBalanceLayout(debtor));
         this.addComponent(this.paymentLayout);
         PaymentDeclarationView paymentDeclarationView = new PaymentDeclarationView();
         paymentLayout.setModel(paymentDeclarationView);

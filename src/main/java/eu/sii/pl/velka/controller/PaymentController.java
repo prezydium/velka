@@ -18,8 +18,7 @@ public class PaymentController {
     @Value("${api_url}")
     private String API_URL;
 
-    @Value("${paymentPlan_endpoint}")
-    private String API_URL_Payment;
+    private final String API_URL_Payment="paymentplan";
 
     private RestTemplate restTemplate;
 

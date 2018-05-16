@@ -18,6 +18,8 @@ import org.springframework.test.web.client.response.MockRestResponseCreators;
 
 import java.io.IOException;
 
+import static org.assertj.core.api.Assertions.*;
+
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -43,8 +45,8 @@ public class BalanceControllerTest {
                 .andExpect(MockRestRequestMatchers.method(HttpMethod.GET))
                 .andRespond(MockRestResponseCreators.withSuccess(jsonResponse, MediaType.APPLICATION_JSON ));
         Debtor debtor = balanceController.getFullData("980-122-111");
-        Assertions.assertThat(!debtor.getLastName().isEmpty());
-        Assertions.assertThat(!debtor.getFirstName().isEmpty());
-        Assertions.assertThat(!debtor.getSsn().isEmpty());
+        assertThat(!debtor.getLastName().isEmpty());
+        assertThat(!debtor.getFirstName().isEmpty());
+        assertThat(!debtor.getSsn().isEmpty());
     }
 }

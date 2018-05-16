@@ -19,8 +19,7 @@ public class BalanceController {
     @Value("${api_url}")
     private String API_URL;
 
-    @Value("${get_debtor_endpoint}")
-    private String API_URL_GET_DEBTOR;
+    private String API_URL_GET_DEBTOR="balance/";
 
     @Autowired
     public BalanceController(RestTemplateBuilder restTemplateBuilder) {

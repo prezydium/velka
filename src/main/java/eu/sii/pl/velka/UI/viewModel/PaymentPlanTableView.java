@@ -12,6 +12,7 @@ public class PaymentPlanTableView {
     private List<PlannedPaymentTableView> plannedPaymentList;
     private BigDecimal sumOfDebtsAmount;
     private BigDecimal sumOfRemainingAmount;
+    private BigDecimal sumOfPaymentAmount;
     private BigDecimal sumOfPlannedRepaymentAmount;
     private BigDecimal sumOfPlannedRemainingAmount;
 
@@ -29,6 +30,14 @@ public class PaymentPlanTableView {
 
     public void setSsn(String ssn) {
         this.ssn = ssn;
+    }
+
+    public BigDecimal getSumOfPaymentAmount() {
+        return sumOfPaymentAmount;
+    }
+
+    public void setSumOfPaymentAmount(BigDecimal sumOfPaymentAmount) {
+        this.sumOfPaymentAmount = sumOfPaymentAmount;
     }
 
     public List<PlannedPaymentTableView> getPlannedPaymentList() {
@@ -77,8 +86,12 @@ public class PaymentPlanTableView {
     public PaymentPlanTableView(PaymentPlan paymentPlan, DebtorTableView debtorTableView) {
         this.message = paymentPlan.getMessage();
         this.ssn = paymentPlan.getSsn();
+        this.sumOfDebtsAmount = debtorTableView.getDebtsSumView();
         this.sumOfPlannedRepaymentAmount = DebtorSummaryDataUtil.getPlanRepaymentSum(paymentPlan);
-        this.sumOfPlannedRemainingAmount = debtorTableView.getDebtsSumView().subtract(DebtorSummaryDataUtil.getPlanRepaymentSum(paymentPlan));
+        this.sumOfPlannedRemainingAmount = debtorTableView.getDebtsSumView().subtract(DebtorSummaryDataUtil.getPlanRepaymentSum(paymentPlan))
+                .subtract(debtorTableView.getPaymentAmountSumView());
+        this.sumOfPaymentAmount = debtorTableView.getPaymentAmountSumView();
+        this.sumOfRemainingAmount = debtorTableView.getRemainingAmountSumView();
         this.plannedPaymentList = DebtorSummaryDataUtil.createPaymentPlanViewSet(paymentPlan, debtorTableView);
     }
 }

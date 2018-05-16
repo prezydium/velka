@@ -1,7 +1,6 @@
 package eu.sii.pl.velka.UI.views.components;
 
 import com.vaadin.ui.Grid;
-import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.components.grid.FooterRow;
 import eu.sii.pl.velka.UI.viewModel.DebtorTableView;
 import eu.sii.pl.velka.UI.viewModel.PaymentPlanTableView;
@@ -11,11 +10,19 @@ import eu.sii.pl.velka.model.PaymentPlan;
 
 import java.util.List;
 
-public class TablePannedPayment extends VerticalLayout {
+public class TablePlannedPayment extends AbstractTableLayout<PaymentPlanTableView> {
 
-    public TablePannedPayment(Debtor debtor, PaymentPlan paymentPlan) {
+    public TablePlannedPayment(Debtor debtor, PaymentPlan paymentPlan) {
         DebtorTableView debtorTableView = new DebtorTableView(debtor);
         PaymentPlanTableView paymentPlanTableView = new PaymentPlanTableView(paymentPlan, debtorTableView);
+        Grid<PlannedPaymentTableView> grid = setGridColumns(paymentPlanTableView);
+        createFooter(grid,paymentPlanTableView);
+        grid.setSizeFull();
+        addComponent(grid);
+    }
+
+    @Override
+    public Grid setGridColumns(PaymentPlanTableView paymentPlanTableView) {
         Grid<PlannedPaymentTableView> grid = new Grid<>();
         List<PlannedPaymentTableView> plannedPaymentList = paymentPlanTableView.getPlannedPaymentList();
         grid.setItems(plannedPaymentList);
@@ -27,14 +34,17 @@ public class TablePannedPayment extends VerticalLayout {
         grid.addColumn(PlannedPaymentTableView::getRemainingAmount).setId("Remaining Amount").setCaption("Remaining Amount");
         grid.addColumn(PlannedPaymentTableView::getPlannedRepaymentAmount).setId("Planned Repayment Amount").setCaption("Planned Repayment Amount");
         grid.addColumn(PlannedPaymentTableView::getPlannedRemainingDebtAmount).setId("Planned Remaining Amount").setCaption("Planned Remaining Amount");
+        return grid;
+    }
+
+    @Override
+    public void createFooter(Grid grid, PaymentPlanTableView paymentPlanTableView) {
         FooterRow footer = grid.prependFooterRow();
         footer.getCell("Debt Name").setText("Total:");
-        footer.getCell("Debt Amount").setText(debtorTableView.getDebtsSumView().toString());
-        footer.getCell("Sum Payment Amount").setText(debtorTableView.getPaymentAmountSumView().toString());
-        footer.getCell("Remaining Amount").setText(debtorTableView.getRemainingAmountSumView().toString());
+        footer.getCell("Debt Amount").setText(paymentPlanTableView.getSumOfDebtsAmount().toString());
+        footer.getCell("Sum Payment Amount").setText(paymentPlanTableView.getSumOfPaymentAmount().toString());
+        footer.getCell("Remaining Amount").setText(paymentPlanTableView.getSumOfRemainingAmount().toString());
         footer.getCell("Planned Repayment Amount").setText(paymentPlanTableView.getSumOfPlannedRepaymentAmount().toString());
         footer.getCell("Planned Remaining Amount").setText(paymentPlanTableView.getSumOfPlannedRemainingAmount().toString());
-        grid.setSizeFull();
-        addComponent(grid);
     }
 }
