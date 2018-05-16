@@ -23,10 +23,7 @@ public class LogInDebtorController {
     @Value("${api_url}")
     private String API_URL;
 
-    @Value("${login_endpoint}")
-    private String API_URL_LOGIN;
-
-    private BalanceController balanceController;
+    private final String API_URL_LOGIN="login/";
 
     @Autowired
     public LogInDebtorController(RestTemplateBuilder restTemplateBuilder) {

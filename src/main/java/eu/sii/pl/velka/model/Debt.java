@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 
 public class Debt {
@@ -13,7 +12,7 @@ public class Debt {
 
     private String debtName;
 
-    private String  uuid;
+    private String uuid;
 
     private BigDecimal debtAmount;
 
@@ -74,7 +73,7 @@ public class Debt {
 
     public Debt(Long id, String debtName, BigDecimal debtAmount, LocalDate repaymentDate, List<Payment> listOfPayments) {
         this.id = id;
-        this.debtName=debtName;
+        this.debtName = debtName;
         this.debtAmount = debtAmount;
         this.repaymentDate = repaymentDate;
         this.listOfPayments = listOfPayments;

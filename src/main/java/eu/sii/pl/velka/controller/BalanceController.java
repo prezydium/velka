@@ -19,8 +19,7 @@ public class BalanceController {
     @Value("${api_url}")
     private String API_URL;
 
-    @Value("${get_debtor_endpoint}")
-    private String API_URL_GET_DEBTOR;
+    private String API_URL_GET_DEBTOR="balance/";
 
     @Autowired
     public BalanceController(RestTemplateBuilder restTemplateBuilder) {
@@ -32,7 +31,8 @@ public class BalanceController {
         Debtor localDebtor = new Debtor();
         try {
             localDebtor = restTemplate.getForObject(urlWithGet, Debtor.class);
-        } catch (Exception e){
+            LOG.info("Getting debtor from api");
+        } catch (Exception e) {
             LOG.error("Error getting debtor data" + e.getMessage());
         }
         return localDebtor;
