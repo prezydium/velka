@@ -37,7 +37,7 @@ public class APIController {
         put(AuthorisationEffect.NOT_RECOGNISED, UnrecognisedUserLoginView.VIEW_NAME);
     }};
 
-    public void communicateWithAPI(Debtor debtor) {
+    public void sentDebtorToAPI(Debtor debtor) {
         debtor.setSsn(new SsnConverter().convertSsnToFormatAcceptableByAPI(debtor.getSsn()));
         AuthorisationEffect authorisationEffect = logInDebtorController.confirmThatDebtorExists(debtor);
         switchViewAfterApiResponse(authorisationEffect);
@@ -62,6 +62,5 @@ public class APIController {
     private void switchViewAfterApiResponse(AuthorisationEffect authorisationEffect) {
         String navigationTarget = authorizationNavigationRout.getOrDefault(authorisationEffect, ErrorLoginView.VIEW_NAME);
         springNavigator.navigateTo(navigationTarget);
-
     }
 }

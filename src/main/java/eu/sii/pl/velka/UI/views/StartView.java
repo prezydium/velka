@@ -45,7 +45,7 @@ public class StartView extends VerticalLayout implements View {
                     + status.getValidationErrors().get(0).getErrorMessage());
         } else {
             Debtor localDebtor = (Debtor) formLayout.getModel();
-            communicateWithAPI.communicateWithAPI(localDebtor);
+            communicateWithAPI.sentDebtorToAPI(localDebtor);
         }
     }
 }
