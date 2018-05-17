@@ -30,13 +30,10 @@ public class PaymentMethodWindow extends Window {
 
     private Button buttonSubmit = new Button("Submit", this::submitButtonClick);
 
-    private Map<String, AbstractDataForm> paymentMethods = new HashMap<String, AbstractDataForm>() {{
-        put(NotChosenForm.PAYMENT_METHOD_NAME, new NotChosenForm());
-        put(CreditCardForm.PAYMENT_METHOD_NAME, new CreditCardForm((Debtor) VaadinSession.getCurrent().getAttribute("debtor")));
-        put(BitCoinForm.PAYMENT_METHOD_NAME, new BitCoinForm());
-    }};
+    private Map<String, AbstractDataForm> paymentMethods;
 
-    public PaymentMethodWindow() {
+    public PaymentMethodWindow(Debtor debtor) {
+        this.fillPaymentOptionsMap(debtor);
         this.setUpButtons();
         paymentMethodForm = paymentMethods.get(NotChosenForm.PAYMENT_METHOD_NAME);
         paymentMethodForm.setVisible(false);
@@ -46,6 +43,14 @@ public class PaymentMethodWindow extends Window {
         setModal(true);
         setResizable(false);
         center();
+    }
+
+    private void fillPaymentOptionsMap(Debtor debtor) {
+        paymentMethods = new HashMap<String, AbstractDataForm>() {{
+            put(NotChosenForm.PAYMENT_METHOD_NAME, new NotChosenForm());
+            put(CreditCardForm.PAYMENT_METHOD_NAME, new CreditCardForm(debtor));
+            put(BitCoinForm.PAYMENT_METHOD_NAME, new BitCoinForm());
+        }};
     }
 
     private void setUpButtons() {
