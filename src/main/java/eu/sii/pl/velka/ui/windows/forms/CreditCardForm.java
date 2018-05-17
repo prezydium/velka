@@ -1,22 +1,21 @@
-package eu.sii.pl.velka.ui.windows.payment;
+package eu.sii.pl.velka.ui.windows.forms;
 
 import com.vaadin.annotations.PropertyId;
-import com.vaadin.data.BinderValidationStatus;
-import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.ui.ValueChangeMode;
-import com.vaadin.spring.navigator.SpringNavigator;
-import com.vaadin.ui.*;
-import eu.sii.pl.velka.controller.PaymentConfirmationController;
-import eu.sii.pl.velka.model.*;
+import com.vaadin.ui.DateField;
+import com.vaadin.ui.RadioButtonGroup;
+import com.vaadin.ui.TextField;
+import eu.sii.pl.velka.model.CreditCard;
+import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.ui.views.AbstractDataForm;
-import eu.sii.pl.velka.ui.views.SuccessfulPaymentView;
 import eu.sii.pl.velka.validation.CreditCardNumberValidator;
 import eu.sii.pl.velka.validation.CvvValidator;
 import eu.sii.pl.velka.validation.NameValidator;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 
 
 public class CreditCardForm extends AbstractDataForm {
+
+    public static final String PAYMENT_METHOD_NAME = "creditCard";
 
     @PropertyId("ccNumber")
     private TextField ccNumber = new TextField("Credit card number:");
@@ -36,8 +35,6 @@ public class CreditCardForm extends AbstractDataForm {
     @PropertyId("lastName")
     private TextField lastName = new TextField("Last name:");
 
-    private Button submitButton = new Button("Confirm payment", this::submitButtonClick);
-
     public CreditCardForm(Debtor debtor) {
         super();
         setDebtorData(debtor);
@@ -47,7 +44,7 @@ public class CreditCardForm extends AbstractDataForm {
         setUpValidation();
         binder.bindInstanceFields(this);
         this.setSpacing(true);
-        this.addComponents(ccNumber, cvv, issuingNetworkButtons, expDate, firstName, lastName, submitButton);
+        this.addComponents(ccNumber, cvv, issuingNetworkButtons, expDate, firstName, lastName);
     }
 
     private void setDebtorData(Debtor debtor) {
@@ -82,19 +79,4 @@ public class CreditCardForm extends AbstractDataForm {
     protected Class<CreditCard> getModelClass() {
         return CreditCard.class;
     }
-
-    private void submitButtonClick(Button.ClickEvent clickEvent) {
-        BinderValidationStatus<CreditCard> status = getBinder().validate();
-        if (status.hasErrors()) {
-            Notification.show("Validation error: "
-                    + status.getValidationErrors().get(0).getErrorMessage());
-        } else {
-            CreditCard localCreditCard = (CreditCard) this.getModel();
-            PaymentConfirmation paymentConfirmation = new PaymentConfirmation((PaymentDeclaration) VaadinSession
-                    .getCurrent().getAttribute("paymentDeclaration"), localCreditCard);
-            VaadinSession.getCurrent().setAttribute("paymentConfirmation", paymentConfirmation);
-            UI.getCurrent().getNavigator().navigateTo(SuccessfulPaymentView.VIEW_NAME);
-        }
-    }
-
 }

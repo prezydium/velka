@@ -9,7 +9,7 @@ import eu.sii.pl.velka.ui.views.components.HeaderPaymentPlan;
 import eu.sii.pl.velka.ui.views.components.TablePlannedPayment;
 import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.model.PaymentPlan;
-import eu.sii.pl.velka.ui.windows.payment.PaymentMethodWindow;
+import eu.sii.pl.velka.ui.windows.PaymentMethodWindow;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @SpringView(name = "paymentPlan")
