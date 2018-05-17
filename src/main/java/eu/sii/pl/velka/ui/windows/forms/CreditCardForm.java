@@ -37,12 +37,12 @@ public class CreditCardForm extends AbstractDataForm {
 
     public CreditCardForm(Debtor debtor) {
         super();
-        setDebtorData(debtor);
         setModel(new CreditCard());
         issuingNetworkButtons.setItems("Visa", "MasterCard");
         expDate.setDateFormat("MM/yy");
         setUpValidation();
         binder.bindInstanceFields(this);
+        setDebtorData(debtor);
         this.setSpacing(true);
         this.addComponents(ccNumber, cvv, issuingNetworkButtons, expDate, firstName, lastName);
     }

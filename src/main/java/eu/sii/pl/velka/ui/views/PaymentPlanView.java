@@ -36,7 +36,7 @@ public class PaymentPlanView extends VerticalLayout implements View {
     }
 
     private void paymentButtonClick(Button.ClickEvent clickEvent) {
-        UI.getCurrent().addWindow(new PaymentMethodWindow());
+        UI.getCurrent().addWindow(new PaymentMethodWindow((Debtor) VaadinSession.getCurrent().getAttribute("debtor")));
     }
 
     private void backToBalanceClick(Button.ClickEvent clickEvent) {
