@@ -9,23 +9,23 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-@Controller
-public class PaymentController {
+@Service
+public class PaymentService {
 
     @Value("${api_url}")
     private String API_URL;
 
-    private final String API_URL_Payment="paymentplan";
+    private final String API_URL_Payment = "paymentplan";
 
     private RestTemplate restTemplate;
 
-    private final Logger LOG = LoggerFactory.getLogger(PaymentController.class);
+    private final Logger LOG = LoggerFactory.getLogger(PaymentService.class);
 
     @Autowired
-    public PaymentController(RestTemplateBuilder restTemplateBuilder) {
+    public PaymentService(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder.build();
     }
 

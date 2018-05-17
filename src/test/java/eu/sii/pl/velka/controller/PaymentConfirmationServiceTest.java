@@ -5,12 +5,10 @@ import eu.sii.pl.velka.model.PaymentDeclaration;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.Assert.*;
-
-public class PaymentConfirmationControllerTest {
+public class PaymentConfirmationServiceTest {
 
     @Autowired
-    private PaymentConfirmationController paymentConfirmationController;
+    private PaymentConfirmationService paymentConfirmationService;
 
 
     private PaymentConfirmation paymentConfirmation = new PaymentConfirmation(null, null);

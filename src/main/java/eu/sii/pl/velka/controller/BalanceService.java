@@ -6,13 +6,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-@Controller
-public class BalanceController {
+@Service
+public class BalanceService {
 
-    private final static Logger LOG = LoggerFactory.getLogger(LogInDebtorController.class);
+    private final static Logger LOG = LoggerFactory.getLogger(LogInDebtorService.class);
 
     private RestTemplate restTemplate;
 
@@ -22,7 +22,7 @@ public class BalanceController {
     private String API_URL_GET_DEBTOR="balance/";
 
     @Autowired
-    public BalanceController(RestTemplateBuilder restTemplateBuilder) {
+    public BalanceService(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder.build();
     }
 

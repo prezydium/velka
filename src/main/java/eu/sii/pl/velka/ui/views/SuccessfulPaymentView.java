@@ -8,8 +8,8 @@ import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.spring.navigator.SpringNavigator;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
-import eu.sii.pl.velka.controller.BalanceController;
-import eu.sii.pl.velka.controller.PaymentConfirmationController;
+import eu.sii.pl.velka.controller.BalanceService;
+import eu.sii.pl.velka.controller.PaymentConfirmationService;
 import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.model.PaymentConfirmation;
 
@@ -20,22 +20,22 @@ public class SuccessfulPaymentView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "successfulpayment";
 
-    private BalanceController balanceController;
+    private BalanceService balanceService;
 
     private SpringNavigator springNavigator;
 
-    private PaymentConfirmationController paymentConfirmationController;
+    private PaymentConfirmationService paymentConfirmationService;
 
-    public SuccessfulPaymentView(BalanceController balanceController, SpringNavigator springNavigator, PaymentConfirmationController paymentConfirmationController) {
-        this.balanceController = balanceController;
+    public SuccessfulPaymentView(BalanceService balanceService, SpringNavigator springNavigator, PaymentConfirmationService paymentConfirmationService) {
+        this.balanceService = balanceService;
         this.springNavigator = springNavigator;
-        this.paymentConfirmationController = paymentConfirmationController;
+        this.paymentConfirmationService = paymentConfirmationService;
     }
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-        paymentConfirmationController.sendPaymentConfirmation((PaymentConfirmation) getCurrent().getAttribute("paymentConfirmation"));
-        VaadinSession.getCurrent().setAttribute("debtor", balanceController.getFullData(((Debtor) getCurrent().getAttribute("debtor")).getSsn()));
+        paymentConfirmationService.sendPaymentConfirmation((PaymentConfirmation) getCurrent().getAttribute("paymentConfirmation"));
+        VaadinSession.getCurrent().setAttribute("debtor", balanceService.getFullData(((Debtor) getCurrent().getAttribute("debtor")).getSsn()));
         Notification.show("YOUR PAYMENT WAS REGISTERED SUCCESSFULLY");
         springNavigator.navigateTo(BalanceView.VIEW_NAME);
     }

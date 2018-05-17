@@ -1,7 +1,6 @@
 package eu.sii.pl.velka.controller;
 
 import eu.sii.pl.velka.LoadFile;
-import eu.sii.pl.velka.dataHolder.ResourcesProvider;
 import eu.sii.pl.velka.model.Debtor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,18 +23,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource("/testapplication.properties")
-@RestClientTest(BalanceController.class)
-public class BalanceControllerTest {
+@RestClientTest(BalanceService.class)
+public class BalanceServiceTest {
 
     @Autowired
-    private BalanceController balanceController;
+    private BalanceService balanceService;
 
     @Autowired
     private MockRestServiceServer mockRestServiceServer;
 
     private String jsonResponse = LoadFile.loadJsonFile("balance.json");
 
-    public BalanceControllerTest() throws IOException {
+    public BalanceServiceTest() throws IOException {
     }
 
     @Test
@@ -44,7 +43,7 @@ public class BalanceControllerTest {
                 .requestTo("/TEST_URL/balance/980-122-111"))
                 .andExpect(MockRestRequestMatchers.method(HttpMethod.GET))
                 .andRespond(MockRestResponseCreators.withSuccess(jsonResponse, MediaType.APPLICATION_JSON ));
-        Debtor debtor = balanceController.getFullData("980-122-111");
+        Debtor debtor = balanceService.getFullData("980-122-111");
         assertThat(!debtor.getLastName().isEmpty());
         assertThat(!debtor.getFirstName().isEmpty());
         assertThat(!debtor.getSsn().isEmpty());

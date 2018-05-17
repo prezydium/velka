@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-@Controller
-public class PaymentConfirmationController {
+@Service
+public class PaymentConfirmationService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(PaymentConfirmationController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(PaymentConfirmationService.class);
 
     private RestTemplate restTemplate;
 
@@ -23,7 +23,7 @@ public class PaymentConfirmationController {
     private final String API_URL_PAYMENT_CONFIRMATION = "paymentmethods/creditcard/";
 
     @Autowired
-    public PaymentConfirmationController(RestTemplateBuilder restTemplateBuilder) {
+    public PaymentConfirmationService(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder.build();
     }
 

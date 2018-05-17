@@ -27,11 +27,11 @@ import static org.junit.Assert.assertEquals;
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource("/testapplication.properties")
-@RestClientTest(PaymentController.class)
-public class PaymentControllerTest {
+@RestClientTest(PaymentService.class)
+public class PaymentServiceTest {
 
     @Autowired
-    private PaymentController paymentController;
+    private PaymentService paymentService;
 
     @Autowired
     private MockRestServiceServer mockRestServiceServer;
@@ -45,7 +45,7 @@ public class PaymentControllerTest {
         paymentDeclaration = new PaymentDeclaration(new BigDecimal(10), "999888777666", "980-122-111");
     }
 
-    public PaymentControllerTest() throws IOException {
+    public PaymentServiceTest() throws IOException {
     }
 
     @Test
@@ -55,7 +55,7 @@ public class PaymentControllerTest {
                 .requestTo("/TEST_URL/paymentplan"))
                 .andExpect(MockRestRequestMatchers.method(HttpMethod.POST))
                 .andRespond(MockRestResponseCreators.withSuccess(jsonResponse, MediaType.APPLICATION_JSON));
-        PaymentPlan paymentplan = paymentController.getPaymentPlan(paymentDeclaration);
+        PaymentPlan paymentplan = paymentService.getPaymentPlan(paymentDeclaration);
         Assertions.assertThat(!paymentplan.getSsn().isEmpty());
         Assertions.assertThat(!paymentplan.getMessage().isEmpty());
         Assertions.assertThat(!paymentplan.getPlannedPaymentList().isEmpty());
@@ -69,7 +69,7 @@ public class PaymentControllerTest {
                 .andExpect(MockRestRequestMatchers.method(HttpMethod.POST))
                 .andRespond(MockRestResponseCreators.withStatus(HttpStatus.OK));
         //when
-        AuthorisationEffect actual = paymentController.trySendPayment(paymentDeclaration);
+        AuthorisationEffect actual = paymentService.trySendPayment(paymentDeclaration);
         //then
         assertEquals(AuthorisationEffect.RECOGNISED, actual);
     }

@@ -1,10 +1,8 @@
 package eu.sii.pl.velka.ui.windows.forms;
 
-import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.TextField;
 import eu.sii.pl.velka.model.Debtor;
-import eu.sii.pl.velka.ui.windows.forms.CreditCardForm;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,11 +25,6 @@ public class CreditCardFormTest {
         for (int i = 0; i < creditCardForm.getComponentCount(); i++) {
             componentList.add(creditCardForm.getComponent(i));
         }
-    }
-
-    @Test
-    public void shouldCreateFormWithButton() {
-        assertTrue(componentList.stream().anyMatch(x -> x instanceof Button));
     }
 
     @Test

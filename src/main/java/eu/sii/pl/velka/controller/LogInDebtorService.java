@@ -8,15 +8,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+@Service
+public class LogInDebtorService {
 
-@Controller
-public class LogInDebtorController {
-
-    private final static Logger LOG = LoggerFactory.getLogger(LogInDebtorController.class);
+    private final static Logger LOG = LoggerFactory.getLogger(LogInDebtorService.class);
 
     private RestTemplate restTemplate;
 
@@ -26,7 +25,7 @@ public class LogInDebtorController {
     private final String API_URL_LOGIN="login/";
 
     @Autowired
-    public LogInDebtorController(RestTemplateBuilder restTemplateBuilder) {
+    public LogInDebtorService(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder.build();
     }
 
