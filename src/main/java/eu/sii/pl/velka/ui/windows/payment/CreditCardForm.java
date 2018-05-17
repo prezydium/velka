@@ -4,10 +4,12 @@ import com.vaadin.annotations.PropertyId;
 import com.vaadin.data.BinderValidationStatus;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.ui.ValueChangeMode;
+import com.vaadin.spring.navigator.SpringNavigator;
 import com.vaadin.ui.*;
 import eu.sii.pl.velka.controller.PaymentConfirmationController;
 import eu.sii.pl.velka.model.*;
 import eu.sii.pl.velka.ui.views.AbstractDataForm;
+import eu.sii.pl.velka.ui.views.SuccessfulPaymentView;
 import eu.sii.pl.velka.validation.CreditCardNumberValidator;
 import eu.sii.pl.velka.validation.CvvValidator;
 import eu.sii.pl.velka.validation.NameValidator;
@@ -33,8 +35,6 @@ public class CreditCardForm extends AbstractDataForm {
 
     @PropertyId("lastName")
     private TextField lastName = new TextField("Last name:");
-
-    private PaymentConfirmationController paymentConfirmationController = new PaymentConfirmationController(new RestTemplateBuilder());
 
     private Button submitButton = new Button("Confirm payment", this::submitButtonClick);
 
@@ -92,7 +92,9 @@ public class CreditCardForm extends AbstractDataForm {
             CreditCard localCreditCard = (CreditCard) this.getModel();
             PaymentConfirmation paymentConfirmation = new PaymentConfirmation((PaymentDeclaration) VaadinSession
                     .getCurrent().getAttribute("paymentDeclaration"), localCreditCard);
-            paymentConfirmationController.sendPaymentConfirmation(paymentConfirmation);
+            VaadinSession.getCurrent().setAttribute("paymentConfirmation", paymentConfirmation);
+            UI.getCurrent().getNavigator().navigateTo(SuccessfulPaymentView.VIEW_NAME);
         }
     }
+
 }

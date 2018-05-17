@@ -26,7 +26,7 @@ public class BalanceController {
         this.restTemplate = restTemplateBuilder.build();
     }
 
-    Debtor getFullData(String ssn) {
+    public Debtor getFullData(String ssn) {
         String urlWithGet = API_URL + API_URL_GET_DEBTOR + ssn;
         Debtor localDebtor = new Debtor();
         try {

@@ -15,12 +15,14 @@ public class PaymentMethodWindow extends Window {
 
     private VerticalLayout windowLayout = new VerticalLayout();
 
-    private HorizontalLayout buttonLayout =  new HorizontalLayout();
+    private HorizontalLayout buttonLayout = new HorizontalLayout();
 
     private VerticalLayout paymentMethodForm = new VerticalLayout();
 
-    private Map<String, Component> paymentMethods = new HashMap<String, Component>(){{
-        put("1", new CreditCardForm((Debtor)VaadinSession.getCurrent().getAttribute("debtor")));
+    private Button buttonClose = new Button("Close", this::closeWindowClick);
+
+    private Map<String, Component> paymentMethods = new HashMap<String, Component>() {{
+        put("1", new CreditCardForm((Debtor) VaadinSession.getCurrent().getAttribute("debtor")));
         put("2", new VerticalLayout((new Label("Will be implemented shortly"))));
     }};
 
@@ -28,14 +30,14 @@ public class PaymentMethodWindow extends Window {
         this.setUpButtons();
         paymentMethodForm.setVisible(false);
         setCaption("Choose payment method: ");
-        windowLayout.addComponents(buttonLayout, paymentMethodForm);
+        windowLayout.addComponents(buttonLayout, paymentMethodForm, buttonClose);
         setContent(windowLayout);
         setModal(true);
         setResizable(false);
         center();
     }
 
-    private void setUpButtons(){
+    private void setUpButtons() {
         creditCardButton.setId("1");
         bitcoinButton.setId("2");
         buttonLayout.addComponents(creditCardButton, bitcoinButton);
@@ -46,5 +48,9 @@ public class PaymentMethodWindow extends Window {
         paymentMethodForm.setVisible(true);
         paymentMethodForm.addComponent(paymentMethods.get(clickEvent.getButton().getId()));
         center();
+    }
+
+    private void closeWindowClick(Button.ClickEvent clickEvent) {
+        this.close();
     }
 }
