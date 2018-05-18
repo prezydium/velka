@@ -1,0 +1,18 @@
+{
+    "message": "Your payment amount is 81674.00",
+    "ssn": "980-122-111",
+    "plannedPaymentList": [
+        {
+            "uuid": "222222222222",
+            "amountOfRepaymentDebt": 34329
+        },
+        {
+            "uuid": "111111111111",
+            "amountOfRepaymentDebt": 3850
+        },
+        {
+            "uuid": "111222333444",
+            "amountOfRepaymentDebt": 43495
+        }
+    ]
+}

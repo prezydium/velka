@@ -1,31 +1,35 @@
 package eu.sii.pl.velka.model;
 
 
-import java.time.LocalDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import java.time.LocalDate;
 
 public class CreditCard {
 
     private Long id;
 
+    @Pattern(regexp = "//d{16}")
     private String ccNumber;
 
+    @Digits(integer = 3, fraction = 0)
     private String cvv;
 
-    public String getIssuingNetwork() {
-        return issuingNetwork;
-    }
-
-    public void setIssuingNetwork(String issuingNetwork) {
-        this.issuingNetwork = issuingNetwork;
-    }
-
+    @Size(min = 2, max = 30)
     private String issuingNetwork;
 
+    @Size(min = 2, max = 30)
+    @Pattern(regexp = "[a-zA-Z0-9_.]*")
     private String firstName;
 
+    @Size(min = 2, max = 30)
+    @Pattern(regexp = "[a-zA-Z0-9_.]*")
     private String lastName;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate expDate;
 
     public Long getId() {
@@ -74,6 +78,14 @@ public class CreditCard {
 
     public void setExpDate(LocalDate expDate) {
         this.expDate = expDate;
+    }
+
+    public String getIssuingNetwork() {
+        return issuingNetwork;
+    }
+
+    public void setIssuingNetwork(String issuingNetwork) {
+        this.issuingNetwork = issuingNetwork;
     }
 
     public CreditCard() {
