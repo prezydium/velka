@@ -32,7 +32,7 @@ public class DebtorSummaryDataUtilTest {
         //when
         BigDecimal remainingAmountSum = DebtorSummaryDataUtil.getRemainingAmountSum(debtor);
         //then
-        assertThat(remainingAmountSum, equalTo(new BigDecimal(280).setScale(2)));
+        assertThat(remainingAmountSum, equalTo(new BigDecimal(480).setScale(2)));
     }
 
     @Test

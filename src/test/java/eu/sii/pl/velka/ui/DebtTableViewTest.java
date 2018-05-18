@@ -37,6 +37,6 @@ public class DebtTableViewTest {
         //when
         BigDecimal remainAmount = debtTableView.getRemainingAmountView();
         //then
-        assertThat(remainAmount, equalTo(new BigDecimal(40).setScale(2)));
+        assertThat(remainAmount, equalTo(new BigDecimal(140).setScale(2)));
     }
 }

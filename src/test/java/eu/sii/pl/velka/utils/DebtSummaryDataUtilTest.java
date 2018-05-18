@@ -20,6 +20,6 @@ public class DebtSummaryDataUtilTest {
         //when
         BigDecimal remainingAmount = DebtSummaryDataUtil.getSumPaymentsAmount(debt);
         //then
-        assertThat(remainingAmount, equalTo(new BigDecimal(160).setScale(2)));
+        assertThat(remainingAmount, equalTo(new BigDecimal(60).setScale(2)));
     }
 }

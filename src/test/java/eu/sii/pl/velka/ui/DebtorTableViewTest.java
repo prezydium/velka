@@ -38,7 +38,7 @@ public class DebtorTableViewTest {
         //when
         BigDecimal paymentAmountSum = debtorTableView.getPaymentAmountSumView();
         //then
-        assertThat(paymentAmountSum, equalTo(new BigDecimal(320).setScale(2)));
+        assertThat(paymentAmountSum, equalTo(new BigDecimal(120).setScale(2)));
     }
 
     @Test
@@ -47,7 +47,7 @@ public class DebtorTableViewTest {
         //when
         BigDecimal paymentAmountSum = debtorTableView.getRemainingAmountSumView();
         //then
-        assertThat(paymentAmountSum, equalTo(new BigDecimal(280).setScale(2)));
+        assertThat(paymentAmountSum, equalTo(new BigDecimal(480).setScale(2)));
     }
 
     @Test
