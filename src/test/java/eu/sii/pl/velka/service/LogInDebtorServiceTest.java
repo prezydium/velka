@@ -1,7 +1,7 @@
-package eu.sii.pl.velka.controller;
+package eu.sii.pl.velka.service;
 
 import eu.sii.pl.velka.model.Debtor;
-import org.junit.Assert;
+import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,11 +23,11 @@ import static org.junit.Assert.*;
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource("/testapplication.properties")
-@RestClientTest(LogInDebtorController.class)
-public class LogInDebtorControllerTest {
+@RestClientTest(LogInDebtorService.class)
+public class LogInDebtorServiceTest {
 
     @Autowired
-    private LogInDebtorController logInDebtorController;
+    private LogInDebtorService logInDebtorService;
 
     @Autowired
     private MockRestServiceServer mockRestServiceServer;
@@ -42,9 +42,9 @@ public class LogInDebtorControllerTest {
     @Test
     public void shouldGetValueFromPropertiesFile() {
         //when
-        String testUrl = logInDebtorController.getAPI_URL();
+        String testUrl = logInDebtorService.getAPI_URL();
         //then
-        assertFalse(testUrl.isEmpty());
+        Assertions.assertThat(testUrl).isEqualTo("TEST_URL/");
     }
 
     @Test
@@ -55,7 +55,7 @@ public class LogInDebtorControllerTest {
                 .andExpect(MockRestRequestMatchers.method(HttpMethod.POST))
                 .andRespond(MockRestResponseCreators.withServerError());
         //when
-        AuthorisationEffect actual = logInDebtorController.confirmThatDebtorExists(debtor);
+        AuthorisationEffect actual = logInDebtorService.confirmThatDebtorExists(debtor);
         //then
         assertEquals(AuthorisationEffect.ERROR, actual);
     }
@@ -68,7 +68,7 @@ public class LogInDebtorControllerTest {
                 .andExpect(MockRestRequestMatchers.method(HttpMethod.POST))
                 .andRespond(MockRestResponseCreators.withStatus(HttpStatus.OK));
         //when
-        AuthorisationEffect actual = logInDebtorController.confirmThatDebtorExists(debtor);
+        AuthorisationEffect actual = logInDebtorService.confirmThatDebtorExists(debtor);
         //then
         assertEquals(AuthorisationEffect.RECOGNISED, actual);
     }

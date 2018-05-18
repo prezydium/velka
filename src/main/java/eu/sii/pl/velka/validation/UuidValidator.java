@@ -11,10 +11,11 @@ public class UuidValidator implements Validator<String> {
         if (s == null || s.isEmpty()) {
             return ValidationResult.ok();
         }
-        if (!s.matches("[0-9]{12}?")) {
-            return ValidationResult.error("Debt number must have 12 digits");
+        if (!s.matches("[0-9a-zA-Z/]{11}?")) {
+            return ValidationResult.error("Debt number must have 11 characters/digits");
         } else {
             return ValidationResult.ok();
         }
     }
 }
+//"[0-9a-zA-Z/]{11}?"

@@ -4,7 +4,7 @@ import com.vaadin.data.ValueContext;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class UuidValidatoTest {
+public class UuidValidatorTest {
     private UuidValidator uuidValidator = new UuidValidator();
 
     private String uuid;
@@ -12,25 +12,33 @@ public class UuidValidatoTest {
     @Test
     public void shouldValidateAsOkWhenCorrectUuid() {
         //given
-        uuid = "111222333444";
+        uuid = "11122233344";
+        //when then
+        Assert.assertFalse(uuidValidator.apply(uuid, new ValueContext()).isError());
+    }
+
+    @Test
+    public void shouldValidateAsOkWhenCorrectUuidWithLettersAndSlash() {
+        //given
+        uuid = "aAa/2223334";
         //when then
         Assert.assertFalse(uuidValidator.apply(uuid, new ValueContext()).isError());
     }
 
 
     @Test
-    public void shouldNotValidateWhenUuidContainsChars() {
+    public void shouldNotValidateWhenUuidIsLessThanElevenSymbols() {
         //given
         uuid = "ardf4";
-        //when then
+        //then
         Assert.assertTrue(uuidValidator.apply(uuid, new ValueContext()).isError());
     }
 
     @Test
-    public void shouldNotValidateWhenLengthNotEqual12() {
+    public void shouldNotValidateWhenLengthIsOverEleven() {
         //given
-        uuid = "12345";
-        //when then
+        uuid = "123456789012";
+        // then
         Assert.assertTrue(uuidValidator.apply(uuid, new ValueContext()).isError());
     }
 

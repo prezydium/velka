@@ -1,4 +1,4 @@
-package eu.sii.pl.velka.controller;
+package eu.sii.pl.velka.service;
 
 public enum AuthorisationEffect {
     RECOGNISED,

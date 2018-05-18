@@ -9,21 +9,21 @@ public abstract class AbstractDataForm<T> extends VerticalLayout {
 
     protected final Binder binder;
 
-    public <T> void setModel(T t) {
+    public <T> void setModel(T t){
         binder.setBean(t);
     }
 
-    public AbstractDataForm() {
+    public AbstractDataForm(){
         binder = new Binder(getModelClass());
     }
 
     protected abstract Class<T> getModelClass();
 
-    public T getModel() {
+    public T getModel(){
         return (T) binder.getBean();
     }
 
-    public Binder getBinder() {
-        return this.binder;
+    public Binder getBinder(){
+     return this.binder;
     }
 }
