@@ -1,4 +1,4 @@
-package eu.sii.pl.velka.controller;
+package eu.sii.pl.velka.service;
 
 import eu.sii.pl.velka.model.PaymentConfirmation;
 import eu.sii.pl.velka.model.PaymentDeclaration;

@@ -38,6 +38,8 @@ public class PaymentMethodWindow extends Window {
         paymentMethodForm = paymentMethods.get(NotChosenForm.PAYMENT_METHOD_NAME);
         paymentMethodForm.setVisible(false);
         setCaption("Choose payment method: ");
+        buttonSubmit.setEnabled(false);
+        windowLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
         windowLayout.addComponents(buttonLayout, paymentMethodForm, buttonSubmit);
         setContent(windowLayout);
         setModal(true);
@@ -63,6 +65,7 @@ public class PaymentMethodWindow extends Window {
         paymentMethodForm.removeAllComponents();
         paymentMethodForm.setVisible(true);
         paymentMethodForm.addComponent(paymentMethods.get(clickEvent.getButton().getId()));
+        buttonSubmit.setEnabled(true);
         center();
     }
 

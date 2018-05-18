@@ -1,4 +1,4 @@
-package eu.sii.pl.velka.controller;
+package eu.sii.pl.velka.service;
 
 import eu.sii.pl.velka.model.Debtor;
 import org.slf4j.Logger;

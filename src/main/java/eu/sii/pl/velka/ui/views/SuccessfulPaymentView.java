@@ -8,8 +8,8 @@ import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.spring.navigator.SpringNavigator;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
-import eu.sii.pl.velka.controller.BalanceService;
-import eu.sii.pl.velka.controller.PaymentConfirmationService;
+import eu.sii.pl.velka.service.BalanceService;
+import eu.sii.pl.velka.service.PaymentConfirmationService;
 import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.model.PaymentConfirmation;
 

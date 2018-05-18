@@ -1,4 +1,4 @@
-package eu.sii.pl.velka.controller;
+package eu.sii.pl.velka.service;
 
 import eu.sii.pl.velka.model.PaymentDeclaration;
 import eu.sii.pl.velka.model.PaymentPlan;
@@ -19,7 +19,6 @@ import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.test.web.client.match.MockRestRequestMatchers;
 import org.springframework.test.web.client.response.MockRestResponseCreators;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 
 import static org.junit.Assert.assertEquals;

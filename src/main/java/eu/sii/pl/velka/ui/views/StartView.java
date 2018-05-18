@@ -6,7 +6,7 @@ import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import eu.sii.pl.velka.ui.views.components.StartForm;
-import eu.sii.pl.velka.controller.APIController;
+import eu.sii.pl.velka.service.APIServiceCommunication;
 import eu.sii.pl.velka.model.Debtor;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,7 +16,7 @@ public class StartView extends VerticalLayout implements View {
     public static final String VIEW_NAME = "";
 
     @Autowired
-    private APIController communicateWithAPI;
+    private APIServiceCommunication communicateWithAPI;
 
     private StartForm formLayout = new StartForm(this::clickSubmitButton);
 
