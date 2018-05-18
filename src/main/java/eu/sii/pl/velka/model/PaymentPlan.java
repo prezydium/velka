@@ -43,10 +43,11 @@ public class PaymentPlan {
 
     @Override
     public String toString() {
-        return "PaymentPlan{" +
-                "message='" + message + '\'' +
-                ", ssn='" + ssn + '\'' +
-                ", plannedPaymentList=" + plannedPaymentList +
-                '}';
+        final StringBuilder sb = new StringBuilder("PaymentPlan{");
+        sb.append("message='").append(message).append('\'');
+        sb.append(", ssn='").append(ssn).append('\'');
+        sb.append(", plannedPaymentList=").append(plannedPaymentList);
+        sb.append('}');
+        return sb.toString();
     }
 }

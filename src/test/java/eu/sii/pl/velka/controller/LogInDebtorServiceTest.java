@@ -1,6 +1,7 @@
 package eu.sii.pl.velka.controller;
 
 import eu.sii.pl.velka.model.Debtor;
+import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -43,7 +44,7 @@ public class LogInDebtorServiceTest {
         //when
         String testUrl = logInDebtorService.getAPI_URL();
         //then
-        assertFalse(testUrl.isEmpty());
+        Assertions.assertThat(testUrl).isEqualTo("TEST_URL/");
     }
 
     @Test

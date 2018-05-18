@@ -2,6 +2,8 @@ package eu.sii.pl.velka.model;
 
 public class PaymentConfirmation {
 
+    private final String clientId = "Velka";
+
     private PaymentDeclaration paymentDeclaration;
 
     private CreditCard creditCard;
