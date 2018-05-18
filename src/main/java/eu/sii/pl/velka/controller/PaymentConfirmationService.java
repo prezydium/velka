@@ -43,6 +43,5 @@ public class PaymentConfirmationService {
         LOG.info("Payment successful: "
                 + paymentConfirmation.getPaymentDeclaration().getDebtUuid()
                 + paymentConfirmation.getPaymentDeclaration().getPaymentAmount());
-
     }
 }

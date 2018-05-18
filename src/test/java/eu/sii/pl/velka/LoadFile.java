@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 
 public class LoadFile {
 
-    public static String loadJsonFile(String fileName) throws IOException {
+    public static String loadJsonFile(String fileName) {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         Path platformIndependentPath = null;
         try {
@@ -16,6 +16,12 @@ public class LoadFile {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-        return new String(Files.readAllBytes(platformIndependentPath));
+        String json = null;
+        try {
+            json = new String(Files.readAllBytes(platformIndependentPath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return json;
     }
 }

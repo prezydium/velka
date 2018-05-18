@@ -42,10 +42,7 @@ public class PaymentServiceTest {
 
     @Before
     public void setUp() {
-        paymentDeclaration = new PaymentDeclaration(new BigDecimal(10), "999888777666", "980-122-111");
-    }
-
-    public PaymentServiceTest() throws IOException {
+        paymentDeclaration = new PaymentDeclaration(BigDecimal.TEN, "999888777666", "980-122-111");
     }
 
     @Test
