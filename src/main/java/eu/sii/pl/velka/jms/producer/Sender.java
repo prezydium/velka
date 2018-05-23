@@ -1,5 +1,7 @@
 package eu.sii.pl.velka.jms.producer;
 
+import eu.sii.pl.velka.model.Debtor;
+import org.apache.activemq.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

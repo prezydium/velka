@@ -5,15 +5,25 @@ import com.vaadin.navigator.View;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
+import eu.sii.pl.velka.jms.producer.Sender;
 import eu.sii.pl.velka.ui.views.components.StartForm;
 import eu.sii.pl.velka.service.APIServiceCommunication;
 import eu.sii.pl.velka.model.Debtor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
+
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.Session;
 
 @SpringView(name = StartView.VIEW_NAME)
 public class StartView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "";
+
+    @Autowired
+    private Sender sender;
 
     @Autowired
     private APIServiceCommunication communicateWithAPI;
@@ -45,7 +55,8 @@ public class StartView extends VerticalLayout implements View {
                     + status.getValidationErrors().get(0).getErrorMessage());
         } else {
             Debtor localDebtor = (Debtor) formLayout.getModel();
-            communicateWithAPI.sentDebtorToAPI(localDebtor);
+           // communicateWithAPI.sentDebtorToAPI(localDebtor);
+            sender.send("jms.queue.login", localDebtor.getSsn());
         }
     }
 }

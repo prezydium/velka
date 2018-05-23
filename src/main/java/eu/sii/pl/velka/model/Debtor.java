@@ -3,12 +3,13 @@ package eu.sii.pl.velka.model;
 import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.spring.annotation.UIScope;
 
+import java.io.Serializable;
 import java.util.List;
 
 
 @SpringComponent
 @UIScope
-public class Debtor {
+public class Debtor implements Serializable {
 
     private Long id;
 
