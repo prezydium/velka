@@ -1,5 +1,19 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
 apply plugin: 'java'
-apply plugin: 'maven'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 group = 'pl.sii.eu'
 version = '0.0.1-SNAPSHOT'
@@ -8,21 +22,20 @@ description = """velka"""
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-tasks.withType(JavaCompile) {
-	options.encoding = 'UTF-8'
-}
-
-
 
 repositories {
-        
-     maven { url "https://repo.maven.apache.org/maven2" }
+    mavenCentral()
 }
+
 dependencies {
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'2.0.1.RELEASE'
-    compile group: 'com.vaadin', name: 'vaadin-spring-boot-starter', version:'3.0.0'
-    compile group: 'org.springframework.boot', name: 'spring-boot-devtools', version:'2.0.1.RELEASE'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version:'2.0.1.RELEASE'
-    compile group: 'org.springframework.boot', name:  'spring-boot-starter-activemq', version: '2.0.1.RELEASE'
-    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:'2.0.1.RELEASE'
+
+    compile('org.springframework.boot:spring-boot-starter-activemq:2.0.1.RELEASE')
+
+    compile ('org.springframework.boot:spring-boot-devtools:2.0.1.RELEASE')
+
+    compile('org.springframework.boot:spring-boot-starter-web:2.0.1.RELEASE')
+
+    compile ('com.vaadin:vaadin-spring-boot-starter:3.0.0')
+
+    testCompile('org.springframework.boot:spring-boot-starter-test:2.0.1.RELEASE')
 }
