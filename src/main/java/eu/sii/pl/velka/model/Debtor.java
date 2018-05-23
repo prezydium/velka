@@ -1,5 +1,6 @@
 package eu.sii.pl.velka.model;
 
+import com.google.gson.Gson;
 import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.spring.annotation.UIScope;
 
@@ -73,13 +74,6 @@ public class Debtor implements Serializable {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Debtor{");
-        sb.append("id=").append(id);
-        sb.append(", firstName='").append(firstName).append('\'');
-        sb.append(", lastName='").append(lastName).append('\'');
-        sb.append(", ssn='").append(ssn).append('\'');
-        sb.append(", listOfDebts=").append(listOfDebts);
-        sb.append('}');
-        return sb.toString();
+     return new Gson().toJson(this);
     }
 }

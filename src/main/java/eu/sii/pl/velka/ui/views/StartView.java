@@ -16,6 +16,7 @@ import org.springframework.jms.core.MessageCreator;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.Session;
+import java.io.Serializable;
 
 @SpringView(name = StartView.VIEW_NAME)
 public class StartView extends VerticalLayout implements View {
@@ -24,6 +25,7 @@ public class StartView extends VerticalLayout implements View {
 
     @Autowired
     private Sender sender;
+
 
     @Autowired
     private APIServiceCommunication communicateWithAPI;
@@ -56,7 +58,7 @@ public class StartView extends VerticalLayout implements View {
         } else {
             Debtor localDebtor = (Debtor) formLayout.getModel();
            // communicateWithAPI.sentDebtorToAPI(localDebtor);
-            sender.send("jms.queue.login", localDebtor.getSsn());
+            sender.send("jms.queue.balance",localDebtor.getSsn());
         }
     }
 }

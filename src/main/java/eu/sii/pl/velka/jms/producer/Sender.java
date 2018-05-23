@@ -6,6 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
+
+import javax.jms.ObjectMessage;
+import javax.jms.TextMessage;
 
 public class Sender {
 
@@ -14,7 +18,7 @@ public class Sender {
     @Autowired
     private JmsTemplate jmsTemplate;
 
-    public void send(String destination, String message) {
+    public void send(String destination,String message) {
         LOGGER.info("sending message='{}' to destination='{}'", message, destination);
         jmsTemplate.convertAndSend(destination, message);
     }
