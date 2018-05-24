@@ -7,6 +7,7 @@ import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
+import eu.sii.pl.velka.jms.producer.JmsObjectSender;
 import eu.sii.pl.velka.ui.viewModel.PaymentDeclarationView;
 import eu.sii.pl.velka.ui.views.components.HeaderLayout;
 import eu.sii.pl.velka.ui.views.components.PaymentLayout;
@@ -25,6 +26,9 @@ public class BalanceView extends VerticalLayout implements View {
 
     @Autowired
     private APIServiceCommunication communicateWithAPI;
+
+    @Autowired
+    private JmsObjectSender jmsObjectSender;
 
     private Debtor debtor = (Debtor) VaadinSession.getCurrent().getAttribute("debtor");
 
@@ -48,6 +52,7 @@ public class BalanceView extends VerticalLayout implements View {
             PaymentDeclaration paymentDeclaration = paymentDeclarationView.mapToPaymentDeclaration();
             VaadinSession.getCurrent().setAttribute("paymentDeclaration", paymentDeclaration);
             communicateWithAPI.sentPaymentDeclarationToAPI(paymentDeclaration);
+            jmsObjectSender.sendObject("jms.queue.paymentplan",paymentDeclaration);
         }
     }
 }

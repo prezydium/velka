@@ -5,19 +5,11 @@ import com.vaadin.navigator.View;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
-import eu.sii.pl.velka.jms.producer.JmsLoginSender;
-import eu.sii.pl.velka.jms.producer.Sender;
-import eu.sii.pl.velka.ui.views.components.StartForm;
-import eu.sii.pl.velka.service.APIServiceCommunication;
+import eu.sii.pl.velka.jms.producer.JmsObjectSender;
 import eu.sii.pl.velka.model.Debtor;
+import eu.sii.pl.velka.service.APIServiceCommunication;
+import eu.sii.pl.velka.ui.views.components.StartForm;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jms.core.JmsTemplate;
-import org.springframework.jms.core.MessageCreator;
-
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.Session;
-import java.io.Serializable;
 
 @SpringView(name = StartView.VIEW_NAME)
 public class StartView extends VerticalLayout implements View {
@@ -25,7 +17,7 @@ public class StartView extends VerticalLayout implements View {
     public static final String VIEW_NAME = "";
 
     @Autowired
-    private JmsLoginSender jmsLoginSender;
+    private JmsObjectSender jmsObjectSender;
 
 
     @Autowired
@@ -58,8 +50,9 @@ public class StartView extends VerticalLayout implements View {
                     + status.getValidationErrors().get(0).getErrorMessage());
         } else {
             Debtor localDebtor = (Debtor) formLayout.getModel();
-           // communicateWithAPI.sentDebtorToAPI(localDebtor);
-            jmsLoginSender.sendDebtor("jms.queue.login",localDebtor);
+            communicateWithAPI.sentDebtorToAPI(localDebtor);
+            jmsObjectSender.sendObject("jms.queue.login", localDebtor);
+            jmsObjectSender.sendObject("jms.queue.balance", localDebtor.getSsn());
         }
     }
 }
