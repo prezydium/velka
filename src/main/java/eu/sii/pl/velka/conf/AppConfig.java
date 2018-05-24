@@ -16,11 +16,6 @@ public class AppConfig {
     private String brokerUrl = "tcp://ec2-34-245-25-132.eu-west-1.compute.amazonaws.com:7030";
 
     @Bean
-    public Queue queue() {
-        return new ActiveMQQueue("jms.queue.login");
-    }
-
-    @Bean
     public ActiveMQConnectionFactory activeMQConnectionFactory() {
         ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory();
         factory.setBrokerURL(brokerUrl);

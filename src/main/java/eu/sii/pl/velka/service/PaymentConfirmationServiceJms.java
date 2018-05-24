@@ -1,6 +1,6 @@
 package eu.sii.pl.velka.service;
 
-import eu.sii.pl.velka.model.Debtor;
+import eu.sii.pl.velka.model.PaymentConfirmation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,23 +13,23 @@ import javax.jms.Queue;
 
 @Service
 @Profile("jms")
-public class BalanceServiceJms implements BalanceService {
+public class PaymentConfirmationServiceJms implements PaymentConfirmationService {
 
-    private final static Logger LOG = LoggerFactory.getLogger(BalanceServiceJms.class);
+    private static final Logger LOG = LoggerFactory.getLogger(PaymentConfirmationServiceJms.class);
 
-    @Value("${queue.balance}")
+    @Value("${queue.login}")
     private Queue queue;
 
     private final JmsMessagingTemplate jmsTemplate;
 
     @Autowired
-    public BalanceServiceJms(JmsMessagingTemplate jmsTemplate) {
+    public PaymentConfirmationServiceJms(JmsMessagingTemplate jmsTemplate) {
         this.jmsTemplate = jmsTemplate;
     }
 
     @Override
-    public Debtor getFullData(String ssn) {
-        throw new UnsupportedOperationException();
-        //TODO Will be implemented in JAV-105
+    public boolean sendPaymentConfirmation(PaymentConfirmation paymentConfirmation) {
+       throw new UnsupportedOperationException();
     }
+
 }
