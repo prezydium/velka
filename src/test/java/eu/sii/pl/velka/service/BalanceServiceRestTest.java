@@ -15,16 +15,14 @@ import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.test.web.client.match.MockRestRequestMatchers;
 import org.springframework.test.web.client.response.MockRestResponseCreators;
 
-import java.io.IOException;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource("/testapplication.properties")
-@RestClientTest(BalanceService.class)
-public class BalanceServiceTest {
+@RestClientTest(BalanceServiceRest.class)
+public class BalanceServiceRestTest {
 
     @Autowired
     private BalanceService balanceService;
@@ -34,8 +32,6 @@ public class BalanceServiceTest {
 
     private String jsonResponse = LoadFile.loadJsonFile("balance.json");
 
-    public BalanceServiceTest() throws IOException {
-    }
 
     @Test
     public void shouldCallApiForFullData() throws Exception {
