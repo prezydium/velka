@@ -18,7 +18,7 @@ public class Sender {
     @Autowired
     private JmsTemplate jmsTemplate;
 
-    public void send(String destination,String message) {
+    public void send(String destination,TextMessage message) {
         LOGGER.info("sending message='{}' to destination='{}'", message, destination);
         jmsTemplate.convertAndSend(destination, message);
     }

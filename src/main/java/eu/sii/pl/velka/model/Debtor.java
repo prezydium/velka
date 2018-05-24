@@ -74,6 +74,12 @@ public class Debtor implements Serializable {
 
     @Override
     public String toString() {
-     return new Gson().toJson(this);
+        return "Debtor{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", ssn='" + ssn + '\'' +
+                ", listOfDebts=" + listOfDebts +
+                '}';
     }
 }

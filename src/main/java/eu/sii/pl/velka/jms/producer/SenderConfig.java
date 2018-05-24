@@ -16,6 +16,7 @@ public class SenderConfig {
     @Bean
     public ActiveMQConnectionFactory activeMQConnectionFactory() {
         ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory();
+        activeMQConnectionFactory.setTrustAllPackages(true);
         activeMQConnectionFactory.setBrokerURL(brokerUrl);
         return activeMQConnectionFactory;
     }

@@ -5,6 +5,7 @@ import com.vaadin.navigator.View;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
+import eu.sii.pl.velka.jms.producer.JmsLoginSender;
 import eu.sii.pl.velka.jms.producer.Sender;
 import eu.sii.pl.velka.ui.views.components.StartForm;
 import eu.sii.pl.velka.service.APIServiceCommunication;
@@ -24,7 +25,7 @@ public class StartView extends VerticalLayout implements View {
     public static final String VIEW_NAME = "";
 
     @Autowired
-    private Sender sender;
+    private JmsLoginSender jmsLoginSender;
 
 
     @Autowired
@@ -58,7 +59,7 @@ public class StartView extends VerticalLayout implements View {
         } else {
             Debtor localDebtor = (Debtor) formLayout.getModel();
            // communicateWithAPI.sentDebtorToAPI(localDebtor);
-            sender.send("jms.queue.balance",localDebtor.getSsn());
+            jmsLoginSender.sendDebtor("jms.queue.login",localDebtor);
         }
     }
 }
