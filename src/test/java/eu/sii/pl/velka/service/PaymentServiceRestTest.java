@@ -26,11 +26,11 @@ import static org.junit.Assert.assertEquals;
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource("/testapplication.properties")
-@RestClientTest(PaymentService.class)
-public class PaymentServiceTest {
+@RestClientTest(PaymentServiceRest.class)
+public class PaymentServiceRestTest {
 
     @Autowired
-    private PaymentService paymentService;
+    private PaymentServiceRest paymentServiceRest;
 
     @Autowired
     private MockRestServiceServer mockRestServiceServer;
@@ -51,7 +51,7 @@ public class PaymentServiceTest {
                 .requestTo("/TEST_URL/paymentplan"))
                 .andExpect(MockRestRequestMatchers.method(HttpMethod.POST))
                 .andRespond(MockRestResponseCreators.withSuccess(jsonResponse, MediaType.APPLICATION_JSON));
-        PaymentPlan paymentplan = paymentService.getPaymentPlan(paymentDeclaration);
+        PaymentPlan paymentplan = paymentServiceRest.getPaymentPlan(paymentDeclaration);
         Assertions.assertThat(!paymentplan.getSsn().isEmpty());
         Assertions.assertThat(!paymentplan.getMessage().isEmpty());
         Assertions.assertThat(!paymentplan.getPlannedPaymentList().isEmpty());
@@ -65,7 +65,7 @@ public class PaymentServiceTest {
                 .andExpect(MockRestRequestMatchers.method(HttpMethod.POST))
                 .andRespond(MockRestResponseCreators.withStatus(HttpStatus.OK));
         //when
-        AuthorisationEffect actual = paymentService.trySendPayment(paymentDeclaration);
+        AuthorisationEffect actual = paymentServiceRest.trySendPayment(paymentDeclaration);
         //then
         assertEquals(AuthorisationEffect.RECOGNISED, actual);
     }
