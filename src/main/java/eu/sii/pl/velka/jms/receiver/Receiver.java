@@ -1,42 +1,50 @@
 package eu.sii.pl.velka.jms.receiver;
 
-import com.vaadin.server.VaadinSession;
-import eu.sii.pl.velka.model.Debtor;
-import eu.sii.pl.velka.service.BalanceService;
+import com.vaadin.spring.annotation.SpringComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jms.annotation.JmsListener;
 
-import java.util.concurrent.CountDownLatch;
+import javax.jms.JMSException;
+import javax.jms.TextMessage;
 
+@SpringComponent
 public class Receiver {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Receiver.class);
+    private String json;
+    private String endpoint;
 
-    private CountDownLatch latch = new CountDownLatch(1);
-
-    public CountDownLatch getLatch() {
-        return latch;
+    public static Logger getLOGGER() {
+        return LOGGER;
     }
 
-    @JmsListener(destination = "jms.queue.login.velka")
-    public void receiveStatus(String message) {
-        LOGGER.info("received message='{}'", message);
-        latch.countDown();
+    public String getJson() {
+        return json;
     }
-    @JmsListener(destination = "jms.queue.balance.velka")
-    public void receiveBalance(String message) {
-        LOGGER.info("received message='{}'", message);
-        latch.countDown();
+
+    public void setJson(String json) {
+        this.json = json;
     }
-    @JmsListener(destination = "jms.queue.paymentplan.velka")
-    public void receivePlan(String message) {
-        LOGGER.info("received message='{}'", message);
-        latch.countDown();
+
+    public String getEndpoint() {
+        return endpoint;
     }
-    @JmsListener(destination = "jms.queue.paymentsupdate.velka")
-    public void receiveupdate(String message) {
-        LOGGER.info("received message='{}'", message);
-        latch.countDown();
+
+    public void setEndpoint(String endpoint) {
+        this.endpoint = endpoint;
     }
+
+
+    @JmsListener(destination = "jms.queue.velka")
+    public void receiveMessage(TextMessage message) {
+        LOGGER.info("received message='{}'", message);
+        try {
+            setJson(message.getText());
+            setEndpoint(message.getStringProperty("endpoint"));
+        } catch (JMSException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

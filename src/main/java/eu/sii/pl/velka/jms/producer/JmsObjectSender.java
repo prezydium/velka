@@ -36,14 +36,4 @@ public class JmsObjectSender {
             e.printStackTrace();
         }
     }
-
-//    public void sentDebtorToAPI(Debtor debtor) {
-//        debtor.setSsn(new SsnConverter().convertSsnToFormatAcceptableByAPI(debtor.getSsn()));
-//
-//        if (authorisationEffect == AuthorisationEffect.RECOGNISED) {
-//            debtor = balanceService.getFullData(debtor.getSsn());
-//            VaadinSession.getCurrent().setAttribute("debtor", debtor);
-//            springNavigator.navigateTo("balance");
-//        }
-//    }
 }
