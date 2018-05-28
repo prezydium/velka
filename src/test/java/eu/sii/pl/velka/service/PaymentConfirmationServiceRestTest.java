@@ -22,8 +22,8 @@ import java.math.BigDecimal;
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource("/testapplication.properties")
-@RestClientTest(PaymentConfirmationService.class)
-public class PaymentConfirmationServiceTest {
+@RestClientTest(PaymentConfirmationServiceRest.class)
+public class PaymentConfirmationServiceRestTest {
 
     @Autowired
     private PaymentConfirmationService paymentConfirmationService;
