@@ -1,10 +1,10 @@
 package eu.sii.pl.velka.model;
 
-import com.google.gson.Gson;
 import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.spring.annotation.UIScope;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -20,16 +20,16 @@ public class Debtor implements Serializable {
 
     private String ssn;
 
-    private List<Debt> listOfDebts;
+    private List<Debt> debts=Collections.emptyList();
 
     public Debtor() {
     }
 
-    public Debtor(String firstName, String lastName, String ssn, List<Debt> listOfDebts) {
+    public Debtor(String firstName, String lastName, String ssn, List<Debt> debts) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.ssn = ssn;
-        this.listOfDebts = listOfDebts;
+        this.debts = debts;
     }
 
     public Long getId() {
@@ -64,12 +64,12 @@ public class Debtor implements Serializable {
         this.ssn = ssn;
     }
 
-    public List<Debt> getListOfDebts() {
-        return listOfDebts;
+    public List<Debt> getDebts() {
+        return debts;
     }
 
-    public void setListOfDebts(List<Debt> listOfDebts) {
-        this.listOfDebts = listOfDebts;
+    public void setDebts(List<Debt> debts) {
+        this.debts = debts;
     }
 
     @Override
@@ -79,7 +79,7 @@ public class Debtor implements Serializable {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", ssn='" + ssn + '\'' +
-                ", listOfDebts=" + listOfDebts +
+                ", debts=" + debts +
                 '}';
     }
 }

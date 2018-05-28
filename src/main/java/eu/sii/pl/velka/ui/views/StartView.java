@@ -1,9 +1,7 @@
 package eu.sii.pl.velka.ui.views;
 
-import com.google.gson.Gson;
 import com.vaadin.data.BinderValidationStatus;
 import com.vaadin.navigator.View;
-import com.vaadin.server.VaadinSession;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.spring.navigator.SpringNavigator;
 import com.vaadin.ui.*;
@@ -12,11 +10,9 @@ import eu.sii.pl.velka.jms.producer.JmsObjectSender;
 import eu.sii.pl.velka.jms.receiver.Receiver;
 import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.service.APIServiceCommunication;
-import eu.sii.pl.velka.service.AuthorisationEffect;
 import eu.sii.pl.velka.service.BalanceService;
 import eu.sii.pl.velka.ui.views.components.StartForm;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration;
 
 @SpringView(name = StartView.VIEW_NAME)
 public class StartView extends VerticalLayout implements View {
@@ -34,8 +30,6 @@ public class StartView extends VerticalLayout implements View {
 
     @Autowired
     SpringNavigator springNavigator;
-
-    Gson gson=new Gson();
 
     @Autowired
     private APIServiceCommunication communicateWithAPI;
@@ -67,14 +61,9 @@ public class StartView extends VerticalLayout implements View {
                     + status.getValidationErrors().get(0).getErrorMessage());
         } else {
             Debtor localDebtor = (Debtor) formLayout.getModel();
-           // communicateWithAPI.sentDebtorToAPI(localDebtor);
+            communicateWithAPI.sentDebtorToAPI(localDebtor);
             jmsObjectSender.sendObject("jms.queue.login", localDebtor);
-            if (receiver.getJson().contains("OK")) {
-                jmsObjectSender.sendObject("jms.queue.balance", localDebtor.getSsn());
-                localDebtor=gson.fromJson(receiver.getJson(), Debtor.class);
-                VaadinSession.getCurrent().setAttribute("debtor", localDebtor);
-                springNavigator.navigateTo("balance");
-            }
+            jmsObjectSender.sendObject("jms.queue.balance", localDebtor.getSsn());
         }
     }
 }
