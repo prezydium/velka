@@ -12,7 +12,7 @@ public final class DebtSummaryDataUtil {
     }
 
     public static BigDecimal getSumPaymentsAmount(Debt debt) {
-        BigDecimal debtPaymentsSum = debt.getListOfPayments().stream()
+        BigDecimal debtPaymentsSum = debt.getPayments().stream()
                 .map(Payment::getPaymentAmount)
                 .reduce(BigDecimal.ZERO, BigDecimal::add)
                 .setScale(2, RoundingMode.HALF_EVEN);

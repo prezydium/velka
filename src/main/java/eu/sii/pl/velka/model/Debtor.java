@@ -4,12 +4,13 @@ import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.spring.annotation.UIScope;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 
 @SpringComponent
 @UIScope
-public class Debtor implements Serializable {
+public class Debtor {
 
     private Long id;
 
@@ -19,16 +20,16 @@ public class Debtor implements Serializable {
 
     private String ssn;
 
-    private List<Debt> listOfDebts;
+    private List<Debt> debts = Collections.EMPTY_LIST;
 
     public Debtor() {
     }
 
-    public Debtor(String firstName, String lastName, String ssn, List<Debt> listOfDebts) {
+    public Debtor(String firstName, String lastName, String ssn, List<Debt> debts) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.ssn = ssn;
-        this.listOfDebts = listOfDebts;
+        this.debts = debts;
     }
 
     public Long getId() {
@@ -63,12 +64,12 @@ public class Debtor implements Serializable {
         this.ssn = ssn;
     }
 
-    public List<Debt> getListOfDebts() {
-        return listOfDebts;
+    public List<Debt> getDebts() {
+        return debts;
     }
 
-    public void setListOfDebts(List<Debt> listOfDebts) {
-        this.listOfDebts = listOfDebts;
+    public void setDebts(List<Debt> debts) {
+        this.debts = debts;
     }
 
     @Override
@@ -78,7 +79,7 @@ public class Debtor implements Serializable {
         sb.append(", firstName='").append(firstName).append('\'');
         sb.append(", lastName='").append(lastName).append('\'');
         sb.append(", ssn='").append(ssn).append('\'');
-        sb.append(", listOfDebts=").append(listOfDebts);
+        sb.append(", debts=").append(debts);
         sb.append('}');
         return sb.toString();
     }
