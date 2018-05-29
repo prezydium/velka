@@ -18,14 +18,7 @@ public class LogInDebtorServiceJms implements LogInDebtorService {
     private final static Logger LOG = LoggerFactory.getLogger(LogInDebtorServiceJms.class);
 
     @Value("${queue.login}")
-    private Queue queue;
-
-    private final JmsMessagingTemplate jmsTemplate;
-
-    @Autowired
-    public LogInDebtorServiceJms(JmsMessagingTemplate jmsTemplate) {
-        this.jmsTemplate = jmsTemplate;
-    }
+    private String queue;
 
     @Override
     public AuthorisationEffect confirmThatDebtorExists(Debtor debtor) {

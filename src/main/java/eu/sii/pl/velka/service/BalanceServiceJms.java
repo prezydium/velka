@@ -18,14 +18,7 @@ public class BalanceServiceJms implements BalanceService {
     private final static Logger LOG = LoggerFactory.getLogger(BalanceServiceJms.class);
 
     @Value("${queue.balance}")
-    private Queue queue;
-
-    private final JmsMessagingTemplate jmsTemplate;
-
-    @Autowired
-    public BalanceServiceJms(JmsMessagingTemplate jmsTemplate) {
-        this.jmsTemplate = jmsTemplate;
-    }
+    private String queue;
 
     @Override
     public Debtor getFullData(String ssn) {

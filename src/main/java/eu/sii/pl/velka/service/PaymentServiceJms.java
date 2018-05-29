@@ -19,14 +19,7 @@ public class PaymentServiceJms implements PaymentService {
     private final Logger LOG = LoggerFactory.getLogger(PaymentServiceJms.class);
 
     @Value("${queue.paymentplan}")
-    private Queue queue;
-
-    private final JmsMessagingTemplate jmsTemplate;
-
-    @Autowired
-    public PaymentServiceJms(JmsMessagingTemplate jmsTemplate) {
-        this.jmsTemplate = jmsTemplate;
-    }
+    private String queue;
 
     @Override
     public AuthorisationEffect trySendPayment(PaymentDeclaration paymentDeclaration) {

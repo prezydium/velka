@@ -17,15 +17,8 @@ public class PaymentConfirmationServiceJms implements PaymentConfirmationService
 
     private static final Logger LOG = LoggerFactory.getLogger(PaymentConfirmationServiceJms.class);
 
-    @Value("${queue.login}")
-    private Queue queue;
-
-    private final JmsMessagingTemplate jmsTemplate;
-
-    @Autowired
-    public PaymentConfirmationServiceJms(JmsMessagingTemplate jmsTemplate) {
-        this.jmsTemplate = jmsTemplate;
-    }
+    @Value("${queue.paymentsupdate}")
+    private String queue;
 
     @Override
     public boolean sendPaymentConfirmation(PaymentConfirmation paymentConfirmation) {
