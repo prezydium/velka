@@ -1,5 +1,6 @@
 package eu.sii.pl.velka.ui;
 
+import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
@@ -10,6 +11,7 @@ import eu.sii.pl.velka.ui.authorisation.ErrorView;
 @SpringUI
 @Theme("valo")
 @SpringViewDisplay
+@Push
 public class VelkaUI extends UI {
 
     @Override

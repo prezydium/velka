@@ -23,11 +23,11 @@ import static org.junit.Assert.*;
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource("/testapplication.properties")
-@RestClientTest(LogInDebtorService.class)
-public class LogInDebtorServiceTest {
+@RestClientTest(LogInDebtorServiceRest.class)
+public class LogInDebtorServiceRestRESTTest {
 
     @Autowired
-    private LogInDebtorService logInDebtorService;
+    private LogInDebtorServiceRest logInDebtorServiceRest;
 
     @Autowired
     private MockRestServiceServer mockRestServiceServer;
@@ -42,7 +42,7 @@ public class LogInDebtorServiceTest {
     @Test
     public void shouldGetValueFromPropertiesFile() {
         //when
-        String testUrl = logInDebtorService.getAPI_URL();
+        String testUrl = logInDebtorServiceRest.getAPI_URL();
         //then
         Assertions.assertThat(testUrl).isEqualTo("TEST_URL/");
     }
@@ -55,7 +55,7 @@ public class LogInDebtorServiceTest {
                 .andExpect(MockRestRequestMatchers.method(HttpMethod.POST))
                 .andRespond(MockRestResponseCreators.withServerError());
         //when
-        AuthorisationEffect actual = logInDebtorService.confirmThatDebtorExists(debtor);
+        AuthorisationEffect actual = logInDebtorServiceRest.confirmThatDebtorExists(debtor);
         //then
         assertEquals(AuthorisationEffect.ERROR, actual);
     }
@@ -68,7 +68,7 @@ public class LogInDebtorServiceTest {
                 .andExpect(MockRestRequestMatchers.method(HttpMethod.POST))
                 .andRespond(MockRestResponseCreators.withStatus(HttpStatus.OK));
         //when
-        AuthorisationEffect actual = logInDebtorService.confirmThatDebtorExists(debtor);
+        AuthorisationEffect actual = logInDebtorServiceRest.confirmThatDebtorExists(debtor);
         //then
         assertEquals(AuthorisationEffect.RECOGNISED, actual);
     }

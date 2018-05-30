@@ -10,7 +10,7 @@ import java.util.List;
 
 @SpringComponent
 @UIScope
-public class Debtor implements Serializable {
+public class Debtor {
 
     private Long id;
 
@@ -20,7 +20,7 @@ public class Debtor implements Serializable {
 
     private String ssn;
 
-    private List<Debt> debts=Collections.emptyList();
+    private List<Debt> debts = Collections.EMPTY_LIST;
 
     public Debtor() {
     }
@@ -74,12 +74,13 @@ public class Debtor implements Serializable {
 
     @Override
     public String toString() {
-        return "Debtor{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", ssn='" + ssn + '\'' +
-                ", debts=" + debts +
-                '}';
+        final StringBuffer sb = new StringBuffer("Debtor{");
+        sb.append("id=").append(id);
+        sb.append(", firstName='").append(firstName).append('\'');
+        sb.append(", lastName='").append(lastName).append('\'');
+        sb.append(", ssn='").append(ssn).append('\'');
+        sb.append(", debts=").append(debts);
+        sb.append('}');
+        return sb.toString();
     }
 }

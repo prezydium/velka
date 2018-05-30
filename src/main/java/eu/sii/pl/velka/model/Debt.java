@@ -18,7 +18,7 @@ public class Debt {
 
     private LocalDate repaymentDate;
 
-    private List<Payment> payments=Collections.emptyList();
+    private List<Payment> payments = Collections.EMPTY_LIST;
 
     public Long getId() {
         return id;

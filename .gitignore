@@ -7,4 +7,6 @@
 mvnw*
 log/
 target/
-
+.gradle/
+build/
+out/
