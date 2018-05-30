@@ -35,16 +35,16 @@ public class Receiver {
         this.endpoint = endpoint;
     }
 
-
-    @JmsListener(destination = "jms.queue.velka")
-    public void receiveMessage(TextMessage message) {
-        LOGGER.info("received message='{}'", message);
-        try {
-            setJson(message.getText());
-            setEndpoint(message.getStringProperty("endpoint"));
-        } catch (JMSException e) {
-            e.printStackTrace();
-        }
-    }
+//
+//    @JmsListener(destination = "jms.queue.velka")
+//    public void receiveMessage(TextMessage message) {
+//        LOGGER.info("received message='{}'", message);
+//        try {
+//            setJson(message.getText());
+//            setEndpoint(message.getStringProperty("endpoint"));
+//        } catch (JMSException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 }

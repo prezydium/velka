@@ -21,7 +21,7 @@ import javax.jms.MessageNotWriteableException;
 public class JmsObjectSender {
 
     @Autowired
-    Sender sender;
+    Sender sender = new Sender();
 
     public void sendObject(String queue, Object object) {
         ObjectMapper objectMapper = new ObjectMapper();

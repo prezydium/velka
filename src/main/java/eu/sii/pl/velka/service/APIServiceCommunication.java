@@ -39,7 +39,7 @@ public class APIServiceCommunication {
 
     public void sentDebtorToAPI(Debtor debtor) {
         debtor.setSsn(new SsnConverter().convertSsnToFormatAcceptableByAPI(debtor.getSsn()));
-        AuthorisationEffect authorisationEffect = logInDebtorService.confirmThatDebtorExists(debtor);
+        AuthorisationEffect authorisationEffect = (AuthorisationEffect) logInDebtorService.confirmThatDebtorExists(debtor);
         switchViewAfterApiResponse(authorisationEffect);
         if (authorisationEffect == AuthorisationEffect.RECOGNISED) {
             debtor = balanceService.getFullData(debtor.getSsn());
