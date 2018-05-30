@@ -13,8 +13,7 @@ public class JmsLoginHandler {
     @Autowired
     private Sender sender;
 
-    public void sendSsn() throws JMSException {
-        Debtor debtor = (Debtor) UI.getCurrent().getSession().getAttribute("debtor");
-        sender.send("jms.queue.balance", debtor.getSsn());
+    public void sendSsn(String ssn) throws JMSException {
+        sender.send("jms.queue.balance", ssn);
     }
 }

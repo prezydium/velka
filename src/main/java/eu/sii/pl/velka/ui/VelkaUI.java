@@ -37,6 +37,9 @@ public class VelkaUI extends UI {
     @Autowired
     private BalanceService balanceService;
 
+    @Autowired
+    private JmsLoginHandler jmsLoginHandler;
+
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
@@ -54,7 +57,8 @@ public class VelkaUI extends UI {
                 String responseTarget = (String) textMessage.getProperty("endpoint");
                 String navigationTarget = reactionForJms.get(responseTarget);
                 if (responseTarget.equals("login")) {
-                    new JmsLoginHandler().sendSsn();
+                    Debtor debtor = (Debtor) UI.getCurrent().getSession().getAttribute("debtor");
+                    jmsLoginHandler.sendSsn(debtor.getSsn());
                 } else if (responseTarget.equals("balance")) {
                     Debtor debtor = objectMapper.readValue(textMessage.getText(), Debtor.class);
                     UI.getCurrent().getSession().setAttribute("debtor", debtor);
