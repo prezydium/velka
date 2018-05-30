@@ -22,7 +22,7 @@ public final class DebtorSummaryDataUtil {
     }
 
     public static BigDecimal getDebtsSum(Debtor debtor) {
-        List<Debt> listOfDebts = debtor.getListOfDebts();
+        List<Debt> listOfDebts = debtor.getDebts();
         return listOfDebts.stream().map(Debt::getDebtAmount)
                 .reduce(BigDecimal.ZERO, BigDecimal::add).setScale(2, RoundingMode.HALF_EVEN);
     }
@@ -34,7 +34,7 @@ public final class DebtorSummaryDataUtil {
     }
 
     public static Set<DebtTableView> createDebtorViewSet(Debtor debtor) {
-        List<Debt> listOfDebts = debtor.getListOfDebts();
+        List<Debt> listOfDebts = debtor.getDebts();
         Set<DebtTableView> debtViewSet = new HashSet<>();
         for (Debt debt : listOfDebts) {
             debtViewSet.add(new DebtTableView(debt));

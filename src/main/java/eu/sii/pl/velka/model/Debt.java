@@ -18,7 +18,7 @@ public class Debt {
 
     private LocalDate repaymentDate;
 
-    private List<Payment> listOfPayments;
+    private List<Payment> payments = Collections.EMPTY_LIST;
 
     public Long getId() {
         return id;
@@ -60,22 +60,22 @@ public class Debt {
         this.repaymentDate = repaymentDate;
     }
 
-    public List<Payment> getListOfPayments() {
-        return listOfPayments;
+    public List<Payment> getPayments() {
+        return payments;
     }
 
-    public void setListOfPayments(List<Payment> listOfPayments) {
-        this.listOfPayments = Collections.unmodifiableList(listOfPayments);
+    public void setPayments(List<Payment> payments) {
+        this.payments = Collections.unmodifiableList(payments);
     }
 
     public Debt() {
     }
 
-    public Debt(Long id, String debtName, BigDecimal debtAmount, LocalDate repaymentDate, List<Payment> listOfPayments) {
+    public Debt(Long id, String debtName, BigDecimal debtAmount, LocalDate repaymentDate, List<Payment> payments) {
         this.id = id;
         this.debtName = debtName;
         this.debtAmount = debtAmount;
         this.repaymentDate = repaymentDate;
-        this.listOfPayments = listOfPayments;
+        this.payments = payments;
     }
 }
