@@ -1,5 +1,7 @@
 package eu.sii.pl.velka.service;
 
+import eu.sii.pl.velka.jms.producer.Sender;
+import eu.sii.pl.velka.model.Payment;
 import eu.sii.pl.velka.model.PaymentDeclaration;
 import eu.sii.pl.velka.model.PaymentPlan;
 import org.slf4j.Logger;
@@ -21,13 +23,17 @@ public class PaymentServiceJms implements PaymentService {
     @Value("${queue.paymentplan}")
     private String queue;
 
+    @Autowired
+    Sender sender;
+
     @Override
     public AuthorisationEffect trySendPayment(PaymentDeclaration paymentDeclaration) {
-        throw new UnsupportedOperationException();
+      return  AuthorisationEffect.WAITING;
     }
 
     @Override
     public PaymentPlan getPaymentPlan(PaymentDeclaration paymentDeclaration) {
-        throw new UnsupportedOperationException();
+        sender.convertAndsend(queue,paymentDeclaration);
+        return new PaymentPlan();
     }
 }

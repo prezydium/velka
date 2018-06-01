@@ -7,6 +7,7 @@ import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.core.JmsMessagingTemplate;
 
 import javax.jms.Queue;
@@ -14,6 +15,7 @@ import java.text.SimpleDateFormat;
 
 @Configuration
 @ComponentScan("eu.sii.pl.velka")
+@EnableJms
 public class AppConfig {
 
     private String brokerUrl = "tcp://ec2-34-245-25-132.eu-west-1.compute.amazonaws.com:7030";

@@ -28,7 +28,7 @@ public class PaymentPlanView extends VerticalLayout implements View {
 
     public PaymentPlanView() {
         Debtor debtor = (Debtor) VaadinSession.getCurrent().getAttribute("debtor");
-        PaymentPlan paymentPlan = (PaymentPlan) VaadinSession.getCurrent().getAttribute("paymentPlan");
+        PaymentPlan paymentPlan = (PaymentPlan) VaadinSession.getCurrent().getAttribute("paymentplan");
         this.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
         this.addComponent(new HeaderPaymentPlan(paymentPlan));
         this.addComponent(new TablePlannedPayment(debtor, paymentPlan));

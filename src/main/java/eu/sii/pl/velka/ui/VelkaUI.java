@@ -2,16 +2,15 @@ package eu.sii.pl.velka.ui;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.google.gson.Gson;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.server.VaadinRequest;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.annotation.SpringViewDisplay;
 import com.vaadin.ui.UI;
 import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.model.PaymentPlan;
-import eu.sii.pl.velka.service.APIServiceCommunication;
 import eu.sii.pl.velka.service.BalanceService;
 import eu.sii.pl.velka.ui.authorisation.ErrorView;
 import eu.sii.pl.velka.ui.authorisation.SuccessfulLoginView;
@@ -38,9 +37,11 @@ public class VelkaUI extends UI {
     @Autowired
     private BalanceService balanceService;
 
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private ObjectMapper objectMapper;
 
-    private Gson gson=new Gson();
+    public VelkaUI(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
+    }
 
     @Override
     protected void init(VaadinRequest request) {
@@ -52,8 +53,9 @@ public class VelkaUI extends UI {
 
     @JmsListener(destination = "jms.queue.velka")
     public void consume(ActiveMQTextMessage textMessage) {
-        objectMapper.configure(SerializationFeature.CLOSE_CLOSEABLE.WRITE_DATE_KEYS_AS_TIMESTAMPS,false);
+        objectMapper.configure(SerializationFeature.CLOSE_CLOSEABLE.WRITE_DATE_KEYS_AS_TIMESTAMPS, false);
         objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
+
         this.accessSynchronously(() -> {
             try {
                 String responseTarget = (String) textMessage.getProperty("endpoint");
@@ -63,12 +65,7 @@ public class VelkaUI extends UI {
                     Debtor debtor = (Debtor) UI.getCurrent().getSession().getAttribute("debtor");
                     balanceService.getFullData(debtor.getSsn());
                 } else if (responseTarget.equals("balance")) {
-//                    objectMapper.configure(SerializationFeature.CLOSE_CLOSEABLE.WRITE_DATE_KEYS_AS_TIMESTAMPS,false);
-//                    objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
-                   // Debtor debtor = gson.fromJson(textMessage.getText(), Debtor.class);
-                    Debtor debtor =objectMapper.readValue(textMessage.getText(), Debtor.class);
-                    System.out.println(debtor.toString());
-                    System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                    Debtor debtor = objectMapper.readValue(textMessage.getText(), Debtor.class);
                     UI.getCurrent().getSession().setAttribute("debtor", debtor);
                 } else if (responseTarget.equals("paymentplan")) {
                     PaymentPlan paymentPlan = objectMapper.readValue(textMessage.getText(), PaymentPlan.class);

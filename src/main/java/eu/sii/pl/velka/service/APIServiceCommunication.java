@@ -53,11 +53,15 @@ public class APIServiceCommunication {
 
     public void sentPaymentDeclarationToAPI(PaymentDeclaration paymentDeclaration) {
         AuthorisationEffect authorisationEffect = paymentService.trySendPayment(paymentDeclaration);
+        PaymentPlan paymentPlan = paymentService.getPaymentPlan(paymentDeclaration);
+        switchViewAfterApiResponse(authorisationEffect);
         if (authorisationEffect == AuthorisationEffect.RECOGNISED) {
-            PaymentPlan paymentPlan = paymentService.getPaymentPlan(paymentDeclaration);
+
             VaadinSession.getCurrent().setAttribute("paymentPlan", paymentPlan);
             springNavigator.navigateTo("paymentPlan");
-        } else {
+        } else if (authorisationEffect == AuthorisationEffect.WAITING){
+
+        }else {
             springNavigator.navigateTo("errorPayment");
         }
     }

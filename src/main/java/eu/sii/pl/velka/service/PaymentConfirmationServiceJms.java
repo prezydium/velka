@@ -27,6 +27,6 @@ public class PaymentConfirmationServiceJms implements PaymentConfirmationService
     @Override
     public boolean sendPaymentConfirmation(PaymentConfirmation paymentConfirmation) {
         sender.convertAndsend(queue, paymentConfirmation);
-        throw new UnsupportedOperationException();
+        return true;
     }
 }
