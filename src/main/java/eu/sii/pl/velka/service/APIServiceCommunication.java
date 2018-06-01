@@ -44,7 +44,7 @@ public class APIServiceCommunication {
         AuthorisationEffect authorisationEffect = logInDebtorService.confirmThatDebtorExists(debtor);
         VaadinSession.getCurrent().setAttribute("debtor", debtor);
         switchViewAfterApiResponse(authorisationEffect);
-        if (authorisationEffect == AuthorisationEffect.RECOGNISED) {
+        if (authorisationEffect == AuthorisationEffect.RECOGNISED ) {
             debtor = balanceService.getFullData(debtor.getSsn());
             VaadinSession.getCurrent().setAttribute("debtor", debtor);
             springNavigator.navigateTo("balance");

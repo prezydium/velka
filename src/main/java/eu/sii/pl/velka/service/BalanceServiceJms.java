@@ -1,5 +1,6 @@
 package eu.sii.pl.velka.service;
 
+import eu.sii.pl.velka.jms.producer.Sender;
 import eu.sii.pl.velka.model.Debtor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,9 +21,12 @@ public class BalanceServiceJms implements BalanceService {
     @Value("${queue.balance}")
     private String queue;
 
+    @Autowired
+    private Sender sender;
+
     @Override
     public Debtor getFullData(String ssn) {
-        throw new UnsupportedOperationException();
-        //TODO Will be implemented in JAV-105
+        sender.convertAndsend(queue,ssn);
+        return new Debtor();
     }
 }

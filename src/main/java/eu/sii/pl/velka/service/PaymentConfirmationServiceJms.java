@@ -1,5 +1,6 @@
 package eu.sii.pl.velka.service;
 
+import eu.sii.pl.velka.jms.producer.Sender;
 import eu.sii.pl.velka.model.PaymentConfirmation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,9 +21,12 @@ public class PaymentConfirmationServiceJms implements PaymentConfirmationService
     @Value("${queue.paymentsupdate}")
     private String queue;
 
+    @Autowired
+    private Sender sender;
+
     @Override
     public boolean sendPaymentConfirmation(PaymentConfirmation paymentConfirmation) {
-       throw new UnsupportedOperationException();
+        sender.convertAndsend(queue, paymentConfirmation);
+        throw new UnsupportedOperationException();
     }
-
 }

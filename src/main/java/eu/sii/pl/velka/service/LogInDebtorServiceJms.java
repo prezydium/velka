@@ -2,7 +2,6 @@ package eu.sii.pl.velka.service;
 
 import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.spring.annotation.UIScope;
-import eu.sii.pl.velka.jms.producer.JmsObjectSender;
 import eu.sii.pl.velka.jms.producer.Sender;
 import eu.sii.pl.velka.model.Debtor;
 import org.slf4j.Logger;
@@ -25,11 +24,11 @@ public class LogInDebtorServiceJms implements LogInDebtorService {
     private String queue;
 
     @Autowired
-    private JmsObjectSender jmsObjectSender = new JmsObjectSender();
+    private Sender sender;
 
     @Override
     public AuthorisationEffect confirmThatDebtorExists(Debtor debtor) {
-        jmsObjectSender.sendObject("jms.queue.login", debtor);
+        sender.convertAndsend(queue, debtor);
         return AuthorisationEffect.WAITING;
     }
 }

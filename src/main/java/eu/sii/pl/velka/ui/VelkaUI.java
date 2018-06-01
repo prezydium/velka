@@ -1,21 +1,21 @@
 package eu.sii.pl.velka.ui;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.google.gson.Gson;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.annotation.SpringViewDisplay;
 import com.vaadin.ui.UI;
-import eu.sii.pl.velka.jms.JmsLoginHandler;
 import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.model.PaymentPlan;
+import eu.sii.pl.velka.service.APIServiceCommunication;
 import eu.sii.pl.velka.service.BalanceService;
 import eu.sii.pl.velka.ui.authorisation.ErrorView;
 import eu.sii.pl.velka.ui.authorisation.SuccessfulLoginView;
-import eu.sii.pl.velka.ui.authorisation.UnrecognisedUserLoginView;
 import eu.sii.pl.velka.ui.views.JmsResponseSwitch;
-import eu.sii.pl.velka.ui.views.PaymentPlanView;
 import org.apache.activemq.command.ActiveMQTextMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +24,7 @@ import org.springframework.jms.annotation.JmsListener;
 
 import javax.jms.JMSException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Map;
 
 @SpringUI
@@ -37,10 +38,9 @@ public class VelkaUI extends UI {
     @Autowired
     private BalanceService balanceService;
 
-    @Autowired
-    private JmsLoginHandler jmsLoginHandler;
-
     private ObjectMapper objectMapper = new ObjectMapper();
+
+    private Gson gson=new Gson();
 
     @Override
     protected void init(VaadinRequest request) {
@@ -52,15 +52,23 @@ public class VelkaUI extends UI {
 
     @JmsListener(destination = "jms.queue.velka")
     public void consume(ActiveMQTextMessage textMessage) {
+        objectMapper.configure(SerializationFeature.CLOSE_CLOSEABLE.WRITE_DATE_KEYS_AS_TIMESTAMPS,false);
+        objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
         this.accessSynchronously(() -> {
             try {
                 String responseTarget = (String) textMessage.getProperty("endpoint");
                 String navigationTarget = reactionForJms.get(responseTarget);
+                LOG.info("receiving message='{}' to destination='{}'", textMessage.getText());
                 if (responseTarget.equals("login")) {
                     Debtor debtor = (Debtor) UI.getCurrent().getSession().getAttribute("debtor");
-                    jmsLoginHandler.sendSsn(debtor.getSsn());
+                    balanceService.getFullData(debtor.getSsn());
                 } else if (responseTarget.equals("balance")) {
-                    Debtor debtor = objectMapper.readValue(textMessage.getText(), Debtor.class);
+//                    objectMapper.configure(SerializationFeature.CLOSE_CLOSEABLE.WRITE_DATE_KEYS_AS_TIMESTAMPS,false);
+//                    objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
+                   // Debtor debtor = gson.fromJson(textMessage.getText(), Debtor.class);
+                    Debtor debtor =objectMapper.readValue(textMessage.getText(), Debtor.class);
+                    System.out.println(debtor.toString());
+                    System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
                     UI.getCurrent().getSession().setAttribute("debtor", debtor);
                 } else if (responseTarget.equals("paymentplan")) {
                     PaymentPlan paymentPlan = objectMapper.readValue(textMessage.getText(), PaymentPlan.class);
