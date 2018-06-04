@@ -25,7 +25,7 @@ public class Sender {
             json = objectMapper.writeValueAsString(object);
             ActiveMQTextMessage textMessage = new ActiveMQTextMessage();
             textMessage.setText(json);
-            textMessage.setStringProperty("client", "velka");
+            textMessage.setCorrelationId("velka");
             jmsTemplate.convertAndSend(destination, textMessage);
             LOGGER.info("sending message='{}' to destination='{}'", object.toString(), destination);
         } catch (JsonProcessingException | JMSException e) {
