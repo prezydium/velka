@@ -26,6 +26,8 @@ public class PaymentMethodWindow extends Window {
 
     private HorizontalLayout buttonLayout = new HorizontalLayout();
 
+    private VerticalLayout paymentMethodFormPlaceholder = new VerticalLayout();
+
     private AbstractDataForm paymentMethodForm;
 
     private Button buttonSubmit = new Button("Submit", this::submitButtonClick);
@@ -36,11 +38,11 @@ public class PaymentMethodWindow extends Window {
         this.fillPaymentOptionsMap(debtor);
         this.setUpButtons();
         paymentMethodForm = paymentMethods.get(NotChosenForm.PAYMENT_METHOD_NAME);
-        paymentMethodForm.setVisible(false);
+        paymentMethodFormPlaceholder.addComponent(paymentMethodForm);
         setCaption("Choose payment method: ");
         buttonSubmit.setEnabled(false);
         windowLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
-        windowLayout.addComponents(buttonLayout, paymentMethodForm, buttonSubmit);
+        windowLayout.addComponents(buttonLayout, paymentMethodFormPlaceholder, buttonSubmit);
         setContent(windowLayout);
         setModal(true);
         setResizable(false);
@@ -62,9 +64,10 @@ public class PaymentMethodWindow extends Window {
     }
 
     private void buttonClick(Button.ClickEvent clickEvent) {
+        paymentMethodFormPlaceholder.removeComponent(paymentMethodForm);
         paymentMethodForm.removeAllComponents();
-        paymentMethodForm.setVisible(true);
-        paymentMethodForm.addComponent(paymentMethods.get(clickEvent.getButton().getId()));
+        paymentMethodForm = (paymentMethods.get(clickEvent.getButton().getId()));
+        paymentMethodFormPlaceholder.addComponent(paymentMethodForm);
         buttonSubmit.setEnabled(true);
         center();
     }
