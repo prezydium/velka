@@ -52,10 +52,12 @@ public class APIServiceCommunication {
     }
 
     public void sentPaymentDeclarationToAPI(PaymentDeclaration paymentDeclaration) {
+
         AuthorisationEffect authorisationEffect = paymentService.trySendPayment(paymentDeclaration);
         PaymentPlan paymentPlan = paymentService.getPaymentPlan(paymentDeclaration);
         switchViewAfterApiResponse(authorisationEffect);
         if (authorisationEffect == AuthorisationEffect.RECOGNISED) {
+            VaadinSession.getCurrent().setAttribute("paymentDeclaration", paymentDeclaration);
             VaadinSession.getCurrent().setAttribute("paymentPlan", paymentPlan);
             springNavigator.navigateTo("paymentPlan");
         } else if (authorisationEffect == AuthorisationEffect.WAITING){
