@@ -69,7 +69,7 @@ public class VelkaUI extends UI {
                     UI.getCurrent().getSession().setAttribute("debtor", debtor);
                 } else if (responseTarget.equals("paymentplan")) {
                     PaymentPlan paymentPlan = objectMapper.readValue(textMessage.getText(), PaymentPlan.class);
-                    UI.getCurrent().getSession().setAttribute("paymentplan", paymentPlan);
+                    UI.getCurrent().getSession().setAttribute("paymentPlan", paymentPlan);
                 } else if (responseTarget.equals("paymentsupdate")) {
                     getNavigator().navigateTo(SuccessfulLoginView.VIEW_NAME);
                 }
