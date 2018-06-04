@@ -70,7 +70,7 @@ public class VelkaUIJms extends UI {
                     getSession().setAttribute("debtor", debtor);
                 } else if (responseTarget.equals("paymentplan")) {
                     PaymentPlan paymentPlan = objectMapper.readValue(textMessage.getText(), PaymentPlan.class);
-                    getSession().setAttribute("paymentplan", paymentPlan);
+                    getSession().setAttribute("paymentPmlan", paymentPlan);
                 } else if (responseTarget.equals("paymentsupdate")) {
                     getNavigator().navigateTo(SuccessfulPaymentView.VIEW_NAME);
                 }
