@@ -56,7 +56,6 @@ public class APIServiceCommunication {
         PaymentPlan paymentPlan = paymentService.getPaymentPlan(paymentDeclaration);
         switchViewAfterApiResponse(authorisationEffect);
         if (authorisationEffect == AuthorisationEffect.RECOGNISED) {
-
             VaadinSession.getCurrent().setAttribute("paymentPlan", paymentPlan);
             springNavigator.navigateTo("paymentPlan");
         } else if (authorisationEffect == AuthorisationEffect.WAITING) {
