@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Profile("jms")
-
 @SpringComponent
 @UIScope
 public class LogInDebtorServiceJms implements LogInDebtorService {

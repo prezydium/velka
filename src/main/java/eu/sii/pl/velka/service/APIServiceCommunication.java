@@ -44,7 +44,7 @@ public class APIServiceCommunication {
         AuthorisationEffect authorisationEffect = logInDebtorService.confirmThatDebtorExists(debtor);
         VaadinSession.getCurrent().setAttribute("debtor", debtor);
         switchViewAfterApiResponse(authorisationEffect);
-        if (authorisationEffect == AuthorisationEffect.RECOGNISED ) {
+        if (authorisationEffect == AuthorisationEffect.RECOGNISED) {
             debtor = balanceService.getFullData(debtor.getSsn());
             VaadinSession.getCurrent().setAttribute("debtor", debtor);
             springNavigator.navigateTo("balance");
@@ -59,10 +59,11 @@ public class APIServiceCommunication {
         if (authorisationEffect == AuthorisationEffect.RECOGNISED) {
             VaadinSession.getCurrent().setAttribute("paymentDeclaration", paymentDeclaration);
             VaadinSession.getCurrent().setAttribute("paymentPlan", paymentPlan);
+            VaadinSession.getCurrent().setAttribute("paymentDeclaration", paymentDeclaration);
             springNavigator.navigateTo("paymentPlan");
-        } else if (authorisationEffect == AuthorisationEffect.WAITING){
+        } else if (authorisationEffect == AuthorisationEffect.WAITING) {
 
-        }else {
+        } else {
             springNavigator.navigateTo("errorPayment");
         }
     }

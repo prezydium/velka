@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.server.VaadinRequest;
-import com.vaadin.server.VaadinSession;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.annotation.SpringViewDisplay;
 import com.vaadin.ui.UI;
@@ -13,12 +12,13 @@ import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.model.PaymentPlan;
 import eu.sii.pl.velka.service.BalanceService;
 import eu.sii.pl.velka.ui.authorisation.ErrorView;
-import eu.sii.pl.velka.ui.authorisation.SuccessfulLoginView;
 import eu.sii.pl.velka.ui.views.JmsResponseSwitch;
+import eu.sii.pl.velka.ui.views.SuccessfulPaymentView;
 import org.apache.activemq.command.ActiveMQTextMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jms.annotation.JmsListener;
 
 import javax.jms.JMSException;
@@ -30,16 +30,17 @@ import java.util.Map;
 @Theme("valo")
 @SpringViewDisplay
 @Push
-public class VelkaUI extends UI {
+@Profile("jms")
+public class VelkaUIJms extends UI {
 
-    private final static Logger LOG = LoggerFactory.getLogger(VelkaUI.class);
+    private final static Logger LOG = LoggerFactory.getLogger(VelkaUIJms.class);
 
     @Autowired
     private BalanceService balanceService;
 
     private ObjectMapper objectMapper;
 
-    public VelkaUI(ObjectMapper objectMapper) {
+    public VelkaUIJms(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
     }
 
@@ -66,12 +67,12 @@ public class VelkaUI extends UI {
                     balanceService.getFullData(debtor.getSsn());
                 } else if (responseTarget.equals("balance")) {
                     Debtor debtor = objectMapper.readValue(textMessage.getText(), Debtor.class);
-                    UI.getCurrent().getSession().setAttribute("debtor", debtor);
+                    getSession().setAttribute("debtor", debtor);
                 } else if (responseTarget.equals("paymentplan")) {
                     PaymentPlan paymentPlan = objectMapper.readValue(textMessage.getText(), PaymentPlan.class);
-                    UI.getCurrent().getSession().setAttribute("paymentPlan", paymentPlan);
+                    getSession().setAttribute("paymentPlan", paymentPlan);
                 } else if (responseTarget.equals("paymentsupdate")) {
-                    getNavigator().navigateTo(SuccessfulLoginView.VIEW_NAME);
+                    getNavigator().navigateTo(SuccessfulPaymentView.VIEW_NAME);
                 }
                 getNavigator().navigateTo(navigationTarget);
             } catch (JMSException | IOException e) {
