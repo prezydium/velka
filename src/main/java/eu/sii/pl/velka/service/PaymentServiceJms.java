@@ -29,7 +29,7 @@ public class PaymentServiceJms implements PaymentService {
 
     @Override
     public PaymentPlan getPaymentPlan(PaymentDeclaration paymentDeclaration) {
-        sender.convertAndsend(queue,paymentDeclaration);
+        sender.send(queue,paymentDeclaration);
         return new PaymentPlan();
     }
 }

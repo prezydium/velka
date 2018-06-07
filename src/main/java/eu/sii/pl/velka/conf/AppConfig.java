@@ -18,12 +18,7 @@ public class AppConfig {
 
     private String brokerUrl = "tcp://ec2-34-245-25-132.eu-west-1.compute.amazonaws.com:7030";
 
-    public ObjectMapper objectMapper() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
-        objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
-        return objectMapper;
-    }
+
 
     @Bean
     public ActiveMQConnectionFactory activeMQConnectionFactory() {

@@ -23,7 +23,7 @@ public class PaymentConfirmationServiceJms implements PaymentConfirmationService
 
     @Override
     public boolean sendPaymentConfirmation(PaymentConfirmation paymentConfirmation) {
-        sender.convertAndsend(queue, paymentConfirmation);
+        sender.send(queue, paymentConfirmation);
         return true;
     }
 }

@@ -27,7 +27,7 @@ public class LogInDebtorServiceJms implements LogInDebtorService {
 
     @Override
     public AuthorisationEffect confirmThatDebtorExists(Debtor debtor) {
-        sender.convertAndsend(queue, debtor);
+        sender.send(queue, debtor);
         return AuthorisationEffect.WAITING;
     }
 }

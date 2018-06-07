@@ -10,6 +10,7 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.jms.JMSException;
+import javax.jms.Session;
 
 @Component
 public class Sender {
@@ -18,7 +19,7 @@ public class Sender {
     @Autowired
     private JmsTemplate jmsTemplate;
 
-    public void convertAndsend(String destination, Object object) {
+    public void send(String destination, Object object) {
         ObjectMapper objectMapper = new ObjectMapper();
         String json = null;
         try {
@@ -26,13 +27,14 @@ public class Sender {
             ActiveMQTextMessage textMessage = new ActiveMQTextMessage();
             textMessage.setText(json);
             textMessage.setStringProperty("client", "velka");
-            jmsTemplate.convertAndSend(destination, textMessage);
+            jmsTemplate.send(destination, (Session session) -> {
+                return textMessage;
+            });
             LOGGER.info("sending message='{}' to destination='{}'", object.toString(), destination);
         } catch (JsonProcessingException | JMSException e) {
             e.printStackTrace();
         }
     }
-
 }
 
 

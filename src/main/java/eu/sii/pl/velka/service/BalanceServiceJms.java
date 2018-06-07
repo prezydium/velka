@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @Profile("jms")
 public class BalanceServiceJms implements BalanceService {
@@ -23,7 +25,7 @@ public class BalanceServiceJms implements BalanceService {
 
     @Override
     public Debtor getFullData(String ssn) {
-        sender.convertAndsend(queue,ssn);
+        sender.send(queue,ssn);
         return new Debtor();
     }
 }
