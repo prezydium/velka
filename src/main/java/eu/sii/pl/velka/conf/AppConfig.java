@@ -16,7 +16,8 @@ import java.text.SimpleDateFormat;
 @EnableJms
 public class AppConfig {
 
-    private String brokerUrl = "tcp://ec2-34-245-25-132.eu-west-1.compute.amazonaws.com:7030";
+    private String brokerUrl = "tcp://localhost:61616";
+    //"tcp://ec2-34-245-25-132.eu-west-1.compute.amazonaws.com:7030";
 
 
 

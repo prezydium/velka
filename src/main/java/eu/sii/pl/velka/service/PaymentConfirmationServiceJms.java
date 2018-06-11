@@ -1,5 +1,7 @@
 package eu.sii.pl.velka.service;
 
+import com.vaadin.spring.annotation.UIScope;
+import com.vaadin.ui.UI;
 import eu.sii.pl.velka.jms.producer.Sender;
 import eu.sii.pl.velka.model.PaymentConfirmation;
 import org.slf4j.Logger;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Profile("jms")
+@UIScope
 public class PaymentConfirmationServiceJms implements PaymentConfirmationService {
 
     private static final Logger LOG = LoggerFactory.getLogger(PaymentConfirmationServiceJms.class);
@@ -23,7 +26,7 @@ public class PaymentConfirmationServiceJms implements PaymentConfirmationService
 
     @Override
     public boolean sendPaymentConfirmation(PaymentConfirmation paymentConfirmation) {
-        sender.send(queue, paymentConfirmation);
+        sender.send(queue, paymentConfirmation, UI.getCurrent().getEmbedId());
         return true;
     }
 }

@@ -2,6 +2,7 @@ package eu.sii.pl.velka.jms.producer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vaadin.ui.UI;
 import org.apache.activemq.command.ActiveMQTextMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +20,7 @@ public class Sender {
     @Autowired
     private JmsTemplate jmsTemplate;
 
-    public void send(String destination, Object object) {
+    public void send(String destination, Object object, String uiId) {
         ObjectMapper objectMapper = new ObjectMapper();
         String json = null;
         try {
@@ -27,6 +28,7 @@ public class Sender {
             ActiveMQTextMessage textMessage = new ActiveMQTextMessage();
             textMessage.setText(json);
             textMessage.setStringProperty("client", "velka");
+            textMessage.setCorrelationId(uiId);
             jmsTemplate.send(destination, (Session session) -> {
                 return textMessage;
             });

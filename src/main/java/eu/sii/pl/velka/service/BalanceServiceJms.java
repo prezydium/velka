@@ -1,5 +1,7 @@
 package eu.sii.pl.velka.service;
 
+import com.vaadin.spring.annotation.UIScope;
+import com.vaadin.ui.UI;
 import eu.sii.pl.velka.jms.producer.Sender;
 import eu.sii.pl.velka.model.Debtor;
 import org.slf4j.Logger;
@@ -13,6 +15,7 @@ import java.util.Optional;
 
 @Service
 @Profile("jms")
+@UIScope
 public class BalanceServiceJms implements BalanceService {
 
     private final static Logger LOG = LoggerFactory.getLogger(BalanceServiceJms.class);
@@ -25,7 +28,7 @@ public class BalanceServiceJms implements BalanceService {
 
     @Override
     public Debtor getFullData(String ssn) {
-        sender.send(queue,ssn);
+        sender.send(queue, ssn, UI.getCurrent().getEmbedId());
         return new Debtor();
     }
 }

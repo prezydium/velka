@@ -2,6 +2,7 @@ package eu.sii.pl.velka.service;
 
 import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.spring.annotation.UIScope;
+import com.vaadin.ui.UI;
 import eu.sii.pl.velka.jms.producer.Sender;
 import eu.sii.pl.velka.model.Debtor;
 import org.slf4j.Logger;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Profile("jms")
-@SpringComponent
 @UIScope
 public class LogInDebtorServiceJms implements LogInDebtorService {
 
@@ -25,9 +25,13 @@ public class LogInDebtorServiceJms implements LogInDebtorService {
     @Autowired
     private Sender sender;
 
+    @Autowired
+    private BalanceService balanceService;
+
     @Override
     public AuthorisationEffect confirmThatDebtorExists(Debtor debtor) {
-        sender.send(queue, debtor);
+        sender.send(queue, debtor, UI.getCurrent().getEmbedId());
+        balanceService.getFullData(debtor.getSsn());
         return AuthorisationEffect.WAITING;
     }
 }

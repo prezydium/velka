@@ -11,6 +11,7 @@ import com.vaadin.ui.UI;
 import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.model.PaymentPlan;
 import eu.sii.pl.velka.service.BalanceService;
+import eu.sii.pl.velka.session.SessionMap;
 import eu.sii.pl.velka.ui.authorisation.ErrorView;
 import eu.sii.pl.velka.ui.views.JmsResponseSwitch;
 import eu.sii.pl.velka.ui.views.SuccessfulPaymentView;
@@ -33,51 +34,13 @@ import java.util.Map;
 @Profile("jms")
 public class VelkaUIJms extends UI {
 
-    private final static Logger LOG = LoggerFactory.getLogger(VelkaUIJms.class);
-
     @Autowired
-    private BalanceService balanceService;
-
-    private ObjectMapper objectMapper;
-
-    public VelkaUIJms(ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper;
-    }
+    private SessionMap sessionMap;
 
     @Override
     protected void init(VaadinRequest request) {
         getPage().setTitle("Velka");
         getNavigator().setErrorView(ErrorView.class);
-    }
-
-    private Map<String, String> reactionForJms = JmsResponseSwitch.fillMap();
-
-    @JmsListener(destination = "jms.queue.velka")
-    public void consume(ActiveMQTextMessage textMessage) {
-        objectMapper.configure(SerializationFeature.CLOSE_CLOSEABLE.WRITE_DATE_KEYS_AS_TIMESTAMPS, false);
-        objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
-
-        this.accessSynchronously(() -> {
-            try {
-                String responseTarget = (String) textMessage.getProperty("endpoint");
-                String navigationTarget = reactionForJms.get(responseTarget);
-                LOG.info("receiving message='{}' to destination='{}'", textMessage.getText());
-                if (responseTarget.equals("login")) {
-                    Debtor debtor = (Debtor) UI.getCurrent().getSession().getAttribute("debtor");
-                    balanceService.getFullData(debtor.getSsn());
-                } else if (responseTarget.equals("balance")) {
-                    Debtor debtor = objectMapper.readValue(textMessage.getText(), Debtor.class);
-                    getSession().setAttribute("debtor", debtor);
-                } else if (responseTarget.equals("paymentplan")) {
-                    PaymentPlan paymentPlan = objectMapper.readValue(textMessage.getText(), PaymentPlan.class);
-                    getSession().setAttribute("paymentPlan", paymentPlan);
-                } else if (responseTarget.equals("paymentsupdate")) {
-                    getNavigator().navigateTo(SuccessfulPaymentView.VIEW_NAME);
-                }
-                getNavigator().navigateTo(navigationTarget);
-            } catch (JMSException | IOException e) {
-                LOG.error("Error receiving jms message: " + e.getMessage());
-            }
-        });
+        sessionMap.addUIToMap(getUI());
     }
 }
