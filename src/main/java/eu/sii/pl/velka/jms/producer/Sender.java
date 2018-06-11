@@ -20,7 +20,7 @@ public class Sender {
     @Autowired
     private JmsTemplate jmsTemplate;
 
-    public void send(String destination, Object object, String uiId) {
+    public void send(String destination, Object object) {
         ObjectMapper objectMapper = new ObjectMapper();
         String json = null;
         try {
@@ -28,7 +28,7 @@ public class Sender {
             ActiveMQTextMessage textMessage = new ActiveMQTextMessage();
             textMessage.setText(json);
             textMessage.setStringProperty("client", "velka");
-            textMessage.setCorrelationId(uiId);
+            textMessage.setCorrelationId(UI.getCurrent().getEmbedId());
             jmsTemplate.send(destination, (Session session) -> {
                 return textMessage;
             });
