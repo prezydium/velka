@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Profile("jms")
-@UIScope
 public class PaymentConfirmationServiceJms implements PaymentConfirmationService {
 
     private static final Logger LOG = LoggerFactory.getLogger(PaymentConfirmationServiceJms.class);
@@ -26,7 +25,7 @@ public class PaymentConfirmationServiceJms implements PaymentConfirmationService
 
     @Override
     public boolean sendPaymentConfirmation(PaymentConfirmation paymentConfirmation) {
-        sender.send(queue, paymentConfirmation, UI.getCurrent().getEmbedId());
+        sender.send(queue, paymentConfirmation);
         return true;
     }
 }

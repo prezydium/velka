@@ -24,6 +24,6 @@ public class VelkaUIJms extends UI {
     protected void init(VaadinRequest request) {
         getPage().setTitle("Velka");
         getNavigator().setErrorView(ErrorView.class);
-        sessionMap.addUIToMap(getUI());
+        sessionMap.addUIToMap(getEmbedId(), getUI());
     }
 }

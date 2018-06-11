@@ -15,7 +15,6 @@ import java.util.Optional;
 
 @Service
 @Profile("jms")
-@UIScope
 public class BalanceServiceJms implements BalanceService {
 
     private final static Logger LOG = LoggerFactory.getLogger(BalanceServiceJms.class);
@@ -28,7 +27,7 @@ public class BalanceServiceJms implements BalanceService {
 
     @Override
     public Debtor getFullData(String ssn) {
-        sender.send(queue, ssn, UI.getCurrent().getEmbedId());
+        sender.send(queue, ssn);
         return new Debtor();
     }
 }

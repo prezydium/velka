@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Profile("jms")
-@UIScope
 public class LogInDebtorServiceJms implements LogInDebtorService {
 
     private final static Logger LOG = LoggerFactory.getLogger(LogInDebtorServiceJms.class);
@@ -30,7 +29,7 @@ public class LogInDebtorServiceJms implements LogInDebtorService {
 
     @Override
     public AuthorisationEffect confirmThatDebtorExists(Debtor debtor) {
-        sender.send(queue, debtor, UI.getCurrent().getEmbedId());
+        sender.send(queue, debtor);
         balanceService.getFullData(debtor.getSsn());
         return AuthorisationEffect.WAITING;
     }

@@ -18,6 +18,7 @@ import java.util.Map;
 public class Listener {
 
     private final static Logger LOG = LoggerFactory.getLogger(VelkaUIJms.class);
+
     @Autowired
     private SessionMap sessionMap;
 
@@ -28,7 +29,7 @@ public class Listener {
 
     @JmsListener(destination = "jms.queue.velka")
     public void consume(ActiveMQTextMessage textMessage) {
-        UI ui = sessionMap.getUiFromStorage("4");
+        UI ui = sessionMap.getUiFromStorage(textMessage.getCorrelationId());
         ui.accessSynchronously(() -> {
             try {
                 String responseTarget = (String) textMessage.getProperty("endpoint");

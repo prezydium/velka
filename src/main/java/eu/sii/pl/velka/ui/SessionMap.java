@@ -11,8 +11,8 @@ public class SessionMap {
 
     private Map<String, UI> uiStorage = new HashMap<>();
 
-    public void addUIToMap(UI ui) {
-        uiStorage.put("4", ui);
+    public void addUIToMap(String s, UI ui) {
+        uiStorage.put(s, ui);
     }
 
     public UI getUiFromStorage(String s) {

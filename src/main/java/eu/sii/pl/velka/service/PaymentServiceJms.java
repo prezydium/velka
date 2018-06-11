@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Profile("jms")
-@UIScope
 public class PaymentServiceJms implements PaymentService {
 
     private final Logger LOG = LoggerFactory.getLogger(PaymentServiceJms.class);
@@ -32,7 +31,7 @@ public class PaymentServiceJms implements PaymentService {
 
     @Override
     public PaymentPlan getPaymentPlan(PaymentDeclaration paymentDeclaration) {
-        sender.send(queue, paymentDeclaration, UI.getCurrent().getEmbedId());
+        sender.send(queue, paymentDeclaration);
         return new PaymentPlan();
     }
 }

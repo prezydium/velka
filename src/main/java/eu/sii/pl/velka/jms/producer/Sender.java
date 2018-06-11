@@ -28,7 +28,7 @@ public class Sender {
             ActiveMQTextMessage textMessage = new ActiveMQTextMessage();
             textMessage.setText(json);
             textMessage.setStringProperty("client", "velka");
-            textMessage.setCorrelationId("4");
+            textMessage.setCorrelationId(UI.getCurrent().getEmbedId());
             jmsTemplate.send(destination, (Session session) -> {
                 return textMessage;
             });
