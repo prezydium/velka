@@ -25,6 +25,5 @@ public class VelkaUIJms extends UI {
         getPage().setTitle("Velka");
         getNavigator().setErrorView(ErrorView.class);
         sessionMap.addUIToMap(getEmbedId(), getUI());
-        addDetachListener((DetachListener) event -> sessionMap.removeUIFromStorage(getEmbedId()));
     }
 }
