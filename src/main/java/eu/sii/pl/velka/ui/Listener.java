@@ -17,29 +17,38 @@ import java.util.Map;
 @Component
 public class Listener {
 
-    private final static Logger LOG = LoggerFactory.getLogger(VelkaUIJms.class);
+    private final static Logger LOG = LoggerFactory.getLogger(Listener.class);
 
     @Autowired
     private SessionMap sessionMap;
 
     @Autowired
-    ResponseFactory responseFactory;
+    private ResponseFactory responseFactory;
 
     private Map<String, String> reactionForJms = JmsResponseSwitch.fillMap();
 
     @JmsListener(destination = "jms.queue.velka")
     public void consume(ActiveMQTextMessage textMessage) {
-        UI ui = sessionMap.getUiFromStorage(textMessage.getCorrelationId());
-        ui.accessSynchronously(() -> {
-            try {
-                String responseTarget = (String) textMessage.getProperty("endpoint");
-                String navigationTarget = reactionForJms.get(responseTarget);
-                LOG.info("receiving message='{}' to destination='{}'", textMessage.getText());
-                responseFactory.getResponse(responseTarget).execute(textMessage);
-                ui.getNavigator().navigateTo(navigationTarget);
-            } catch (JMSException | IOException e) {
-                LOG.error("Error receiving jms message: " + e.getMessage());
+        String correlationId = textMessage.getCorrelationId();
+        if (!(correlationId == null || correlationId.isEmpty())) {
+            UI ui = sessionMap.getUiFromStorage(correlationId);
+            if (ui == null){
+                LOG.error("No UI in SessionMap bound to: ".concat(correlationId));
+                return;
             }
-        });
+            ui.accessSynchronously(() -> {
+                try {
+                    String responseTarget = (String) textMessage.getProperty("endpoint");
+                    String navigationTarget = reactionForJms.get(responseTarget);
+                    LOG.info("receiving message='{}' to destination='{}'", textMessage.getText());
+                    responseFactory.getResponse(responseTarget).execute(textMessage);
+                    ui.getNavigator().navigateTo(navigationTarget);
+                } catch (JMSException | IOException e) {
+                    LOG.error("Error receiving jms message: " + e.getMessage());
+                }
+            });
+        } else {
+            LOG.error("Received TextMessage without correlationId");
+        }
     }
 }

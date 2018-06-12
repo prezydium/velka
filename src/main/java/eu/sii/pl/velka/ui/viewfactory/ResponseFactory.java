@@ -9,17 +9,16 @@ import java.util.Map;
 @Component
 public class ResponseFactory {
 
-
     @Autowired
-    LoginResponse loginResponse;
+    private LoginResponse loginResponse;
     @Autowired
-    BalanceResponse balanceResponse;
+    private BalanceResponse balanceResponse;
     @Autowired
-    PaymentPlanResponse paymentPlanResponse;
+    private PaymentPlanResponse paymentPlanResponse;
 
-    Map<String, ResponseTargetI> map =  new HashMap();
+    private Map<String, ResponseTargetI> map = new HashMap();
 
-      public ResponseTargetI getResponse(String responseType) {
+    public ResponseTargetI getResponse(String responseType) {
         map.put("balance", balanceResponse);
         map.put("login", loginResponse);
         map.put("paymentplan", paymentPlanResponse);

@@ -19,4 +19,8 @@ public class SessionMap {
         return uiStorage.get(s);
     }
 
+    public void removeUIFromStorage(String s){
+        uiStorage.remove(s);
+    }
+
 }
