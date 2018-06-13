@@ -8,6 +8,7 @@ import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.model.PaymentDeclaration;
 import eu.sii.pl.velka.model.PaymentPlan;
 import eu.sii.pl.velka.ui.authorisation.ErrorLoginView;
+import eu.sii.pl.velka.ui.authorisation.ErrorPaymentDeclaration;
 import eu.sii.pl.velka.ui.authorisation.SuccessfulLoginView;
 import eu.sii.pl.velka.ui.authorisation.UnrecognisedUserLoginView;
 import eu.sii.pl.velka.ui.views.WaitingView;
@@ -45,26 +46,22 @@ public class APIServiceCommunication {
         VaadinSession.getCurrent().setAttribute("debtor", debtor);
         switchViewAfterApiResponse(authorisationEffect);
         if (authorisationEffect == AuthorisationEffect.RECOGNISED) {
-            debtor = balanceService.getFullData(debtor.getSsn());
+            debtor = balanceService.getFullData(debtor.getSsn()).get();
             VaadinSession.getCurrent().setAttribute("debtor", debtor);
             springNavigator.navigateTo("balance");
         }
     }
 
     public void sentPaymentDeclarationToAPI(PaymentDeclaration paymentDeclaration) {
-
         AuthorisationEffect authorisationEffect = paymentService.trySendPayment(paymentDeclaration);
-        PaymentPlan paymentPlan = paymentService.getPaymentPlan(paymentDeclaration);
         switchViewAfterApiResponse(authorisationEffect);
         if (authorisationEffect == AuthorisationEffect.RECOGNISED) {
+            PaymentPlan paymentPlan = paymentService.getPaymentPlan(paymentDeclaration);
             VaadinSession.getCurrent().setAttribute("paymentDeclaration", paymentDeclaration);
             VaadinSession.getCurrent().setAttribute("paymentPlan", paymentPlan);
-            VaadinSession.getCurrent().setAttribute("paymentDeclaration", paymentDeclaration);
             springNavigator.navigateTo("paymentPlan");
-        } else if (authorisationEffect == AuthorisationEffect.WAITING) {
-
-        } else {
-            springNavigator.navigateTo("errorPayment");
+        } else if (authorisationEffect != AuthorisationEffect.WAITING) {
+            springNavigator.navigateTo(ErrorPaymentDeclaration.VIEW_NAME);
         }
     }
 
