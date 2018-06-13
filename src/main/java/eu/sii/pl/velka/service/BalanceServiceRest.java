@@ -10,8 +10,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Optional;
-
 @Service
 @Profile("!jms")
 public class BalanceServiceRest implements BalanceService {
@@ -23,14 +21,14 @@ public class BalanceServiceRest implements BalanceService {
     @Value("${api_url}")
     private String API_URL;
 
-    private String API_URL_GET_DEBTOR="balance/";
+    private String API_URL_GET_DEBTOR = "balance/";
 
     @Autowired
     public BalanceServiceRest(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder.build();
     }
 
-  @Override
+    @Override
     public Debtor getFullData(String ssn) {
         String urlWithGet = API_URL + API_URL_GET_DEBTOR + ssn;
         Debtor localDebtor = new Debtor();

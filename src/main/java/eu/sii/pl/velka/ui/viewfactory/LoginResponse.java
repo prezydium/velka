@@ -4,14 +4,18 @@ import com.vaadin.ui.UI;
 import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.service.BalanceService;
 import org.apache.activemq.command.ActiveMQTextMessage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class LoginResponse implements ResponseTargetI {
 
-    @Autowired
-    BalanceService balanceService;
+
+    private BalanceService balanceService;
+
+    public LoginResponse(BalanceService balanceService) {
+        this.balanceService = balanceService;
+    }
+
 
     @Override
     public void execute(ActiveMQTextMessage textMessage) {

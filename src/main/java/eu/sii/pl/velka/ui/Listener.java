@@ -19,13 +19,17 @@ public class Listener {
 
     private final static Logger LOG = LoggerFactory.getLogger(Listener.class);
 
-    @Autowired
     private SessionMap sessionMap;
 
-    @Autowired
-    private ResponseFactory responseFactory;
+    private final ResponseFactory responseFactory;
 
     private Map<String, String> reactionForJms = JmsResponseSwitch.fillMap();
+
+    @Autowired
+    public Listener(SessionMap sessionMap, ResponseFactory responseFactory) {
+        this.sessionMap = sessionMap;
+        this.responseFactory = responseFactory;
+    }
 
     @JmsListener(destination = "jms.queue.velka")
     public void consume(ActiveMQTextMessage textMessage) {

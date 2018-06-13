@@ -3,12 +3,10 @@ package eu.sii.pl.velka.ui.views;
 import com.vaadin.data.BinderValidationStatus;
 import com.vaadin.navigator.View;
 import com.vaadin.spring.annotation.SpringView;
-import com.vaadin.spring.navigator.SpringNavigator;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import eu.sii.pl.velka.model.Debtor;
 import eu.sii.pl.velka.service.APIServiceCommunication;
-import eu.sii.pl.velka.service.BalanceService;
 import eu.sii.pl.velka.ui.views.components.StartForm;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,12 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class StartView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "";
-
-    @Autowired
-    BalanceService balanceService;
-
-    @Autowired
-    SpringNavigator springNavigator;
 
     @Autowired
     private APIServiceCommunication communicateWithAPI;
@@ -53,7 +45,7 @@ public class StartView extends VerticalLayout implements View {
                     + status.getValidationErrors().get(0).getErrorMessage());
         } else {
             Debtor localDebtor = (Debtor) formLayout.getModel();
-           communicateWithAPI.sentDebtorToAPI(localDebtor);
+            communicateWithAPI.sentDebtorToAPI(localDebtor);
         }
     }
 }

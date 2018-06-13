@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class BalanceResponse implements ResponseTargetI {
 
     @Autowired
-    ObjectMapper objectMapper;
+    private ObjectMapper objectMapper;
 
     @Override
     public void execute(ActiveMQTextMessage textMessage) {
