@@ -25,9 +25,8 @@ public class ResponseFactory {
 
     public ResponseTargetI getResponse(String responseType) {
 
-        ResponseTargetI response = map.get(responseType.toLowerCase());
-        if (response != null) {
-            return response;
+        if (map.containsKey(responseType)) {
+            return map.get(responseType.toLowerCase());
         } else {
             throw new IllegalArgumentException("No such response " + responseType);
         }
