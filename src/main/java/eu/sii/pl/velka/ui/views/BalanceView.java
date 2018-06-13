@@ -46,7 +46,6 @@ public class BalanceView extends VerticalLayout implements View {
             PaymentDeclarationView paymentDeclarationView = (PaymentDeclarationView) paymentLayout.getModel();
             paymentDeclarationView.setSsn(debtor.getSsn());
             PaymentDeclaration paymentDeclaration = paymentDeclarationView.mapToPaymentDeclaration();
-            VaadinSession.getCurrent().setAttribute("paymentDeclaration", paymentDeclaration);
             communicateWithAPI.sentPaymentDeclarationToAPI(paymentDeclaration);
         }
     }

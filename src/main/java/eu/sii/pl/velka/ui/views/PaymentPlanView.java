@@ -12,8 +12,10 @@ import eu.sii.pl.velka.model.PaymentPlan;
 import eu.sii.pl.velka.ui.windows.PaymentMethodWindow;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@SpringView(name = "paymentPlan")
+@SpringView(name = PaymentPlanView.VIEW_NAME)
 public class PaymentPlanView extends VerticalLayout implements View {
+
+    public final static String VIEW_NAME = "paymentPlan";
 
     private Button paymentButton = new Button("Choose payment method", this::paymentButtonClick);
 

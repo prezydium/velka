@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Optional;
+
 @Service
 @Profile("!jms")
 public class BalanceServiceRest implements BalanceService {
@@ -21,7 +23,7 @@ public class BalanceServiceRest implements BalanceService {
     @Value("${api_url}")
     private String API_URL;
 
-    private String API_URL_GET_DEBTOR="balance/";
+    private String API_URL_GET_DEBTOR = "balance/";
 
     @Autowired
     public BalanceServiceRest(RestTemplateBuilder restTemplateBuilder) {
@@ -29,7 +31,7 @@ public class BalanceServiceRest implements BalanceService {
     }
 
     @Override
-    public Debtor getFullData(String ssn) {
+    public Optional<Debtor> getFullData(String ssn) {
         String urlWithGet = API_URL + API_URL_GET_DEBTOR + ssn;
         Debtor localDebtor = new Debtor();
         try {
@@ -38,6 +40,6 @@ public class BalanceServiceRest implements BalanceService {
         } catch (Exception e) {
             LOG.error("Error getting debtor data" + e.getMessage());
         }
-        return localDebtor;
+        return  Optional.of(localDebtor);
     }
 }

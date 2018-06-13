@@ -1,0 +1,5 @@
+activemq:
+  broker-url: tcp://ec2-34-245-25-132.eu-west-1.compute.amazonaws.com:7030
+
+queue:
+  helloworld: SII.MSG.QUEUE

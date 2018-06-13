@@ -10,7 +10,7 @@ import java.util.List;
 
 @SpringComponent
 @UIScope
-public class Debtor {
+public class Debtor implements Serializable {
 
     private Long id;
 

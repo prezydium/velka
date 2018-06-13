@@ -7,12 +7,14 @@ import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.annotation.SpringViewDisplay;
 import com.vaadin.ui.UI;
 import eu.sii.pl.velka.ui.authorisation.ErrorView;
+import org.springframework.context.annotation.Profile;
 
 @SpringUI
 @Theme("valo")
 @SpringViewDisplay
 @Push
-public class VelkaUI extends UI {
+@Profile("!jms")
+public class VelkaUIRest extends UI {
 
     @Override
     protected void init(VaadinRequest request) {

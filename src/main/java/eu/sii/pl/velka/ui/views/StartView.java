@@ -5,9 +5,9 @@ import com.vaadin.navigator.View;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
-import eu.sii.pl.velka.ui.views.components.StartForm;
-import eu.sii.pl.velka.service.APIServiceCommunication;
 import eu.sii.pl.velka.model.Debtor;
+import eu.sii.pl.velka.service.APIServiceCommunication;
+import eu.sii.pl.velka.ui.views.components.StartForm;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @SpringView(name = StartView.VIEW_NAME)
