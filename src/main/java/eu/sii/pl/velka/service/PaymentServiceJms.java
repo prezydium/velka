@@ -21,17 +21,21 @@ public class PaymentServiceJms implements PaymentService {
     @Value("${queue.paymentplan}")
     private String queue;
 
+    private Sender sender;
+
     @Autowired
-    Sender sender;
+    public PaymentServiceJms(Sender sender) {
+        this.sender = sender;
+    }
 
     @Override
     public AuthorisationEffect trySendPayment(PaymentDeclaration paymentDeclaration) {
+        sender.send(queue, paymentDeclaration);
         return AuthorisationEffect.WAITING;
     }
 
     @Override
     public PaymentPlan getPaymentPlan(PaymentDeclaration paymentDeclaration) {
-        sender.send(queue, paymentDeclaration);
-        return new PaymentPlan();
+       throw new UnsupportedOperationException();
     }
 }

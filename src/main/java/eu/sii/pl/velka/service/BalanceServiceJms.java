@@ -22,8 +22,12 @@ public class BalanceServiceJms implements BalanceService {
     @Value("${queue.balance}")
     private String queue;
 
+    private final Sender sender;
+
     @Autowired
-    private Sender sender;
+    public BalanceServiceJms(Sender sender) {
+        this.sender = sender;
+    }
 
     @Override
     public Debtor getFullData(String ssn) {

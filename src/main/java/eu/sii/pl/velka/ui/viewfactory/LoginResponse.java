@@ -9,13 +9,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoginResponse implements ResponseTargetI {
 
-
     private BalanceService balanceService;
 
     public LoginResponse(BalanceService balanceService) {
         this.balanceService = balanceService;
     }
-
 
     @Override
     public void execute(ActiveMQTextMessage textMessage) {
